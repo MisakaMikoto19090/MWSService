@@ -24,7 +24,7 @@ namespace MWSService\Samples;
 use MWSService\Orders\Base\MWSClient;
 use MWSService\Orders\Base\MWSInterface;
 use MWSService\Orders\Model\MWSModelGetOrderRequest;
-require_once('.config.inc.php');
+require_once('../.config.inc.php');
 
 /************************************************************************
  * Instantiate Implementation of MarketplaceWebServiceOrders
