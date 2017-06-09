@@ -26,6 +26,39 @@ use Exception;
 use DOMElement;
 use DOMXPath;
 use DOMDocument;
+
+use MWSService\Orders\Model\MWSModelAddress;
+use MWSService\Orders\Model\MWSModelBuyerCustomizedInfoDetail;
+use MWSService\Orders\Model\MWSModelBuyerTaxInfo;
+use MWSService\Orders\Model\MWSModelGetOrderResponse;
+use MWSService\Orders\Model\MWSModelGetOrderRequest;
+use MWSService\Orders\Model\MWSModelGetOrderResult;
+use MWSService\Orders\Model\MWSModelGetServiceStatusRequest;
+use MWSService\Orders\Model\MWSModelGetServiceStatusResponse;
+use MWSService\Orders\Model\MWSModelGetServiceStatusResult;
+use MWSService\Orders\Model\MWSModelInvoiceData;
+use MWSService\Orders\Model\MWSModelListOrderItemsByNextTokenResponse;
+use MWSService\Orders\Model\MWSModelListOrdersByNextTokenResponse;
+use MWSService\Orders\Model\MWSModelListOrdersResponse;
+use MWSService\Orders\Model\MWSModelListOrderItemsByNextTokenRequest;
+use MWSService\Orders\Model\MWSModelListOrderItemsByNextTokenResult;
+use MWSService\Orders\Model\MWSModelListOrderItemsRequest;
+use MWSService\Orders\Model\MWSModelListOrderItemsResponse;
+use MWSService\Orders\Model\MWSModelListOrderItemsResult;
+use MWSService\Orders\Model\MWSModelListOrdersByNextTokenRequest;
+use MWSService\Orders\Model\MWSModelListOrdersByNextTokenResult;
+use MWSService\Orders\Model\MWSModelListOrdersRequest;
+use MWSService\Orders\Model\MWSModelListOrdersResult;
+use MWSService\Orders\Model\MWSModelMessage;
+use MWSService\Orders\Model\MWSModelMoney;
+use MWSService\Orders\Model\MWSModelOrder;
+use MWSService\Orders\Model\MWSModelOrderItem;
+use MWSService\Orders\Model\MWSModelPaymentExecutionDetailItem;
+use MWSService\Orders\Model\MWSModelPointsGrantedDetail;
+use MWSService\Orders\Model\MWSModelResponseHeaderMetadata;
+use MWSService\Orders\Model\MWSModelResponseMetadata;
+use MWSService\Orders\Model\MWSModelTaxClassification;
+
 abstract class  MWSModel
 {
 
