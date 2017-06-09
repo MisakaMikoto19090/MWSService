@@ -20,8 +20,11 @@
 /**
  * List Orders Sample
  */
-
-require_once('.config.inc.php');
+namespace MWSService\Samples;
+use MWSService\Orders\Base\MWSClient;
+use MWSService\Orders\Base\MWSInterface;
+use MWSService\Orders\Model\MWSModelListOrdersRequest;
+require_once('../.config.inc.php');
 
 /************************************************************************
  * Instantiate Implementation of MarketplaceWebServiceOrders
@@ -34,7 +37,7 @@ require_once('.config.inc.php');
 // North America:
 //$serviceUrl = "https://mws.amazonservices.com/Orders/2013-09-01";
 // Europe
-//$serviceUrl = "https://mws-eu.amazonservices.com/Orders/2013-09-01";
+$serviceUrl = "https://mws-eu.amazonservices.com/Orders/2013-09-01";
 // Japan
 //$serviceUrl = "https://mws.amazonservices.jp/Orders/2013-09-01";
 // China
@@ -74,8 +77,12 @@ $service = new MWSClient(
  * sample for List Orders Action
  ***********************************************************************/
 // @TODO: set request. Action can be passed as MWSModel_ListOrders
-$request = new MWSModel_ListOrdersRequest();
+$request = new MWSModelListOrdersRequest();
 $request->setSellerId(MERCHANT_ID);
+$request->setMarketplaceId(MARKETPLACE_ID);
+//$request->setCreatedAfter(date('yyyy-MM-ddThh:mm:00Z'),time());
+$request->setCreatedAfter('2017-06-01T00:00:00Z');
+$request->setOrderStatus('Shipped');
 // object or array of parameters
 invokeListOrders($service, $request);
 
