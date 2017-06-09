@@ -21,9 +21,7 @@
     "psr-4": {
       "MWSService\\": "/"
     },
-    "files": [
-      "MWSAutoLoad.php"
-    ]
+
   },
   "minimum-stability": "dev"
 }
