@@ -42,7 +42,7 @@ class MWSModelGetOrderResult extends MWSModel
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'Orders' => array('FieldValue' => array(), 'FieldType' => array('MWSModelOrder'), 'ListMemberName' => 'Order'),
+            'Orders' => array('FieldValue' => array(), 'FieldType' => array('MWSService\Orders\Model\MWSModelOrder'), 'ListMemberName' => 'Order'),
         );
         parent::__construct($data);
     }

@@ -48,7 +48,7 @@ class MWSModelListOrdersByNextTokenResult extends MWSModel
             'NextToken' => array('FieldValue' => null, 'FieldType' => 'string'),
             'CreatedBefore' => array('FieldValue' => null, 'FieldType' => 'string'),
             'LastUpdatedBefore' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'Orders' => array('FieldValue' => array(), 'FieldType' => array('MWSModelOrder'), 'ListMemberName' => 'Order'),
+            'Orders' => array('FieldValue' => array(), 'FieldType' => array('MWSService\Orders\Model\MWSModelOrder'), 'ListMemberName' => 'Order'),
         );
         parent::__construct($data);
     }

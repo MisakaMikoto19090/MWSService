@@ -46,7 +46,7 @@ class MWSModelListOrderItemsByNextTokenResult extends MWSModel
         $this->_fields = array(
             'NextToken' => array('FieldValue' => null, 'FieldType' => 'string'),
             'AmazonOrderId' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'OrderItems' => array('FieldValue' => array(), 'FieldType' => array('MWSModelOrderItem'), 'ListMemberName' => 'OrderItem'),
+            'OrderItems' => array('FieldValue' => array(), 'FieldType' => array('MWSService\Orders\Model\MWSModelOrderItem'), 'ListMemberName' => 'OrderItem'),
         );
         parent::__construct($data);
     }

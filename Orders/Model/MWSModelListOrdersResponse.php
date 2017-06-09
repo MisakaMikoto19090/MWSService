@@ -26,7 +26,7 @@ namespace MWSService\Orders\Model;
 use MWSService\Orders\Base\MWSModel;
 use DOMDocument;
 use DOMXPath;
-
+use Exception;
 /**
  * MWSModelListOrdersResponse
  *
@@ -45,9 +45,9 @@ class MWSModelListOrdersResponse extends MWSModel
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'ListOrdersResult' => array('FieldValue' => null, 'FieldType' => 'MWSModelListOrdersResult'),
-            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModelResponseMetadata'),
-            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModelResponseHeaderMetadata'),
+            'ListOrdersResult' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelListOrdersResult'),
+            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseMetadata'),
+            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseHeaderMetadata'),
         );
         parent::__construct($data);
     }
