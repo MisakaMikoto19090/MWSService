@@ -76,7 +76,7 @@ $service = new MWSClient(
  * Setup request parameters and uncomment invoke to try out
  * sample for Get Order Action
  ***********************************************************************/
-// @TODO: set request. Action can be passed as MWSModel_GetOrder
+// @TODO: set request. Action can be passed as MWSModelGetOrder
 $request = new MWSModelGetOrderRequest();
 $request->setSellerId(MERCHANT_ID);
 // object or array of parameters
@@ -88,7 +88,7 @@ invokeGetOrder($service, $request);
  * the MarketplaceId and ASIN.
  *
  * @param MWSInterface $service instance of MWSInterface
- * @param mixed $request MWSModel_GetOrder or array of parameters
+ * @param mixed $request MWSModelGetOrder or array of parameters
  */
 
 function invokeGetOrder(MWSInterface $service, $request)

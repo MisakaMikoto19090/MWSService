@@ -27,14 +27,14 @@ use MWSService\Orders\Base\MWSModel;
 
 
 /**
- * MWSModel_ListOrderItemsByNextTokenResponse
+ * MWSModelListOrderItemsByNextTokenResponse
  *
  * Properties:
  * <ul>
  *
- * <li>ListOrderItemsByNextTokenResult: MWSModel_ListOrderItemsByNextTokenResult</li>
- * <li>ResponseMetadata: MWSModel_ResponseMetadata</li>
- * <li>ResponseHeaderMetadata: MWSModel_ResponseHeaderMetadata</li>
+ * <li>ListOrderItemsByNextTokenResult: MWSModelListOrderItemsByNextTokenResult</li>
+ * <li>ResponseMetadata: MWSModelResponseMetadata</li>
+ * <li>ResponseHeaderMetadata: MWSModelResponseHeaderMetadata</li>
  *
  * </ul>
  */
@@ -44,9 +44,9 @@ class MWSModelListOrderItemsByNextTokenResponse extends MWSModel
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'ListOrderItemsByNextTokenResult' => array('FieldValue' => null, 'FieldType' => 'MWSModel_ListOrderItemsByNextTokenResult'),
-            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModel_ResponseMetadata'),
-            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModel_ResponseHeaderMetadata'),
+            'ListOrderItemsByNextTokenResult' => array('FieldValue' => null, 'FieldType' => 'MWSModelListOrderItemsByNextTokenResult'),
+            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModelResponseMetadata'),
+            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModelResponseHeaderMetadata'),
         );
         parent::__construct($data);
     }
@@ -64,7 +64,7 @@ class MWSModelListOrderItemsByNextTokenResponse extends MWSModel
     /**
      * Set the value of the ListOrderItemsByNextTokenResult property.
      *
-     * @param MWSModel_ListOrderItemsByNextTokenResult listOrderItemsByNextTokenResult
+     * @param MWSModelListOrderItemsByNextTokenResult listOrderItemsByNextTokenResult
      * @return this instance
      */
     public function setListOrderItemsByNextTokenResult($value)
@@ -110,7 +110,7 @@ class MWSModelListOrderItemsByNextTokenResponse extends MWSModel
     /**
      * Set the value of the ResponseMetadata property.
      *
-     * @param MWSModel_ResponseMetadata responseMetadata
+     * @param MWSModelResponseMetadata responseMetadata
      * @return this instance
      */
     public function setResponseMetadata($value)
@@ -156,7 +156,7 @@ class MWSModelListOrderItemsByNextTokenResponse extends MWSModel
     /**
      * Set the value of the ResponseHeaderMetadata property.
      *
-     * @param MWSModel_ResponseHeaderMetadata responseHeaderMetadata
+     * @param MWSModelResponseHeaderMetadata responseHeaderMetadata
      * @return this instance
      */
     public function setResponseHeaderMetadata($value)
@@ -190,12 +190,12 @@ class MWSModelListOrderItemsByNextTokenResponse extends MWSModel
     }
 
     /**
-     * Construct MWSModel_ListOrderItemsByNextTokenResponse from XML string
+     * Construct MWSModelListOrderItemsByNextTokenResponse from XML string
      *
      * @param $xml
      *        XML string to construct from
      *
-     * @return MWSModel_ListOrderItemsByNextTokenResponse
+     * @return MWSModelListOrderItemsByNextTokenResponse
      */
     public static function fromXML($xml)
     {
@@ -204,9 +204,9 @@ class MWSModelListOrderItemsByNextTokenResponse extends MWSModel
         $xpath = new DOMXPath($dom);
         $response = $xpath->query("//*[local-name()='ListOrderItemsByNextTokenResponse']");
         if ($response->length == 1) {
-            return new MWSModel_ListOrderItemsByNextTokenResponse(($response->item(0)));
+            return new MWSModelListOrderItemsByNextTokenResponse(($response->item(0)));
         } else {
-            throw new Exception ("Unable to construct MWSModel_ListOrderItemsByNextTokenResponse from provided XML. 
+            throw new Exception ("Unable to construct MWSModelListOrderItemsByNextTokenResponse from provided XML. 
                                   Make sure that ListOrderItemsByNextTokenResponse is a root element");
         }
     }

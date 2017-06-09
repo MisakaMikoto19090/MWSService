@@ -27,12 +27,12 @@ use MWSService\Orders\Base\MWSModel;
 
 
 /**
- * MWSModel_PaymentExecutionDetailItem
+ * MWSModelPaymentExecutionDetailItem
  *
  * Properties:
  * <ul>
  *
- * <li>Payment: MWSModel_Money</li>
+ * <li>Payment: MWSModelMoney</li>
  * <li>PaymentMethod: string</li>
  *
  * </ul>
@@ -43,7 +43,7 @@ class MWSModelPaymentExecutionDetailItem extends MWSModel
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'Payment' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
+            'Payment' => array('FieldValue' => null, 'FieldType' => 'MWSModelMoney'),
             'PaymentMethod' => array('FieldValue' => null, 'FieldType' => 'string'),
         );
         parent::__construct($data);
@@ -62,7 +62,7 @@ class MWSModelPaymentExecutionDetailItem extends MWSModel
     /**
      * Set the value of the Payment property.
      *
-     * @param MWSModel_Money payment
+     * @param MWSModelMoney payment
      * @return this instance
      */
     public function setPayment($value)

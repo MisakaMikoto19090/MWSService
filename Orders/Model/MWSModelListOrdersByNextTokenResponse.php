@@ -27,14 +27,14 @@ use MWSService\Orders\Base\MWSModel;
 
 
 /**
- * MWSModel_ListOrdersByNextTokenResponse
+ * MWSModelListOrdersByNextTokenResponse
  *
  * Properties:
  * <ul>
  *
- * <li>ListOrdersByNextTokenResult: MWSModel_ListOrdersByNextTokenResult</li>
- * <li>ResponseMetadata: MWSModel_ResponseMetadata</li>
- * <li>ResponseHeaderMetadata: MWSModel_ResponseHeaderMetadata</li>
+ * <li>ListOrdersByNextTokenResult: MWSModelListOrdersByNextTokenResult</li>
+ * <li>ResponseMetadata: MWSModelResponseMetadata</li>
+ * <li>ResponseHeaderMetadata: MWSModelResponseHeaderMetadata</li>
  *
  * </ul>
  */
@@ -44,9 +44,9 @@ class MWSModelListOrdersByNextTokenResponse extends MWSModel
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'ListOrdersByNextTokenResult' => array('FieldValue' => null, 'FieldType' => 'MWSModel_ListOrdersByNextTokenResult'),
-            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModel_ResponseMetadata'),
-            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModel_ResponseHeaderMetadata'),
+            'ListOrdersByNextTokenResult' => array('FieldValue' => null, 'FieldType' => 'MWSModelListOrdersByNextTokenResult'),
+            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModelResponseMetadata'),
+            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModelResponseHeaderMetadata'),
         );
         parent::__construct($data);
     }
@@ -64,7 +64,7 @@ class MWSModelListOrdersByNextTokenResponse extends MWSModel
     /**
      * Set the value of the ListOrdersByNextTokenResult property.
      *
-     * @param MWSModel_ListOrdersByNextTokenResult listOrdersByNextTokenResult
+     * @param MWSModelListOrdersByNextTokenResult listOrdersByNextTokenResult
      * @return this instance
      */
     public function setListOrdersByNextTokenResult($value)
@@ -110,7 +110,7 @@ class MWSModelListOrdersByNextTokenResponse extends MWSModel
     /**
      * Set the value of the ResponseMetadata property.
      *
-     * @param MWSModel_ResponseMetadata responseMetadata
+     * @param MWSModelResponseMetadata responseMetadata
      * @return this instance
      */
     public function setResponseMetadata($value)
@@ -156,7 +156,7 @@ class MWSModelListOrdersByNextTokenResponse extends MWSModel
     /**
      * Set the value of the ResponseHeaderMetadata property.
      *
-     * @param MWSModel_ResponseHeaderMetadata responseHeaderMetadata
+     * @param MWSModelResponseHeaderMetadata responseHeaderMetadata
      * @return this instance
      */
     public function setResponseHeaderMetadata($value)
@@ -190,12 +190,12 @@ class MWSModelListOrdersByNextTokenResponse extends MWSModel
     }
 
     /**
-     * Construct MWSModel_ListOrdersByNextTokenResponse from XML string
+     * Construct MWSModelListOrdersByNextTokenResponse from XML string
      *
      * @param $xml
      *        XML string to construct from
      *
-     * @return MWSModel_ListOrdersByNextTokenResponse
+     * @return MWSModelListOrdersByNextTokenResponse
      */
     public static function fromXML($xml)
     {
@@ -204,9 +204,9 @@ class MWSModelListOrdersByNextTokenResponse extends MWSModel
         $xpath = new DOMXPath($dom);
         $response = $xpath->query("//*[local-name()='ListOrdersByNextTokenResponse']");
         if ($response->length == 1) {
-            return new MWSModel_ListOrdersByNextTokenResponse(($response->item(0)));
+            return new MWSModelListOrdersByNextTokenResponse(($response->item(0)));
         } else {
-            throw new Exception ("Unable to construct MWSModel_ListOrdersByNextTokenResponse from provided XML. 
+            throw new Exception ("Unable to construct MWSModelListOrdersByNextTokenResponse from provided XML. 
                                   Make sure that ListOrdersByNextTokenResponse is a root element");
         }
     }

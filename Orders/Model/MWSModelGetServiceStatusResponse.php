@@ -27,14 +27,14 @@ use MWSService\Orders\Base\MWSModel;
 
 
 /**
- * MWSModel_GetServiceStatusResponse
+ * MWSModelGetServiceStatusResponse
  *
  * Properties:
  * <ul>
  *
- * <li>GetServiceStatusResult: MWSModel_GetServiceStatusResult</li>
- * <li>ResponseMetadata: MWSModel_ResponseMetadata</li>
- * <li>ResponseHeaderMetadata: MWSModel_ResponseHeaderMetadata</li>
+ * <li>GetServiceStatusResult: MWSModelGetServiceStatusResult</li>
+ * <li>ResponseMetadata: MWSModelResponseMetadata</li>
+ * <li>ResponseHeaderMetadata: MWSModelResponseHeaderMetadata</li>
  *
  * </ul>
  */
@@ -44,9 +44,9 @@ class MWSModelGetServiceStatusResponse extends MWSModel
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'GetServiceStatusResult' => array('FieldValue' => null, 'FieldType' => 'MWSModel_GetServiceStatusResult'),
-            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModel_ResponseMetadata'),
-            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModel_ResponseHeaderMetadata'),
+            'GetServiceStatusResult' => array('FieldValue' => null, 'FieldType' => 'MWSModelGetServiceStatusResult'),
+            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModelResponseMetadata'),
+            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModelResponseHeaderMetadata'),
         );
         parent::__construct($data);
     }
@@ -64,7 +64,7 @@ class MWSModelGetServiceStatusResponse extends MWSModel
     /**
      * Set the value of the GetServiceStatusResult property.
      *
-     * @param MWSModel_GetServiceStatusResult getServiceStatusResult
+     * @param MWSModelGetServiceStatusResult getServiceStatusResult
      * @return this instance
      */
     public function setGetServiceStatusResult($value)
@@ -110,7 +110,7 @@ class MWSModelGetServiceStatusResponse extends MWSModel
     /**
      * Set the value of the ResponseMetadata property.
      *
-     * @param MWSModel_ResponseMetadata responseMetadata
+     * @param MWSModelResponseMetadata responseMetadata
      * @return this instance
      */
     public function setResponseMetadata($value)
@@ -156,7 +156,7 @@ class MWSModelGetServiceStatusResponse extends MWSModel
     /**
      * Set the value of the ResponseHeaderMetadata property.
      *
-     * @param MWSModel_ResponseHeaderMetadata responseHeaderMetadata
+     * @param MWSModelResponseHeaderMetadata responseHeaderMetadata
      * @return this instance
      */
     public function setResponseHeaderMetadata($value)
@@ -190,12 +190,12 @@ class MWSModelGetServiceStatusResponse extends MWSModel
     }
 
     /**
-     * Construct MWSModel_GetServiceStatusResponse from XML string
+     * Construct MWSModelGetServiceStatusResponse from XML string
      *
      * @param $xml
      *        XML string to construct from
      *
-     * @return MWSModel_GetServiceStatusResponse
+     * @return MWSModelGetServiceStatusResponse
      */
     public static function fromXML($xml)
     {
@@ -204,9 +204,9 @@ class MWSModelGetServiceStatusResponse extends MWSModel
         $xpath = new DOMXPath($dom);
         $response = $xpath->query("//*[local-name()='GetServiceStatusResponse']");
         if ($response->length == 1) {
-            return new MWSModel_GetServiceStatusResponse(($response->item(0)));
+            return new MWSModelGetServiceStatusResponse(($response->item(0)));
         } else {
-            throw new Exception ("Unable to construct MWSModel_GetServiceStatusResponse from provided XML. 
+            throw new Exception ("Unable to construct MWSModelGetServiceStatusResponse from provided XML. 
                                   Make sure that GetServiceStatusResponse is a root element");
         }
     }

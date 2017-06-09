@@ -27,7 +27,7 @@ use MWSService\Orders\Base\MWSModel;
 
 
 /**
- * MWSModel_GetServiceStatusResult
+ * MWSModelGetServiceStatusResult
  *
  * Properties:
  * <ul>
@@ -48,7 +48,7 @@ class MWSModelGetServiceStatusResult extends MWSModel
             'Status' => array('FieldValue' => null, 'FieldType' => 'string'),
             'Timestamp' => array('FieldValue' => null, 'FieldType' => 'string'),
             'MessageId' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'Messages' => array('FieldValue' => array(), 'FieldType' => array('MWSModel_Message'), 'ListMemberName' => 'Message'),
+            'Messages' => array('FieldValue' => array(), 'FieldType' => array('MWSModelMessage'), 'ListMemberName' => 'Message'),
         );
         parent::__construct($data);
     }

@@ -27,13 +27,13 @@ use MWSService\Orders\Base\MWSModel;
 
 
 /**
- * MWSModel_PointsGrantedDetail
+ * MWSModelPointsGrantedDetail
  *
  * Properties:
  * <ul>
  *
  * <li>PointsNumber: int</li>
- * <li>PointsMonetaryValue: MWSModel_Money</li>
+ * <li>PointsMonetaryValue: MWSModelMoney</li>
  *
  * </ul>
  */
@@ -44,7 +44,7 @@ class MWSModelPointsGrantedDetail extends MWSModel
     {
         $this->_fields = array(
             'PointsNumber' => array('FieldValue' => null, 'FieldType' => 'int'),
-            'PointsMonetaryValue' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
+            'PointsMonetaryValue' => array('FieldValue' => null, 'FieldType' => 'MWSModelMoney'),
         );
         parent::__construct($data);
     }
@@ -108,7 +108,7 @@ class MWSModelPointsGrantedDetail extends MWSModel
     /**
      * Set the value of the PointsMonetaryValue property.
      *
-     * @param MWSModel_Money pointsMonetaryValue
+     * @param MWSModelMoney pointsMonetaryValue
      * @return this instance
      */
     public function setPointsMonetaryValue($value)

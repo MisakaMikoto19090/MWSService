@@ -26,7 +26,7 @@ namespace MWSService\Orders\Model;
 use MWSService\Orders\Base\MWSModel;
 
 /**
- * MWSModel_GetOrderRequest
+ * MWSModelGetOrderRequest
  *
  * Properties:
  * <ul>

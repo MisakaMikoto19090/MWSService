@@ -27,7 +27,7 @@ use MWSService\Orders\Base\MWSModel;
 
 
 /**
- * MWSModel_ListOrderItemsResult
+ * MWSModelListOrderItemsResult
  *
  * Properties:
  * <ul>
@@ -46,7 +46,7 @@ class MWSModelListOrderItemsResult extends MWSModel
         $this->_fields = array(
             'NextToken' => array('FieldValue' => null, 'FieldType' => 'string'),
             'AmazonOrderId' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'OrderItems' => array('FieldValue' => array(), 'FieldType' => array('MWSModel_OrderItem'), 'ListMemberName' => 'OrderItem'),
+            'OrderItems' => array('FieldValue' => array(), 'FieldType' => array('MWSModelOrderItem'), 'ListMemberName' => 'OrderItem'),
         );
         parent::__construct($data);
     }

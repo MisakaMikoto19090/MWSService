@@ -27,7 +27,7 @@ use MWSService\Orders\Base\MWSModel;
 
 
 /**
- * MWSModel_Order
+ * MWSModelOrder
  *
  * Properties:
  * <ul>
@@ -41,8 +41,8 @@ use MWSService\Orders\Base\MWSModel;
  * <li>SalesChannel: string</li>
  * <li>OrderChannel: string</li>
  * <li>ShipServiceLevel: string</li>
- * <li>ShippingAddress: MWSModel_Address</li>
- * <li>OrderTotal: MWSModel_Money</li>
+ * <li>ShippingAddress: MWSModelAddress</li>
+ * <li>OrderTotal: MWSModelMoney</li>
  * <li>NumberOfItemsShipped: int</li>
  * <li>NumberOfItemsUnshipped: int</li>
  * <li>PaymentExecutionDetail: array</li>
@@ -52,7 +52,7 @@ use MWSService\Orders\Base\MWSModel;
  * <li>BuyerEmail: string</li>
  * <li>BuyerName: string</li>
  * <li>BuyerCounty: string</li>
- * <li>BuyerTaxInfo: MWSModel_BuyerTaxInfo</li>
+ * <li>BuyerTaxInfo: MWSModelBuyerTaxInfo</li>
  * <li>ShipmentServiceLevelCategory: string</li>
  * <li>ShippedByAmazonTFM: bool</li>
  * <li>TFMShipmentStatus: string</li>
@@ -86,18 +86,18 @@ class MWSModelOrder extends MWSModel
             'SalesChannel' => array('FieldValue' => null, 'FieldType' => 'string'),
             'OrderChannel' => array('FieldValue' => null, 'FieldType' => 'string'),
             'ShipServiceLevel' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'ShippingAddress' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Address'),
-            'OrderTotal' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
+            'ShippingAddress' => array('FieldValue' => null, 'FieldType' => 'MWSModelAddress'),
+            'OrderTotal' => array('FieldValue' => null, 'FieldType' => 'MWSModelMoney'),
             'NumberOfItemsShipped' => array('FieldValue' => null, 'FieldType' => 'int'),
             'NumberOfItemsUnshipped' => array('FieldValue' => null, 'FieldType' => 'int'),
-            'PaymentExecutionDetail' => array('FieldValue' => array(), 'FieldType' => array('MWSModel_PaymentExecutionDetailItem'), 'ListMemberName' => 'PaymentExecutionDetailItem'),
+            'PaymentExecutionDetail' => array('FieldValue' => array(), 'FieldType' => array('MWSModelPaymentExecutionDetailItem'), 'ListMemberName' => 'PaymentExecutionDetailItem'),
             'PaymentMethod' => array('FieldValue' => null, 'FieldType' => 'string'),
             'PaymentMethodDetails' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'PaymentMethodDetail'),
             'MarketplaceId' => array('FieldValue' => null, 'FieldType' => 'string'),
             'BuyerEmail' => array('FieldValue' => null, 'FieldType' => 'string'),
             'BuyerName' => array('FieldValue' => null, 'FieldType' => 'string'),
             'BuyerCounty' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'BuyerTaxInfo' => array('FieldValue' => null, 'FieldType' => 'MWSModel_BuyerTaxInfo'),
+            'BuyerTaxInfo' => array('FieldValue' => null, 'FieldType' => 'MWSModelBuyerTaxInfo'),
             'ShipmentServiceLevelCategory' => array('FieldValue' => null, 'FieldType' => 'string'),
             'ShippedByAmazonTFM' => array('FieldValue' => null, 'FieldType' => 'bool'),
             'TFMShipmentStatus' => array('FieldValue' => null, 'FieldType' => 'string'),
@@ -544,7 +544,7 @@ class MWSModelOrder extends MWSModel
     /**
      * Set the value of the ShippingAddress property.
      *
-     * @param MWSModel_Address shippingAddress
+     * @param MWSModelAddress shippingAddress
      * @return this instance
      */
     public function setShippingAddress($value)
@@ -590,7 +590,7 @@ class MWSModelOrder extends MWSModel
     /**
      * Set the value of the OrderTotal property.
      *
-     * @param MWSModel_Money orderTotal
+     * @param MWSModelMoney orderTotal
      * @return this instance
      */
     public function setOrderTotal($value)
@@ -1082,7 +1082,7 @@ class MWSModelOrder extends MWSModel
     /**
      * Set the value of the BuyerTaxInfo property.
      *
-     * @param MWSModel_BuyerTaxInfo buyerTaxInfo
+     * @param MWSModelBuyerTaxInfo buyerTaxInfo
      * @return this instance
      */
     public function setBuyerTaxInfo($value)

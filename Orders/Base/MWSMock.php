@@ -31,16 +31,16 @@ class MWSMock implements MWSInterface
      * Get Order
      * This operation takes up to 50 order ids and returns the corresponding orders.
      *
-     * @param mixed $request array of parameters for MWSModel_GetOrder request or MWSModel_GetOrder object itself
-     * @see MWSModel_GetOrder
-     * @return MWSModel_GetOrderResponse
+     * @param mixed $request array of parameters for MWSModelGetOrder request or MWSModelGetOrder object itself
+     * @see MWSModelGetOrder
+     * @return MWSModelGetOrderResponse
      *
      * @throws MWSException
      */
     public function getOrder($request)
     {
         require_once(dirname(__FILE__) . '/Model/GetOrderResponse.php');
-        return MWSModel_GetOrderResponse::fromXML($this->_invoke('GetOrder'));
+        return MWSModelGetOrderResponse::fromXML($this->_invoke('GetOrder'));
     }
 
     /**
@@ -48,16 +48,16 @@ class MWSMock implements MWSInterface
      * Returns the service status of a particular MWS API section. The operation
      *        takes no input.
      *
-     * @param mixed $request array of parameters for MWSModel_GetServiceStatus request or MWSModel_GetServiceStatus object itself
-     * @see MWSModel_GetServiceStatus
-     * @return MWSModel_GetServiceStatusResponse
+     * @param mixed $request array of parameters for MWSModelGetServiceStatus request or MWSModelGetServiceStatus object itself
+     * @see MWSModelGetServiceStatus
+     * @return MWSModelGetServiceStatusResponse
      *
      * @throws MWSException
      */
     public function getServiceStatus($request)
     {
         require_once(dirname(__FILE__) . '/Model/GetServiceStatusResponse.php');
-        return MWSModel_GetServiceStatusResponse::fromXML($this->_invoke('GetServiceStatus'));
+        return MWSModelGetServiceStatusResponse::fromXML($this->_invoke('GetServiceStatus'));
     }
 
     /**
@@ -65,16 +65,16 @@ class MWSMock implements MWSInterface
      * This operation can be used to list the items of the order indicated by the
      *         given order id (only a single Amazon order id is allowed).
      *
-     * @param mixed $request array of parameters for MWSModel_ListOrderItems request or MWSModel_ListOrderItems object itself
-     * @see MWSModel_ListOrderItems
-     * @return MWSModel_ListOrderItemsResponse
+     * @param mixed $request array of parameters for MWSModelListOrderItems request or MWSModelListOrderItems object itself
+     * @see MWSModelListOrderItems
+     * @return MWSModelListOrderItemsResponse
      *
      * @throws MWSException
      */
     public function listOrderItems($request)
     {
         require_once(dirname(__FILE__) . '/Model/ListOrderItemsResponse.php');
-        return MWSModel_ListOrderItemsResponse::fromXML($this->_invoke('ListOrderItems'));
+        return MWSModelListOrderItemsResponse::fromXML($this->_invoke('ListOrderItems'));
     }
 
     /**
@@ -83,32 +83,32 @@ class MWSMock implements MWSInterface
      *         provide a nextToken. That nextToken can be used with this operation to
      *         retrive the next batch of items for that order.
      *
-     * @param mixed $request array of parameters for MWSModel_ListOrderItemsByNextToken request or MWSModel_ListOrderItemsByNextToken object itself
-     * @see MWSModel_ListOrderItemsByNextToken
-     * @return MWSModel_ListOrderItemsByNextTokenResponse
+     * @param mixed $request array of parameters for MWSModelListOrderItemsByNextToken request or MWSModelListOrderItemsByNextToken object itself
+     * @see MWSModelListOrderItemsByNextToken
+     * @return MWSModelListOrderItemsByNextTokenResponse
      *
      * @throws MWSException
      */
     public function listOrderItemsByNextToken($request)
     {
         require_once(dirname(__FILE__) . '/Model/ListOrderItemsByNextTokenResponse.php');
-        return MWSModel_ListOrderItemsByNextTokenResponse::fromXML($this->_invoke('ListOrderItemsByNextToken'));
+        return MWSModelListOrderItemsByNextTokenResponse::fromXML($this->_invoke('ListOrderItemsByNextToken'));
     }
 
     /**
      * List Orders
      * ListOrders can be used to find orders that meet the specified criteria.
      *
-     * @param mixed $request array of parameters for MWSModel_ListOrders request or MWSModel_ListOrders object itself
-     * @see MWSModel_ListOrders
-     * @return MWSModel_ListOrdersResponse
+     * @param mixed $request array of parameters for MWSModelListOrders request or MWSModelListOrders object itself
+     * @see MWSModelListOrders
+     * @return MWSModelListOrdersResponse
      *
      * @throws MWSException
      */
     public function listOrders($request)
     {
         require_once(dirname(__FILE__) . '/Model/ListOrdersResponse.php');
-        return MWSModel_ListOrdersResponse::fromXML($this->_invoke('ListOrders'));
+        return MWSModelListOrdersResponse::fromXML($this->_invoke('ListOrders'));
     }
 
     /**
@@ -117,16 +117,16 @@ class MWSMock implements MWSInterface
      *         than returned that matched the given filter criteria, ListOrdersByNextToken
      *         can be used to retrieve those other orders using that nextToken.
      *
-     * @param mixed $request array of parameters for MWSModel_ListOrdersByNextToken request or MWSModel_ListOrdersByNextToken object itself
-     * @see MWSModel_ListOrdersByNextToken
-     * @return MWSModel_ListOrdersByNextTokenResponse
+     * @param mixed $request array of parameters for MWSModelListOrdersByNextToken request or MWSModelListOrdersByNextToken object itself
+     * @see MWSModelListOrdersByNextToken
+     * @return MWSModelListOrdersByNextTokenResponse
      *
      * @throws MWSException
      */
     public function listOrdersByNextToken($request)
     {
         require_once(dirname(__FILE__) . '/Model/ListOrdersByNextTokenResponse.php');
-        return MWSModel_ListOrdersByNextTokenResponse::fromXML($this->_invoke('ListOrdersByNextToken'));
+        return MWSModelListOrdersByNextTokenResponse::fromXML($this->_invoke('ListOrdersByNextToken'));
     }
 
     // Private API ------------------------------------------------------------//

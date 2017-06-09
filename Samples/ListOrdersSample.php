@@ -81,7 +81,7 @@ Class ListOrdersSample
          * Setup request parameters and uncomment invoke to try out
          * sample for List Orders Action
          ***********************************************************************/
-// @TODO: set request. Action can be passed as MWSModel_ListOrders
+// @TODO: set request. Action can be passed as MWSModelListOrders
         $request = new MWSModelListOrdersRequest();
         $request->setSellerId(MWSDefine::MERCHANT_ID);
         $request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);
@@ -101,9 +101,9 @@ Class ListOrdersSample
      * the MarketplaceId and ASIN.
      *
      * @param MWSInterface $service instance of MWSInterface
-     * @param mixed $request MWSModel_ListOrders or array of parameters
+     * @param mixed $request MWSModelListOrders or array of parameters
      */
-    function invokeListOrders(MWSInterface $service, $request)
+    public static function invokeListOrders(MWSInterface $service, $request)
     {
         try {
             $response = $service->ListOrders($request);

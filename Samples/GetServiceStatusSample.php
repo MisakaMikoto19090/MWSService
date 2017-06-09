@@ -73,8 +73,8 @@ $service = new MWSClient(
  * Setup request parameters and uncomment invoke to try out
  * sample for Get Service Status Action
  ***********************************************************************/
-// @TODO: set request. Action can be passed as MWSModel_GetServiceStatus
-$request = new MWSModel_GetServiceStatusRequest();
+// @TODO: set request. Action can be passed as MWSModelGetServiceStatus
+$request = new MWSModelGetServiceStatusRequest();
 $request->setSellerId(MERCHANT_ID);
 // object or array of parameters
 invokeGetServiceStatus($service, $request);
@@ -85,7 +85,7 @@ invokeGetServiceStatus($service, $request);
  * the MarketplaceId and ASIN.
  *
  * @param MWSInterface $service instance of MWSInterface
- * @param mixed $request MWSModel_GetServiceStatus or array of parameters
+ * @param mixed $request MWSModelGetServiceStatus or array of parameters
  */
 
 function invokeGetServiceStatus(MWSInterface $service, $request)

@@ -27,7 +27,7 @@ use MWSService\Orders\Base\MWSModel;
 
 
 /**
- * MWSModel_ListOrderItemsByNextTokenRequest
+ * MWSModelListOrderItemsByNextTokenRequest
  *
  * Properties:
  * <ul>

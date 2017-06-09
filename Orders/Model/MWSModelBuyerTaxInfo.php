@@ -27,7 +27,7 @@ use MWSService\Orders\Base\MWSModel;
 
 
 /**
- * MWSModel_BuyerTaxInfo
+ * MWSModelBuyerTaxInfo
  *
  * Properties:
  * <ul>
@@ -46,7 +46,7 @@ class MWSModelBuyerTaxInfo extends MWSModel
         $this->_fields = array(
             'CompanyLegalName' => array('FieldValue' => null, 'FieldType' => 'string'),
             'TaxingRegion' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'TaxClassifications' => array('FieldValue' => array(), 'FieldType' => array('MWSModel_TaxClassification'), 'ListMemberName' => 'TaxClassification'),
+            'TaxClassifications' => array('FieldValue' => array(), 'FieldType' => array('MWSModelTaxClassification'), 'ListMemberName' => 'TaxClassification'),
         );
         parent::__construct($data);
     }

@@ -27,7 +27,7 @@ use MWSService\Orders\Base\MWSModel;
 
 
 /**
- * MWSModel_ListOrdersResult
+ * MWSModelListOrdersResult
  *
  * Properties:
  * <ul>
@@ -48,7 +48,7 @@ class MWSModelListOrdersResult extends MWSModel
             'NextToken' => array('FieldValue' => null, 'FieldType' => 'string'),
             'CreatedBefore' => array('FieldValue' => null, 'FieldType' => 'string'),
             'LastUpdatedBefore' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'Orders' => array('FieldValue' => array(), 'FieldType' => array('MWSModel_Order'), 'ListMemberName' => 'Order'),
+            'Orders' => array('FieldValue' => array(), 'FieldType' => array('MWSModelOrder'), 'ListMemberName' => 'Order'),
         );
         parent::__construct($data);
     }
