@@ -22,6 +22,7 @@
  */
 
 namespace MWSService\Orders\Base;
+
 use MWSService\Orders\Model;
 
 class MWSMock implements MWSInterface
@@ -40,7 +41,7 @@ class MWSMock implements MWSInterface
      */
     public function getOrder($request)
     {
-        return  Model\MWSModelGetOrderResponse::fromXML($this->_invoke('GetOrder'));
+        return Model\MWSModelGetOrderResponse::fromXML($this->_invoke('GetOrder'));
     }
 
     /**
@@ -56,7 +57,7 @@ class MWSMock implements MWSInterface
      */
     public function getServiceStatus($request)
     {
-        return  Model\MWSModelGetServiceStatusResponse::fromXML($this->_invoke('GetServiceStatus'));
+        return Model\MWSModelGetServiceStatusResponse::fromXML($this->_invoke('GetServiceStatus'));
     }
 
     /**
@@ -72,7 +73,7 @@ class MWSMock implements MWSInterface
      */
     public function listOrderItems($request)
     {
-        return  Model\MWSModelListOrderItemsResponse::fromXML($this->_invoke('ListOrderItems'));
+        return Model\MWSModelListOrderItemsResponse::fromXML($this->_invoke('ListOrderItems'));
     }
 
     /**
@@ -89,7 +90,7 @@ class MWSMock implements MWSInterface
      */
     public function listOrderItemsByNextToken($request)
     {
-        return  Model\MWSModelListOrderItemsByNextTokenResponse::fromXML($this->_invoke('ListOrderItemsByNextToken'));
+        return Model\MWSModelListOrderItemsByNextTokenResponse::fromXML($this->_invoke('ListOrderItemsByNextToken'));
     }
 
     /**
@@ -104,7 +105,7 @@ class MWSMock implements MWSInterface
      */
     public function listOrders($request)
     {
-        return  Model\MWSModelListOrdersResponse::fromXML($this->_invoke('ListOrders'));
+        return Model\MWSModelListOrdersResponse::fromXML($this->_invoke('ListOrders'));
     }
 
     /**
@@ -121,7 +122,7 @@ class MWSMock implements MWSInterface
      */
     public function listOrdersByNextToken($request)
     {
-        return  Model\MWSModelListOrdersByNextTokenResponse::fromXML($this->_invoke('ListOrdersByNextToken'));
+        return Model\MWSModelListOrdersByNextTokenResponse::fromXML($this->_invoke('ListOrdersByNextToken'));
     }
 
     // Private API ------------------------------------------------------------//
