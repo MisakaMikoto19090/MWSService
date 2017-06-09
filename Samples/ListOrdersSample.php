@@ -20,103 +20,117 @@
 /**
  * List Orders Sample
  */
+
 namespace MWSService\Samples;
+
+use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSClient;
 use MWSService\Orders\Base\MWSInterface;
 use MWSService\Orders\Model\MWSModelListOrdersRequest;
-use MWSService\MWSDefine;
-/************************************************************************
- * Instantiate Implementation of MarketplaceWebServiceOrders
- *
- * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY constants
- * are defined in the .config.inc.php located in the same
- * directory as this sample
- ***********************************************************************/
-// More endpoints are listed in the MWS Developer Guide
-// North America:
-//$serviceUrl = "https://mws.amazonservices.com/Orders/2013-09-01";
-// Europe
-$serviceUrl = "https://mws-eu.amazonservices.com/Orders/2013-09-01";
-// Japan
-//$serviceUrl = "https://mws.amazonservices.jp/Orders/2013-09-01";
-// China
-//$serviceUrl = "https://mws.amazonservices.com.cn/Orders/2013-09-01";
 
 
-$config = array(
-    'ServiceURL' => $serviceUrl,
-    'ProxyHost' => null,
-    'ProxyPort' => -1,
-    'ProxyUsername' => null,
-    'ProxyPassword' => null,
-    'MaxErrorRetry' => 3,
-);
+Class ListOrdersSample
+{
+    /************************************************************************
+     * Instantiate Implementation of MarketplaceWebServiceOrders
+     *
+     * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY constants
+     * are defined in the .config.inc.php located in the same
+     * directory as this sample
+     ***********************************************************************/
+    // More endpoints are listed in the MWS Developer Guide
+    // North America:
+    //$serviceUrl = "https://mws.amazonservices.com/Orders/2013-09-01";
+    // Europe
+    const serviceUrl = "https://mws-eu.amazonservices.com/Orders/2013-09-01";
+    // Japan
+    //$serviceUrl = "https://mws.amazonservices.jp/Orders/2013-09-01";
+    // China
+    //$serviceUrl = "https://mws.amazonservices.com.cn/Orders/2013-09-01";
+    public static $config = [
+        'ServiceURL' => self::serviceUrl,
+        'ProxyHost' => null,
+        'ProxyPort' => -1,
+        'ProxyUsername' => null,
+        'ProxyPassword' => null,
+        'MaxErrorRetry' => 3,
+    ];
 
-$service = new MWSClient(
-    MWSDefine::AWS_ACCESS_KEY_ID,
-    MWSDefine::AWS_SECRET_ACCESS_KEY,
-    MWSDefine::APPLICATION_NAME,
-    MWSDefine::APPLICATION_VERSION,
-    $config);
+    public static function GetOrders()
+    {
+        $service = new MWSClient(
+            MWSDefine::AWS_ACCESS_KEY_ID,
+            MWSDefine::AWS_SECRET_ACCESS_KEY,
+            MWSDefine::APPLICATION_NAME,
+            MWSDefine::APPLICATION_VERSION,
+            self::$config);
 
-/************************************************************************
- * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
- * responses without calling MarketplaceWebServiceOrders service.
- *
- * Responses are loaded from local XML files. You can tweak XML files to
- * experiment with various outputs during development
- *
- * XML files available under MarketplaceWebServiceOrders/Mock tree
- *
- ***********************************************************************/
+        /************************************************************************
+         * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
+         * responses without calling MarketplaceWebServiceOrders service.
+         *
+         * Responses are loaded from local XML files. You can tweak XML files to
+         * experiment with various outputs during development
+         *
+         * XML files available under MarketplaceWebServiceOrders/Mock tree
+         *
+         ***********************************************************************/
 // $service = new MWSMock();
 
-/************************************************************************
- * Setup request parameters and uncomment invoke to try out
- * sample for List Orders Action
- ***********************************************************************/
+        /************************************************************************
+         * Setup request parameters and uncomment invoke to try out
+         * sample for List Orders Action
+         ***********************************************************************/
 // @TODO: set request. Action can be passed as MWSModel_ListOrders
-$request = new MWSModelListOrdersRequest();
-$request->setSellerId(MWSDefine::MERCHANT_ID);
-$request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);
-//$request->setCreatedAfter(date('yyyy-MM-ddThh:mm:00Z'),time());
-$request->setCreatedAfter('2017-06-01T00:00:00Z');
-$request->setOrderStatus('Shipped');
+        $request = new MWSModelListOrdersRequest();
+        $request->setSellerId(MWSDefine::MERCHANT_ID);
+        $request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);
+        $request->setCreatedAfter(date('yyyy-MM-ddThh:mm:00Z'), time());
+
+//        $request->setCreatedAfter('2017-06-01T00:00:00Z');
+        $request->setOrderStatus('Shipped');
 // object or array of parameters
-invokeListOrders($service, $request);
+        self::invokeListOrders($service, $request);
 
-/**
- * Get List Orders Action Sample
- * Gets competitive pricing and related information for a product identified by
- * the MarketplaceId and ASIN.
- *
- * @param MWSInterface $service instance of MWSInterface
- * @param mixed $request MWSModel_ListOrders or array of parameters
- */
 
-function invokeListOrders(MWSInterface $service, $request)
-{
-    try {
-        $response = $service->ListOrders($request);
+    }
 
-        echo("Service Response\n");
-        echo("=============================================================================\n");
+    /**
+     * Get List Orders Action Sample
+     * Gets competitive pricing and related information for a product identified by
+     * the MarketplaceId and ASIN.
+     *
+     * @param MWSInterface $service instance of MWSInterface
+     * @param mixed $request MWSModel_ListOrders or array of parameters
+     */
+    function invokeListOrders(MWSInterface $service, $request)
+    {
+        try {
+            $response = $service->ListOrders($request);
 
-        $dom = new DOMDocument();
-        $dom->loadXML($response->toXML());
-        $dom->preserveWhiteSpace = false;
-        $dom->formatOutput = true;
-        echo $dom->saveXML();
-        echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
+            echo("Service Response\n");
+            echo("=============================================================================\n");
 
-    } catch (MWSException $ex) {
-        echo("Caught Exception: " . $ex->getMessage() . "\n");
-        echo("Response Status Code: " . $ex->getStatusCode() . "\n");
-        echo("Error Code: " . $ex->getErrorCode() . "\n");
-        echo("Error Type: " . $ex->getErrorType() . "\n");
-        echo("Request ID: " . $ex->getRequestId() . "\n");
-        echo("XML: " . $ex->getXML() . "\n");
-        echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
+            $dom = new DOMDocument();
+            $dom->loadXML($response->toXML());
+            $dom->preserveWhiteSpace = false;
+            $dom->formatOutput = true;
+            echo $dom->saveXML();
+            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
+
+        } catch (MWSException $ex) {
+            echo("Caught Exception: " . $ex->getMessage() . "\n");
+            echo("Response Status Code: " . $ex->getStatusCode() . "\n");
+            echo("Error Code: " . $ex->getErrorCode() . "\n");
+            echo("Error Type: " . $ex->getErrorType() . "\n");
+            echo("Request ID: " . $ex->getRequestId() . "\n");
+            echo("XML: " . $ex->getXML() . "\n");
+            echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
+        }
     }
 }
+
+
+
+
 
