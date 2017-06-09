@@ -28,37 +28,7 @@ use DOMElement;
 use DOMXPath;
 use Exception;
 
-use MWSService\Orders\Model\MWSModelAddress as MWSModelAddress;
-use MWSService\Orders\Model\MWSModelBuyerCustomizedInfoDetail as MWSModelBuyerCustomizedInfoDetail;
-use MWSService\Orders\Model\MWSModelBuyerTaxInfo as MWSModelBuyerTaxInfo;
-use MWSService\Orders\Model\MWSModelGetOrderResponse as MWSModelGetOrderResponse;
-use MWSService\Orders\Model\MWSModelGetOrderRequest as MWSModelGetOrderRequest;
-use MWSService\Orders\Model\MWSModelGetOrderResult as MWSModelGetOrderResult;
-use MWSService\Orders\Model\MWSModelGetServiceStatusRequest as MWSModelGetServiceStatusRequest;
-use MWSService\Orders\Model\MWSModelGetServiceStatusResponse as MWSModelGetServiceStatusResponse;
-use MWSService\Orders\Model\MWSModelGetServiceStatusResult as MWSModelGetServiceStatusResult;
-use MWSService\Orders\Model\MWSModelInvoiceData as MWSModelInvoiceData;
-use MWSService\Orders\Model\MWSModelListOrderItemsByNextTokenResponse as MWSModelListOrderItemsByNextTokenResponse;
-use MWSService\Orders\Model\MWSModelListOrdersByNextTokenResponse as MWSModelListOrdersByNextTokenResponse;
-use MWSService\Orders\Model\MWSModelListOrdersResponse as MWSModelListOrdersResponse;
-use MWSService\Orders\Model\MWSModelListOrderItemsByNextTokenRequest as MWSModelListOrderItemsByNextTokenRequest;
-use MWSService\Orders\Model\MWSModelListOrderItemsByNextTokenResult as MWSModelListOrderItemsByNextTokenResult;
-use MWSService\Orders\Model\MWSModelListOrderItemsRequest as MWSModelListOrderItemsRequest;
-use MWSService\Orders\Model\MWSModelListOrderItemsResponse as MWSModelListOrderItemsResponse;
-use MWSService\Orders\Model\MWSModelListOrderItemsResult as MWSModelListOrderItemsResult;
-use MWSService\Orders\Model\MWSModelListOrdersByNextTokenRequest as MWSModelListOrdersByNextTokenRequest;
-use MWSService\Orders\Model\MWSModelListOrdersByNextTokenResult as MWSModelListOrdersByNextTokenResult;
-use MWSService\Orders\Model\MWSModelListOrdersRequest as MWSModelListOrdersRequest;
-use MWSService\Orders\Model\MWSModelListOrdersResult as MWSModelListOrdersResult;
-use MWSService\Orders\Model\MWSModelMessage as MWSModelMessage;
-use MWSService\Orders\Model\MWSModelMoney as MWSModelMoney;
-use MWSService\Orders\Model\MWSModelOrder as MWSModelOrder;
-use MWSService\Orders\Model\MWSModelOrderItem as MWSModelOrderItem;
-use MWSService\Orders\Model\MWSModelPaymentExecutionDetailItem as MWSModelPaymentExecutionDetailItem;
-use MWSService\Orders\Model\MWSModelPointsGrantedDetail as MWSModelPointsGrantedDetail;
-use MWSService\Orders\Model\MWSModelResponseHeaderMetadata as MWSModelResponseHeaserMetadata;
-use MWSService\Orders\Model\MWSModelResponseMetadata as MWSModelResponseMetadata;
-use MWSService\Orders\Model\MWSModelTaxClassification as MWSModelTaxClassification;
+
 
 abstract class  MWSModel
 {
