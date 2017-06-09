@@ -20,7 +20,10 @@
 /**
  * Get Order Sample
  */
-
+namespace MWSService\Samples;
+use MWSService\Orders\Base\MWSClient;
+use MWSService\Orders\Base\MWSInterface;
+use MWSService\Orders\Model\MWSModelGetOrderRequest;
 require_once('.config.inc.php');
 
 /************************************************************************
@@ -34,7 +37,7 @@ require_once('.config.inc.php');
 // North America:
 //$serviceUrl = "https://mws.amazonservices.com/Orders/2013-09-01";
 // Europe
-//$serviceUrl = "https://mws-eu.amazonservices.com/Orders/2013-09-01";
+$serviceUrl = "https://mws-eu.amazonservices.com/Orders/2013-09-01";
 // Japan
 //$serviceUrl = "https://mws.amazonservices.jp/Orders/2013-09-01";
 // China
@@ -74,7 +77,7 @@ $service = new MWSClient(
  * sample for Get Order Action
  ***********************************************************************/
 // @TODO: set request. Action can be passed as MWSModel_GetOrder
-$request = new MWSModel_GetOrderRequest();
+$request = new MWSModelGetOrderRequest();
 $request->setSellerId(MERCHANT_ID);
 // object or array of parameters
 invokeGetOrder($service, $request);
