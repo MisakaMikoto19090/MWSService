@@ -20,8 +20,11 @@
 /**
  * Get Service Status Sample
  */
-
-require_once('.config.inc.php');
+use MWSService\MWSDefine;
+use MWSService\Orders\Base\MWSClient;
+use MWSService\Orders\Base\MWSException;
+use MWSService\Orders\Base\MWSInterface;
+use MWSService\Orders\Model;
 
 /************************************************************************
  * Instantiate Implementation of MarketplaceWebServiceOrders
@@ -51,10 +54,10 @@ $config = array(
 );
 
 $service = new MWSClient(
-    AWS_ACCESS_KEY_ID,
-    AWS_SECRET_ACCESS_KEY,
-    APPLICATION_NAME,
-    APPLICATION_VERSION,
+    MWSDefine::AWS_ACCESS_KEY_ID,
+    MWSDefine::AWS_SECRET_ACCESS_KEY,
+    MWSDefine::APPLICATION_NAME,
+    MWSDefine::APPLICATION_VERSION,
     $config);
 
 /************************************************************************
@@ -75,7 +78,7 @@ $service = new MWSClient(
  ***********************************************************************/
 // @TODO: set request. Action can be passed as  Model\MWSModelGetServiceStatus
 $request = new  Model\MWSModelGetServiceStatusRequest();
-$request->setSellerId(MERCHANT_ID);
+$request->setSellerId(MWSDefine::MERCHANT_ID);
 // object or array of parameters
 invokeGetServiceStatus($service, $request);
 
@@ -85,7 +88,7 @@ invokeGetServiceStatus($service, $request);
  * the MarketplaceId and ASIN.
  *
  * @param MWSInterface $service instance of MWSInterface
- * @param mixed $request  Model\MWSModelGetServiceStatus or array of parameters
+ * @param mixed $request Model\MWSModelGetServiceStatus or array of parameters
  */
 
 function invokeGetServiceStatus(MWSInterface $service, $request)

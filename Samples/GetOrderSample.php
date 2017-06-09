@@ -20,11 +20,15 @@
 /**
  * Get Order Sample
  */
+
 namespace MWSService\Samples;
+
+use DOMDocument;
+use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSClient;
+use MWSService\Orders\Base\MWSException;
 use MWSService\Orders\Base\MWSInterface;
-use MWSService\Orders\Model\ Model\MWSModelGetOrderRequest;
-require_once('../.config.inc.php');
+use MWSService\Orders\Model;
 
 /************************************************************************
  * Instantiate Implementation of MarketplaceWebServiceOrders
@@ -54,10 +58,10 @@ $config = array(
 );
 
 $service = new MWSClient(
-    AWS_ACCESS_KEY_ID,
-    AWS_SECRET_ACCESS_KEY,
-    APPLICATION_NAME,
-    APPLICATION_VERSION,
+    MWSDefine::AWS_ACCESS_KEY_ID,
+    MWSDefine::AWS_SECRET_ACCESS_KEY,
+    MWSDefine::APPLICATION_NAME,
+    MWSDefine::APPLICATION_VERSION,
     $config);
 
 /************************************************************************
@@ -78,7 +82,7 @@ $service = new MWSClient(
  ***********************************************************************/
 // @TODO: set request. Action can be passed as  Model\MWSModelGetOrder
 $request = new  Model\MWSModelGetOrderRequest();
-$request->setSellerId(MERCHANT_ID);
+$request->setSellerId(MWSDefine::MERCHANT_ID);
 // object or array of parameters
 invokeGetOrder($service, $request);
 
@@ -88,7 +92,7 @@ invokeGetOrder($service, $request);
  * the MarketplaceId and ASIN.
  *
  * @param MWSInterface $service instance of MWSInterface
- * @param mixed $request  Model\MWSModelGetOrder or array of parameters
+ * @param mixed $request Model\MWSModelGetOrder or array of parameters
  */
 
 function invokeGetOrder(MWSInterface $service, $request)

@@ -23,11 +23,12 @@
 
 namespace MWSService\Samples;
 
+use DOMDocument;
 use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSClient;
+use MWSService\Orders\Base\MWSException;
 use MWSService\Orders\Base\MWSInterface;
-use MWSService\Orders\Model\ Model\MWSModelListOrdersRequest;
-
+use MWSService\Orders\Model;
 
 Class ListOrdersSample
 {
@@ -101,7 +102,7 @@ Class ListOrdersSample
      * the MarketplaceId and ASIN.
      *
      * @param MWSInterface $service instance of MWSInterface
-     * @param mixed $request  Model\MWSModelListOrders or array of parameters
+     * @param mixed $request Model\MWSModelListOrders or array of parameters
      */
     public static function invokeListOrders(MWSInterface $service, $request)
     {
