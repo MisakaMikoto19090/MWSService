@@ -19,12 +19,13 @@
 
 namespace MWSService\Orders\Base;
 
+use Exception;
 /**
  * Marketplace Web Service Orders Exception provides details of errors
  * returned by Marketplace Web Service Orders service
  *
  */
-class MMWSException extends Exception
+class MWSException extends Exception
 
 {
     /** @var string */

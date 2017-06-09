@@ -23,6 +23,10 @@
 
 namespace MWSService\Orders\Base;
 
+use Exception;
+use MWSService\Orders\Model;
+use InvalidArgumentException;
+
 /**
  * MWSClient is an implementation of MarketplaceWebServiceOrders
  *
@@ -57,24 +61,24 @@ class MWSClient implements MWSInterface
      * Get Order
      * This operation takes up to 50 order ids and returns the corresponding orders.
      *
-     * @param mixed $request array of parameters for MWSModelGetOrder request or MWSModelGetOrder object itself
-     * @see MWSModelGetOrderRequest
-     * @return MWSModelGetOrderResponse
+     * @param mixed $request array of parameters for  Model\MWSModelGetOrder request or  Model\MWSModelGetOrder object itself
+     * @see  Model\MWSModelGetOrderRequest
+     * @return  Model\MWSModelGetOrderResponse
      *
      * @throws MWSException
      */
     public function getOrder($request)
     {
-        if (!($request instanceof MWSModelGetOrderRequest)) {
+        if (!($request instanceof Model\MWSModelGetOrderRequest)) {
             require_once(dirname(__FILE__) . '/Model/GetOrderRequest.php');
-            $request = new MWSModelGetOrderRequest($request);
+            $request = new  Model\MWSModelGetOrderRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'GetOrder';
         $httpResponse = $this->_invoke($parameters);
 
         require_once(dirname(__FILE__) . '/Model/GetOrderResponse.php');
-        $response = MWSModelGetOrderResponse::fromXML($httpResponse['ResponseBody']);
+        $response = Model\MWSModelGetOrderResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
     }
@@ -107,24 +111,24 @@ class MWSClient implements MWSInterface
      * Returns the service status of a particular MWS API section. The operation
      *        takes no input.
      *
-     * @param mixed $request array of parameters for MWSModelGetServiceStatus request or MWSModelGetServiceStatus object itself
-     * @see MWSModelGetServiceStatusRequest
-     * @return MWSModelGetServiceStatusResponse
+     * @param mixed $request array of parameters for  Model\MWSModelGetServiceStatus request or  Model\MWSModelGetServiceStatus object itself
+     * @see  Model\MWSModelGetServiceStatusRequest
+     * @return  Model\MWSModelGetServiceStatusResponse
      *
      * @throws MWSException
      */
     public function getServiceStatus($request)
     {
-        if (!($request instanceof MWSModelGetServiceStatusRequest)) {
+        if (!($request instanceof Model\MWSModelGetServiceStatusRequest)) {
             require_once(dirname(__FILE__) . '/Model/GetServiceStatusRequest.php');
-            $request = new MWSModelGetServiceStatusRequest($request);
+            $request = new  Model\MWSModelGetServiceStatusRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'GetServiceStatus';
         $httpResponse = $this->_invoke($parameters);
 
         require_once(dirname(__FILE__) . '/Model/GetServiceStatusResponse.php');
-        $response = MWSModelGetServiceStatusResponse::fromXML($httpResponse['ResponseBody']);
+        $response = Model\MWSModelGetServiceStatusResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
     }
@@ -154,24 +158,24 @@ class MWSClient implements MWSInterface
      * This operation can be used to list the items of the order indicated by the
      *         given order id (only a single Amazon order id is allowed).
      *
-     * @param mixed $request array of parameters for MWSModelListOrderItems request or MWSModelListOrderItems object itself
-     * @see MWSModelListOrderItemsRequest
-     * @return MWSModelListOrderItemsResponse
+     * @param mixed $request array of parameters for  Model\MWSModelListOrderItems request or  Model\MWSModelListOrderItems object itself
+     * @see  Model\MWSModelListOrderItemsRequest
+     * @return  Model\MWSModelListOrderItemsResponse
      *
      * @throws MWSException
      */
     public function listOrderItems($request)
     {
-        if (!($request instanceof MWSModelListOrderItemsRequest)) {
+        if (!($request instanceof Model\MWSModelListOrderItemsRequest)) {
             require_once(dirname(__FILE__) . '/Model/ListOrderItemsRequest.php');
-            $request = new MWSModelListOrderItemsRequest($request);
+            $request = new  Model\MWSModelListOrderItemsRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'ListOrderItems';
         $httpResponse = $this->_invoke($parameters);
 
         require_once(dirname(__FILE__) . '/Model/ListOrderItemsResponse.php');
-        $response = MWSModelListOrderItemsResponse::fromXML($httpResponse['ResponseBody']);
+        $response = Model\MWSModelListOrderItemsResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
     }
@@ -205,24 +209,24 @@ class MWSClient implements MWSInterface
      *         provide a nextToken. That nextToken can be used with this operation to
      *         retrive the next batch of items for that order.
      *
-     * @param mixed $request array of parameters for MWSModelListOrderItemsByNextToken request or MWSModelListOrderItemsByNextToken object itself
-     * @see MWSModelListOrderItemsByNextTokenRequest
-     * @return MWSModelListOrderItemsByNextTokenResponse
+     * @param mixed $request array of parameters for  Model\MWSModelListOrderItemsByNextToken request or  Model\MWSModelListOrderItemsByNextToken object itself
+     * @see  Model\MWSModelListOrderItemsByNextTokenRequest
+     * @return  Model\MWSModelListOrderItemsByNextTokenResponse
      *
      * @throws MWSException
      */
     public function listOrderItemsByNextToken($request)
     {
-        if (!($request instanceof MWSModelListOrderItemsByNextTokenRequest)) {
+        if (!($request instanceof Model\MWSModelListOrderItemsByNextTokenRequest)) {
             require_once(dirname(__FILE__) . '/Model/ListOrderItemsByNextTokenRequest.php');
-            $request = new MWSModelListOrderItemsByNextTokenRequest($request);
+            $request = new  Model\MWSModelListOrderItemsByNextTokenRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'ListOrderItemsByNextToken';
         $httpResponse = $this->_invoke($parameters);
 
         require_once(dirname(__FILE__) . '/Model/ListOrderItemsByNextTokenResponse.php');
-        $response = MWSModelListOrderItemsByNextTokenResponse::fromXML($httpResponse['ResponseBody']);
+        $response = Model\MWSModelListOrderItemsByNextTokenResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
     }
@@ -254,24 +258,24 @@ class MWSClient implements MWSInterface
      * List Orders
      * ListOrders can be used to find orders that meet the specified criteria.
      *
-     * @param mixed $request array of parameters for MWSModelListOrders request or MWSModelListOrders object itself
-     * @see MWSModelListOrdersRequest
-     * @return MWSModelListOrdersResponse
+     * @param mixed $request array of parameters for  Model\MWSModelListOrders request or  Model\MWSModelListOrders object itself
+     * @see  Model\MWSModelListOrdersRequest
+     * @return  Model\MWSModelListOrdersResponse
      *
      * @throws MWSException
      */
     public function listOrders($request)
     {
-        if (!($request instanceof MWSModelListOrdersRequest)) {
+        if (!($request instanceof Model\MWSModelListOrdersRequest)) {
             require_once(dirname(__FILE__) . '/Model/ListOrdersRequest.php');
-            $request = new MWSModelListOrdersRequest($request);
+            $request = new  Model\MWSModelListOrdersRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'ListOrders';
         $httpResponse = $this->_invoke($parameters);
 
         require_once(dirname(__FILE__) . '/Model/ListOrdersResponse.php');
-        $response = MWSModelListOrdersResponse::fromXML($httpResponse['ResponseBody']);
+        $response = Model\MWSModelListOrdersResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
     }
@@ -338,24 +342,24 @@ class MWSClient implements MWSInterface
      *         than returned that matched the given filter criteria, ListOrdersByNextToken
      *         can be used to retrieve those other orders using that nextToken.
      *
-     * @param mixed $request array of parameters for MWSModelListOrdersByNextToken request or MWSModelListOrdersByNextToken object itself
-     * @see MWSModelListOrdersByNextTokenRequest
-     * @return MWSModelListOrdersByNextTokenResponse
+     * @param mixed $request array of parameters for  Model\MWSModelListOrdersByNextToken request or  Model\MWSModelListOrdersByNextToken object itself
+     * @see  Model\MWSModelListOrdersByNextTokenRequest
+     * @return  Model\MWSModelListOrdersByNextTokenResponse
      *
      * @throws MWSException
      */
     public function listOrdersByNextToken($request)
     {
-        if (!($request instanceof MWSModelListOrdersByNextTokenRequest)) {
+        if (!($request instanceof Model\MWSModelListOrdersByNextTokenRequest)) {
             require_once(dirname(__FILE__) . '/Model/ListOrdersByNextTokenRequest.php');
-            $request = new MWSModelListOrdersByNextTokenRequest($request);
+            $request = new  Model\MWSModelListOrdersByNextTokenRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'ListOrdersByNextToken';
         $httpResponse = $this->_invoke($parameters);
 
         require_once(dirname(__FILE__) . '/Model/ListOrdersByNextTokenResponse.php');
-        $response = MWSModelListOrdersByNextTokenResponse::fromXML($httpResponse['ResponseBody']);
+        $response = Model\MWSModelListOrdersByNextTokenResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
     }
@@ -784,7 +788,7 @@ class MWSClient implements MWSInterface
         }
 
         require_once(dirname(__FILE__) . '/Model/ResponseHeaderMetadata.php');
-        return new MWSModelResponseHeaderMetadata(
+        return new  Model\MWSModelResponseHeaderMetadata(
             $headers['x-mws-request-id'],
             $headers['x-mws-response-context'],
             $headers['x-mws-timestamp'],

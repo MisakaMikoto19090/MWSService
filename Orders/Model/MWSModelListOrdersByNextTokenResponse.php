@@ -38,7 +38,7 @@ use MWSService\Orders\Base\MWSModel;
  *
  * </ul>
  */
-class MWSModelListOrdersByNextTokenResponse extends MWSModel
+class  MWSModelListOrdersByNextTokenResponse extends MWSModel
 {
 
     public function __construct($data = null)

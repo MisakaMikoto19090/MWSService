@@ -18,12 +18,15 @@
  */
 
 /**
- * MWSModel - base class for all model classes
+ *  Model\MWSModel - base class for all model classes
  */
 
 namespace MWSService\Orders\Base;
-
-abstract class MWSModel
+use Exception;
+use DOMElement;
+use DOMXPath;
+use DOMDocument;
+abstract class  MWSModel
 {
 
     /** @var array */
@@ -304,7 +307,7 @@ abstract class MWSModel
         $xml = "";
         foreach ($this->_fields as $fieldName => $field) {
             $fieldValue = $field['FieldValue'];
-            if (!is_null($fieldValue) && $field['FieldType'] != "MWSModelResponseHeaderMetadata") {
+            if (!is_null($fieldValue) && $field['FieldType'] != " Model\MWSModelResponseHeaderMetadata") {
                 $fieldType = $field['FieldType'];
                 if (is_array($fieldType)) {
                     if ($fieldType[0] == "object") {

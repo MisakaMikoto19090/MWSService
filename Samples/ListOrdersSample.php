@@ -26,7 +26,7 @@ namespace MWSService\Samples;
 use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSClient;
 use MWSService\Orders\Base\MWSInterface;
-use MWSService\Orders\Model\MWSModelListOrdersRequest;
+use MWSService\Orders\Model\ Model\MWSModelListOrdersRequest;
 
 
 Class ListOrdersSample
@@ -81,8 +81,8 @@ Class ListOrdersSample
          * Setup request parameters and uncomment invoke to try out
          * sample for List Orders Action
          ***********************************************************************/
-// @TODO: set request. Action can be passed as MWSModelListOrders
-        $request = new MWSModelListOrdersRequest();
+// @TODO: set request. Action can be passed as  Model\MWSModelListOrders
+        $request = new  Model\MWSModelListOrdersRequest();
         $request->setSellerId(MWSDefine::MERCHANT_ID);
         $request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);
         $request->setCreatedAfter(date('yyyy-MM-ddThh:mm:00Z'), time());
@@ -101,7 +101,7 @@ Class ListOrdersSample
      * the MarketplaceId and ASIN.
      *
      * @param MWSInterface $service instance of MWSInterface
-     * @param mixed $request MWSModelListOrders or array of parameters
+     * @param mixed $request  Model\MWSModelListOrders or array of parameters
      */
     public static function invokeListOrders(MWSInterface $service, $request)
     {

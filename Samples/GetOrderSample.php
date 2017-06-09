@@ -23,7 +23,7 @@
 namespace MWSService\Samples;
 use MWSService\Orders\Base\MWSClient;
 use MWSService\Orders\Base\MWSInterface;
-use MWSService\Orders\Model\MWSModelGetOrderRequest;
+use MWSService\Orders\Model\ Model\MWSModelGetOrderRequest;
 require_once('../.config.inc.php');
 
 /************************************************************************
@@ -76,8 +76,8 @@ $service = new MWSClient(
  * Setup request parameters and uncomment invoke to try out
  * sample for Get Order Action
  ***********************************************************************/
-// @TODO: set request. Action can be passed as MWSModelGetOrder
-$request = new MWSModelGetOrderRequest();
+// @TODO: set request. Action can be passed as  Model\MWSModelGetOrder
+$request = new  Model\MWSModelGetOrderRequest();
 $request->setSellerId(MERCHANT_ID);
 // object or array of parameters
 invokeGetOrder($service, $request);
@@ -88,7 +88,7 @@ invokeGetOrder($service, $request);
  * the MarketplaceId and ASIN.
  *
  * @param MWSInterface $service instance of MWSInterface
- * @param mixed $request MWSModelGetOrder or array of parameters
+ * @param mixed $request  Model\MWSModelGetOrder or array of parameters
  */
 
 function invokeGetOrder(MWSInterface $service, $request)
