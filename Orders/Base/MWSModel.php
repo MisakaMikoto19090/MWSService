@@ -29,7 +29,6 @@ use DOMXPath;
 use Exception;
 
 
-
 abstract class  MWSModel
 {
 
