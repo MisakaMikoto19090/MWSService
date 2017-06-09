@@ -1,12 +1,12 @@
 <?php
 /*******************************************************************************
  * Copyright 2009-2017 Amazon Services. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * Licensed under the Apache License, Version 2.0 (the "License");
  *
- * You may not use this file except in compliance with the License. 
+ * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at: http://aws.amazon.com/apache2.0
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
- * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  *******************************************************************************
  * PHP Version 5
@@ -18,18 +18,20 @@
  */
 
 /**
- *  @see MWSModel
+ * @see MWSModel
  */
 
-namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
+namespace MWSService\Orders\Model;
+
+use MWSService\Orders\Base\MWSModel;
 
 
 /**
  * MWSModel_ListOrdersRequest
- * 
+ *
  * Properties:
  * <ul>
- * 
+ *
  * <li>SellerId: string</li>
  * <li>MWSAuthToken: string</li>
  * <li>CreatedAfter: string</li>
@@ -47,28 +49,28 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
  *
  * </ul>
  */
-
- class MWSModelListOrdersRequest extends MWSModel {
+class MWSModelListOrdersRequest extends MWSModel
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'SellerId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'MWSAuthToken' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'CreatedAfter' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'CreatedBefore' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'LastUpdatedAfter' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'LastUpdatedBefore' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'OrderStatus' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'Status'),
-    'MarketplaceId' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'Id'),
-    'FulfillmentChannel' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'Channel'),
-    'PaymentMethod' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'Method'),
-    'BuyerEmail' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'SellerOrderId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'MaxResultsPerPage' => array('FieldValue' => null, 'FieldType' => 'int'),
-    'TFMShipmentStatus' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'Status'),
-    );
-    parent::__construct($data);
+        $this->_fields = array(
+            'SellerId' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'MWSAuthToken' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'CreatedAfter' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'CreatedBefore' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'LastUpdatedAfter' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'LastUpdatedBefore' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'OrderStatus' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'Status'),
+            'MarketplaceId' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'Id'),
+            'FulfillmentChannel' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'Channel'),
+            'PaymentMethod' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'Method'),
+            'BuyerEmail' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'SellerOrderId' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'MaxResultsPerPage' => array('FieldValue' => null, 'FieldType' => 'int'),
+            'TFMShipmentStatus' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'Status'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -100,8 +102,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetSellerId()
     {
-                return !is_null($this->_fields['SellerId']['FieldValue']);
-            }
+        return !is_null($this->_fields['SellerId']['FieldValue']);
+    }
 
     /**
      * Set the value of SellerId, return this.
@@ -146,8 +148,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetMWSAuthToken()
     {
-                return !is_null($this->_fields['MWSAuthToken']['FieldValue']);
-            }
+        return !is_null($this->_fields['MWSAuthToken']['FieldValue']);
+    }
 
     /**
      * Set the value of MWSAuthToken, return this.
@@ -192,8 +194,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetCreatedAfter()
     {
-                return !is_null($this->_fields['CreatedAfter']['FieldValue']);
-            }
+        return !is_null($this->_fields['CreatedAfter']['FieldValue']);
+    }
 
     /**
      * Set the value of CreatedAfter, return this.
@@ -238,8 +240,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetCreatedBefore()
     {
-                return !is_null($this->_fields['CreatedBefore']['FieldValue']);
-            }
+        return !is_null($this->_fields['CreatedBefore']['FieldValue']);
+    }
 
     /**
      * Set the value of CreatedBefore, return this.
@@ -284,8 +286,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetLastUpdatedAfter()
     {
-                return !is_null($this->_fields['LastUpdatedAfter']['FieldValue']);
-            }
+        return !is_null($this->_fields['LastUpdatedAfter']['FieldValue']);
+    }
 
     /**
      * Set the value of LastUpdatedAfter, return this.
@@ -330,8 +332,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetLastUpdatedBefore()
     {
-                return !is_null($this->_fields['LastUpdatedBefore']['FieldValue']);
-            }
+        return !is_null($this->_fields['LastUpdatedBefore']['FieldValue']);
+    }
 
     /**
      * Set the value of LastUpdatedBefore, return this.
@@ -354,8 +356,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function getOrderStatus()
     {
-        if ($this->_fields['OrderStatus']['FieldValue'] == null)
-        {
+        if ($this->_fields['OrderStatus']['FieldValue'] == null) {
             $this->_fields['OrderStatus']['FieldValue'] = array();
         }
         return $this->_fields['OrderStatus']['FieldValue'];
@@ -370,7 +371,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
     public function setOrderStatus($value)
     {
         if (!$this->_isNumericArray($value)) {
-            $value = array ($value);
+            $value = array($value);
         }
         $this->_fields['OrderStatus']['FieldValue'] = $value;
         return $this;
@@ -391,8 +392,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetOrderStatus()
     {
-                return !empty($this->_fields['OrderStatus']['FieldValue']);
-            }
+        return !empty($this->_fields['OrderStatus']['FieldValue']);
+    }
 
     /**
      * Add values for OrderStatus, return this.
@@ -404,8 +405,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function withOrderStatus()
     {
-        foreach (func_get_args() as $OrderStatus)
-        {
+        foreach (func_get_args() as $OrderStatus) {
             $this->_fields['OrderStatus']['FieldValue'][] = $OrderStatus;
         }
         return $this;
@@ -418,8 +418,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function getMarketplaceId()
     {
-        if ($this->_fields['MarketplaceId']['FieldValue'] == null)
-        {
+        if ($this->_fields['MarketplaceId']['FieldValue'] == null) {
             $this->_fields['MarketplaceId']['FieldValue'] = array();
         }
         return $this->_fields['MarketplaceId']['FieldValue'];
@@ -434,7 +433,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
     public function setMarketplaceId($value)
     {
         if (!$this->_isNumericArray($value)) {
-            $value = array ($value);
+            $value = array($value);
         }
         $this->_fields['MarketplaceId']['FieldValue'] = $value;
         return $this;
@@ -455,8 +454,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetMarketplaceId()
     {
-                return !empty($this->_fields['MarketplaceId']['FieldValue']);
-            }
+        return !empty($this->_fields['MarketplaceId']['FieldValue']);
+    }
 
     /**
      * Add values for MarketplaceId, return this.
@@ -468,8 +467,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function withMarketplaceId()
     {
-        foreach (func_get_args() as $MarketplaceId)
-        {
+        foreach (func_get_args() as $MarketplaceId) {
             $this->_fields['MarketplaceId']['FieldValue'][] = $MarketplaceId;
         }
         return $this;
@@ -482,8 +480,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function getFulfillmentChannel()
     {
-        if ($this->_fields['FulfillmentChannel']['FieldValue'] == null)
-        {
+        if ($this->_fields['FulfillmentChannel']['FieldValue'] == null) {
             $this->_fields['FulfillmentChannel']['FieldValue'] = array();
         }
         return $this->_fields['FulfillmentChannel']['FieldValue'];
@@ -498,7 +495,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
     public function setFulfillmentChannel($value)
     {
         if (!$this->_isNumericArray($value)) {
-            $value = array ($value);
+            $value = array($value);
         }
         $this->_fields['FulfillmentChannel']['FieldValue'] = $value;
         return $this;
@@ -519,8 +516,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetFulfillmentChannel()
     {
-                return !empty($this->_fields['FulfillmentChannel']['FieldValue']);
-            }
+        return !empty($this->_fields['FulfillmentChannel']['FieldValue']);
+    }
 
     /**
      * Add values for FulfillmentChannel, return this.
@@ -532,8 +529,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function withFulfillmentChannel()
     {
-        foreach (func_get_args() as $FulfillmentChannel)
-        {
+        foreach (func_get_args() as $FulfillmentChannel) {
             $this->_fields['FulfillmentChannel']['FieldValue'][] = $FulfillmentChannel;
         }
         return $this;
@@ -546,8 +542,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function getPaymentMethod()
     {
-        if ($this->_fields['PaymentMethod']['FieldValue'] == null)
-        {
+        if ($this->_fields['PaymentMethod']['FieldValue'] == null) {
             $this->_fields['PaymentMethod']['FieldValue'] = array();
         }
         return $this->_fields['PaymentMethod']['FieldValue'];
@@ -562,7 +557,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
     public function setPaymentMethod($value)
     {
         if (!$this->_isNumericArray($value)) {
-            $value = array ($value);
+            $value = array($value);
         }
         $this->_fields['PaymentMethod']['FieldValue'] = $value;
         return $this;
@@ -583,8 +578,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetPaymentMethod()
     {
-                return !empty($this->_fields['PaymentMethod']['FieldValue']);
-            }
+        return !empty($this->_fields['PaymentMethod']['FieldValue']);
+    }
 
     /**
      * Add values for PaymentMethod, return this.
@@ -596,8 +591,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function withPaymentMethod()
     {
-        foreach (func_get_args() as $PaymentMethod)
-        {
+        foreach (func_get_args() as $PaymentMethod) {
             $this->_fields['PaymentMethod']['FieldValue'][] = $PaymentMethod;
         }
         return $this;
@@ -632,8 +626,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetBuyerEmail()
     {
-                return !is_null($this->_fields['BuyerEmail']['FieldValue']);
-            }
+        return !is_null($this->_fields['BuyerEmail']['FieldValue']);
+    }
 
     /**
      * Set the value of BuyerEmail, return this.
@@ -678,8 +672,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetSellerOrderId()
     {
-                return !is_null($this->_fields['SellerOrderId']['FieldValue']);
-            }
+        return !is_null($this->_fields['SellerOrderId']['FieldValue']);
+    }
 
     /**
      * Set the value of SellerOrderId, return this.
@@ -724,8 +718,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetMaxResultsPerPage()
     {
-                return !is_null($this->_fields['MaxResultsPerPage']['FieldValue']);
-            }
+        return !is_null($this->_fields['MaxResultsPerPage']['FieldValue']);
+    }
 
     /**
      * Set the value of MaxResultsPerPage, return this.
@@ -748,8 +742,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function getTFMShipmentStatus()
     {
-        if ($this->_fields['TFMShipmentStatus']['FieldValue'] == null)
-        {
+        if ($this->_fields['TFMShipmentStatus']['FieldValue'] == null) {
             $this->_fields['TFMShipmentStatus']['FieldValue'] = array();
         }
         return $this->_fields['TFMShipmentStatus']['FieldValue'];
@@ -764,7 +757,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
     public function setTFMShipmentStatus($value)
     {
         if (!$this->_isNumericArray($value)) {
-            $value = array ($value);
+            $value = array($value);
         }
         $this->_fields['TFMShipmentStatus']['FieldValue'] = $value;
         return $this;
@@ -785,8 +778,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetTFMShipmentStatus()
     {
-                return !empty($this->_fields['TFMShipmentStatus']['FieldValue']);
-            }
+        return !empty($this->_fields['TFMShipmentStatus']['FieldValue']);
+    }
 
     /**
      * Add values for TFMShipmentStatus, return this.
@@ -798,8 +791,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function withTFMShipmentStatus()
     {
-        foreach (func_get_args() as $TFMShipmentStatus)
-        {
+        foreach (func_get_args() as $TFMShipmentStatus) {
             $this->_fields['TFMShipmentStatus']['FieldValue'][] = $TFMShipmentStatus;
         }
         return $this;

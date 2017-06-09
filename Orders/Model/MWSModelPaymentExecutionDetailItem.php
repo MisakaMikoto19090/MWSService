@@ -1,12 +1,12 @@
 <?php
 /*******************************************************************************
  * Copyright 2009-2017 Amazon Services. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * Licensed under the Apache License, Version 2.0 (the "License");
  *
- * You may not use this file except in compliance with the License. 
+ * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at: http://aws.amazon.com/apache2.0
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
- * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  *******************************************************************************
  * PHP Version 5
@@ -18,33 +18,35 @@
  */
 
 /**
- *  @see MWSModel
+ * @see MWSModel
  */
 
-namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
+namespace MWSService\Orders\Model;
+
+use MWSService\Orders\Base\MWSModel;
 
 
 /**
  * MWSModel_PaymentExecutionDetailItem
- * 
+ *
  * Properties:
  * <ul>
- * 
+ *
  * <li>Payment: MWSModel_Money</li>
  * <li>PaymentMethod: string</li>
  *
  * </ul>
  */
-
- class MWSModelPaymentExecutionDetailItem extends MWSModel {
+class MWSModelPaymentExecutionDetailItem extends MWSModel
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'Payment' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
-    'PaymentMethod' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array(
+            'Payment' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
+            'PaymentMethod' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -76,8 +78,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetPayment()
     {
-                return !is_null($this->_fields['Payment']['FieldValue']);
-            }
+        return !is_null($this->_fields['Payment']['FieldValue']);
+    }
 
     /**
      * Set the value of Payment, return this.
@@ -122,8 +124,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetPaymentMethod()
     {
-                return !is_null($this->_fields['PaymentMethod']['FieldValue']);
-            }
+        return !is_null($this->_fields['PaymentMethod']['FieldValue']);
+    }
 
     /**
      * Set the value of PaymentMethod, return this.

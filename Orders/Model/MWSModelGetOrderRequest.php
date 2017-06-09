@@ -1,12 +1,12 @@
 <?php
 /*******************************************************************************
  * Copyright 2009-2017 Amazon Services. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * Licensed under the Apache License, Version 2.0 (the "License");
  *
- * You may not use this file except in compliance with the License. 
+ * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at: http://aws.amazon.com/apache2.0
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
- * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  *******************************************************************************
  * PHP Version 5
@@ -18,7 +18,7 @@
  */
 
 /**
- *  @see MWSModel
+ * @see MWSModel
  */
 
 namespace MWSService\Orders\Model;
@@ -27,27 +27,27 @@ use MWSService\Orders\Base\MWSModel;
 
 /**
  * MWSModel_GetOrderRequest
- * 
+ *
  * Properties:
  * <ul>
- * 
+ *
  * <li>SellerId: string</li>
  * <li>MWSAuthToken: string</li>
  * <li>AmazonOrderId: array</li>
  *
  * </ul>
  */
-
- class MWSModelGetOrderRequest extends MWSModel {
+class MWSModelGetOrderRequest extends MWSModel
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'SellerId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'MWSAuthToken' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'AmazonOrderId' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'Id'),
-    );
-    parent::__construct($data);
+        $this->_fields = array(
+            'SellerId' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'MWSAuthToken' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'AmazonOrderId' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'Id'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -79,8 +79,8 @@ use MWSService\Orders\Base\MWSModel;
      */
     public function isSetSellerId()
     {
-                return !is_null($this->_fields['SellerId']['FieldValue']);
-            }
+        return !is_null($this->_fields['SellerId']['FieldValue']);
+    }
 
     /**
      * Set the value of SellerId, return this.
@@ -125,8 +125,8 @@ use MWSService\Orders\Base\MWSModel;
      */
     public function isSetMWSAuthToken()
     {
-                return !is_null($this->_fields['MWSAuthToken']['FieldValue']);
-            }
+        return !is_null($this->_fields['MWSAuthToken']['FieldValue']);
+    }
 
     /**
      * Set the value of MWSAuthToken, return this.
@@ -149,8 +149,7 @@ use MWSService\Orders\Base\MWSModel;
      */
     public function getAmazonOrderId()
     {
-        if ($this->_fields['AmazonOrderId']['FieldValue'] == null)
-        {
+        if ($this->_fields['AmazonOrderId']['FieldValue'] == null) {
             $this->_fields['AmazonOrderId']['FieldValue'] = array();
         }
         return $this->_fields['AmazonOrderId']['FieldValue'];
@@ -165,7 +164,7 @@ use MWSService\Orders\Base\MWSModel;
     public function setAmazonOrderId($value)
     {
         if (!$this->_isNumericArray($value)) {
-            $value = array ($value);
+            $value = array($value);
         }
         $this->_fields['AmazonOrderId']['FieldValue'] = $value;
         return $this;
@@ -186,8 +185,8 @@ use MWSService\Orders\Base\MWSModel;
      */
     public function isSetAmazonOrderId()
     {
-                return !empty($this->_fields['AmazonOrderId']['FieldValue']);
-            }
+        return !empty($this->_fields['AmazonOrderId']['FieldValue']);
+    }
 
     /**
      * Add values for AmazonOrderId, return this.
@@ -199,8 +198,7 @@ use MWSService\Orders\Base\MWSModel;
      */
     public function withAmazonOrderId()
     {
-        foreach (func_get_args() as $AmazonOrderId)
-        {
+        foreach (func_get_args() as $AmazonOrderId) {
             $this->_fields['AmazonOrderId']['FieldValue'][] = $AmazonOrderId;
         }
         return $this;

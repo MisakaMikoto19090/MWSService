@@ -1,12 +1,12 @@
 <?php
 /*******************************************************************************
  * Copyright 2009-2017 Amazon Services. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * Licensed under the Apache License, Version 2.0 (the "License");
  *
- * You may not use this file except in compliance with the License. 
+ * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at: http://aws.amazon.com/apache2.0
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
- * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  *******************************************************************************
  * PHP Version 5
@@ -18,35 +18,37 @@
  */
 
 /**
- *  @see MWSModel
+ * @see MWSModel
  */
 
-namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
+namespace MWSService\Orders\Model;
+
+use MWSService\Orders\Base\MWSModel;
 
 
 /**
  * MWSModel_ListOrdersByNextTokenResponse
- * 
+ *
  * Properties:
  * <ul>
- * 
+ *
  * <li>ListOrdersByNextTokenResult: MWSModel_ListOrdersByNextTokenResult</li>
  * <li>ResponseMetadata: MWSModel_ResponseMetadata</li>
  * <li>ResponseHeaderMetadata: MWSModel_ResponseHeaderMetadata</li>
  *
  * </ul>
  */
-
- class MWSModelListOrdersByNextTokenResponse extends MWSModel {
+class MWSModelListOrdersByNextTokenResponse extends MWSModel
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'ListOrdersByNextTokenResult' => array('FieldValue' => null, 'FieldType' => 'MWSModel_ListOrdersByNextTokenResult'),
-    'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModel_ResponseMetadata'),
-    'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModel_ResponseHeaderMetadata'),
-    );
-    parent::__construct($data);
+        $this->_fields = array(
+            'ListOrdersByNextTokenResult' => array('FieldValue' => null, 'FieldType' => 'MWSModel_ListOrdersByNextTokenResult'),
+            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModel_ResponseMetadata'),
+            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModel_ResponseHeaderMetadata'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -78,8 +80,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetListOrdersByNextTokenResult()
     {
-                return !is_null($this->_fields['ListOrdersByNextTokenResult']['FieldValue']);
-            }
+        return !is_null($this->_fields['ListOrdersByNextTokenResult']['FieldValue']);
+    }
 
     /**
      * Set the value of ListOrdersByNextTokenResult, return this.
@@ -124,8 +126,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetResponseMetadata()
     {
-                return !is_null($this->_fields['ResponseMetadata']['FieldValue']);
-            }
+        return !is_null($this->_fields['ResponseMetadata']['FieldValue']);
+    }
 
     /**
      * Set the value of ResponseMetadata, return this.
@@ -170,8 +172,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetResponseHeaderMetadata()
     {
-                return !is_null($this->_fields['ResponseHeaderMetadata']['FieldValue']);
-            }
+        return !is_null($this->_fields['ResponseHeaderMetadata']['FieldValue']);
+    }
 
     /**
      * Set the value of ResponseHeaderMetadata, return this.
@@ -186,9 +188,10 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
         $this->setResponseHeaderMetadata($value);
         return $this;
     }
+
     /**
      * Construct MWSModel_ListOrdersByNextTokenResponse from XML string
-     * 
+     *
      * @param $xml
      *        XML string to construct from
      *
@@ -207,12 +210,13 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
                                   Make sure that ListOrdersByNextTokenResponse is a root element");
         }
     }
+
     /**
      * XML Representation for this object
-     * 
+     *
      * @return string XML for this object
      */
-    public function toXML() 
+    public function toXML()
     {
         $xml = "";
         $xml .= "<ListOrdersByNextTokenResponse xmlns=\"https://mws.amazonservices.com/Orders/2013-09-01\">";

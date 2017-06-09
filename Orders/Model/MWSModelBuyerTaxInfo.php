@@ -1,12 +1,12 @@
 <?php
 /*******************************************************************************
  * Copyright 2009-2017 Amazon Services. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * Licensed under the Apache License, Version 2.0 (the "License");
  *
- * You may not use this file except in compliance with the License. 
+ * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at: http://aws.amazon.com/apache2.0
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
- * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  *******************************************************************************
  * PHP Version 5
@@ -18,7 +18,7 @@
  */
 
 /**
- *  @see MWSModel
+ * @see MWSModel
  */
 
 namespace MWSService\Orders\Model;
@@ -28,27 +28,27 @@ use MWSService\Orders\Base\MWSModel;
 
 /**
  * MWSModel_BuyerTaxInfo
- * 
+ *
  * Properties:
  * <ul>
- * 
+ *
  * <li>CompanyLegalName: string</li>
  * <li>TaxingRegion: string</li>
  * <li>TaxClassifications: array</li>
  *
  * </ul>
  */
-
- class MWSModelBuyerTaxInfo extends MWSModel {
+class MWSModelBuyerTaxInfo extends MWSModel
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'CompanyLegalName' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'TaxingRegion' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'TaxClassifications' => array('FieldValue' => array(), 'FieldType' => array('MWSModel_TaxClassification'), 'ListMemberName' => 'TaxClassification'),
-    );
-    parent::__construct($data);
+        $this->_fields = array(
+            'CompanyLegalName' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'TaxingRegion' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'TaxClassifications' => array('FieldValue' => array(), 'FieldType' => array('MWSModel_TaxClassification'), 'ListMemberName' => 'TaxClassification'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -80,8 +80,8 @@ use MWSService\Orders\Base\MWSModel;
      */
     public function isSetCompanyLegalName()
     {
-                return !is_null($this->_fields['CompanyLegalName']['FieldValue']);
-            }
+        return !is_null($this->_fields['CompanyLegalName']['FieldValue']);
+    }
 
     /**
      * Set the value of CompanyLegalName, return this.
@@ -126,8 +126,8 @@ use MWSService\Orders\Base\MWSModel;
      */
     public function isSetTaxingRegion()
     {
-                return !is_null($this->_fields['TaxingRegion']['FieldValue']);
-            }
+        return !is_null($this->_fields['TaxingRegion']['FieldValue']);
+    }
 
     /**
      * Set the value of TaxingRegion, return this.
@@ -150,8 +150,7 @@ use MWSService\Orders\Base\MWSModel;
      */
     public function getTaxClassifications()
     {
-        if ($this->_fields['TaxClassifications']['FieldValue'] == null)
-        {
+        if ($this->_fields['TaxClassifications']['FieldValue'] == null) {
             $this->_fields['TaxClassifications']['FieldValue'] = array();
         }
         return $this->_fields['TaxClassifications']['FieldValue'];
@@ -166,7 +165,7 @@ use MWSService\Orders\Base\MWSModel;
     public function setTaxClassifications($value)
     {
         if (!$this->_isNumericArray($value)) {
-            $value = array ($value);
+            $value = array($value);
         }
         $this->_fields['TaxClassifications']['FieldValue'] = $value;
         return $this;
@@ -187,8 +186,8 @@ use MWSService\Orders\Base\MWSModel;
      */
     public function isSetTaxClassifications()
     {
-                return !empty($this->_fields['TaxClassifications']['FieldValue']);
-            }
+        return !empty($this->_fields['TaxClassifications']['FieldValue']);
+    }
 
     /**
      * Add values for TaxClassifications, return this.
@@ -200,8 +199,7 @@ use MWSService\Orders\Base\MWSModel;
      */
     public function withTaxClassifications()
     {
-        foreach (func_get_args() as $TaxClassifications)
-        {
+        foreach (func_get_args() as $TaxClassifications) {
             $this->_fields['TaxClassifications']['FieldValue'][] = $TaxClassifications;
         }
         return $this;

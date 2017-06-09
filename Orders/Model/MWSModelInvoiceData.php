@@ -1,12 +1,12 @@
 <?php
 /*******************************************************************************
  * Copyright 2009-2017 Amazon Services. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * Licensed under the Apache License, Version 2.0 (the "License");
  *
- * You may not use this file except in compliance with the License. 
+ * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at: http://aws.amazon.com/apache2.0
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
- * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  *******************************************************************************
  * PHP Version 5
@@ -18,18 +18,20 @@
  */
 
 /**
- *  @see MWSModel
+ * @see MWSModel
  */
 
-namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
+namespace MWSService\Orders\Model;
+
+use MWSService\Orders\Base\MWSModel;
 
 
 /**
  * MWSModel_InvoiceData
- * 
+ *
  * Properties:
  * <ul>
- * 
+ *
  * <li>InvoiceRequirement: string</li>
  * <li>BuyerSelectedInvoiceCategory: string</li>
  * <li>InvoiceTitle: string</li>
@@ -37,18 +39,18 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
  *
  * </ul>
  */
-
- class MWSModelInvoiceData extends MWSModel {
+class MWSModelInvoiceData extends MWSModel
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'InvoiceRequirement' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'BuyerSelectedInvoiceCategory' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'InvoiceTitle' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'InvoiceInformation' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array(
+            'InvoiceRequirement' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'BuyerSelectedInvoiceCategory' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'InvoiceTitle' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'InvoiceInformation' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -80,8 +82,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetInvoiceRequirement()
     {
-                return !is_null($this->_fields['InvoiceRequirement']['FieldValue']);
-            }
+        return !is_null($this->_fields['InvoiceRequirement']['FieldValue']);
+    }
 
     /**
      * Set the value of InvoiceRequirement, return this.
@@ -126,8 +128,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetBuyerSelectedInvoiceCategory()
     {
-                return !is_null($this->_fields['BuyerSelectedInvoiceCategory']['FieldValue']);
-            }
+        return !is_null($this->_fields['BuyerSelectedInvoiceCategory']['FieldValue']);
+    }
 
     /**
      * Set the value of BuyerSelectedInvoiceCategory, return this.
@@ -172,8 +174,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetInvoiceTitle()
     {
-                return !is_null($this->_fields['InvoiceTitle']['FieldValue']);
-            }
+        return !is_null($this->_fields['InvoiceTitle']['FieldValue']);
+    }
 
     /**
      * Set the value of InvoiceTitle, return this.
@@ -218,8 +220,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetInvoiceInformation()
     {
-                return !is_null($this->_fields['InvoiceInformation']['FieldValue']);
-            }
+        return !is_null($this->_fields['InvoiceInformation']['FieldValue']);
+    }
 
     /**
      * Set the value of InvoiceInformation, return this.

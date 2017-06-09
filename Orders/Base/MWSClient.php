@@ -20,6 +20,7 @@
 /**
  * @see MWSInterface
  */
+
 namespace MWSService\Orders\Base;
 
 /**

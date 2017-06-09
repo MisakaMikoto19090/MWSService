@@ -1,12 +1,12 @@
 <?php
 /*******************************************************************************
  * Copyright 2009-2017 Amazon Services. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * Licensed under the Apache License, Version 2.0 (the "License");
  *
- * You may not use this file except in compliance with the License. 
+ * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at: http://aws.amazon.com/apache2.0
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
- * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  *******************************************************************************
  * PHP Version 5
@@ -68,7 +68,7 @@ class MMWSException extends Exception
                 $this->_errorCode = $exception->getErrorCode();
                 $this->_errorType = $exception->getErrorType();
                 $this->_requestId = $exception->getRequestId();
-                $this->_xml= $exception->getXML();
+                $this->_xml = $exception->getXML();
                 $this->_responseHeaderMetadata = $exception->getResponseHeaderMetadata();
             }
         } else {
@@ -81,8 +81,9 @@ class MMWSException extends Exception
         }
     }
 
-    private function arr_val($arr, $key) {
-        if(array_key_exists($key, $arr)) {
+    private function arr_val($arr, $key)
+    {
+        if (array_key_exists($key, $arr)) {
             return $arr[$key];
         } else {
             return null;
@@ -94,7 +95,8 @@ class MMWSException extends Exception
      *
      * @return string Error Code returned by the service
      */
-    public function getErrorCode(){
+    public function getErrorCode()
+    {
         return $this->_errorCode;
     }
 
@@ -104,7 +106,8 @@ class MMWSException extends Exception
      * @return string Error Type returned by the service.
      * Possible types:  Sender, Receiver or Unknown
      */
-    public function getErrorType(){
+    public function getErrorType()
+    {
         return $this->_errorType;
     }
 
@@ -113,7 +116,8 @@ class MMWSException extends Exception
      *
      * @return string Error message
      */
-    public function getErrorMessage() {
+    public function getErrorMessage()
+    {
         return $this->_message;
     }
 
@@ -124,7 +128,8 @@ class MMWSException extends Exception
      *
      * @return int status code returned by the service
      */
-    public function getStatusCode() {
+    public function getStatusCode()
+    {
         return $this->_statusCode;
     }
 
@@ -133,7 +138,8 @@ class MMWSException extends Exception
      *
      * @return string XML returned by the service
      */
-    public function getXML() {
+    public function getXML()
+    {
         return $this->_xml;
     }
 
@@ -142,11 +148,13 @@ class MMWSException extends Exception
      *
      * @return string Request ID returned by the service
      */
-    public function getRequestId() {
+    public function getRequestId()
+    {
         return $this->_requestId;
     }
 
-    public function getResponseHeaderMetadata() {
-      return $this->_responseHeaderMetadata;
+    public function getResponseHeaderMetadata()
+    {
+        return $this->_responseHeaderMetadata;
     }
 }

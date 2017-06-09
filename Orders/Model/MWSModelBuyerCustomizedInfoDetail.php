@@ -1,12 +1,12 @@
 <?php
 /*******************************************************************************
  * Copyright 2009-2017 Amazon Services. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * Licensed under the Apache License, Version 2.0 (the "License");
  *
- * You may not use this file except in compliance with the License. 
+ * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at: http://aws.amazon.com/apache2.0
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
- * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  *******************************************************************************
  * PHP Version 5
@@ -18,8 +18,9 @@
  */
 
 /**
- *  @see MWSModel
+ * @see MWSModel
  */
+
 namespace MWSService\Orders\Model;
 
 use MWSService\Orders\Base\MWSModel;
@@ -27,23 +28,23 @@ use MWSService\Orders\Base\MWSModel;
 
 /**
  * MWSModel_BuyerCustomizedInfoDetail
- * 
+ *
  * Properties:
  * <ul>
- * 
+ *
  * <li>CustomizedURL: string</li>
  *
  * </ul>
  */
-
- class MWSModelBuyerCustomizedInfoDetail extends MWSModel {
+class MWSModelBuyerCustomizedInfoDetail extends MWSModel
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'CustomizedURL' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array(
+            'CustomizedURL' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -75,8 +76,8 @@ use MWSService\Orders\Base\MWSModel;
      */
     public function isSetCustomizedURL()
     {
-                return !is_null($this->_fields['CustomizedURL']['FieldValue']);
-            }
+        return !is_null($this->_fields['CustomizedURL']['FieldValue']);
+    }
 
     /**
      * Set the value of CustomizedURL, return this.

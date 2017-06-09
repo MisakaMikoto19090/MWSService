@@ -20,6 +20,7 @@
 /**
  * MWSModel - base class for all model classes
  */
+
 namespace MWSService\Orders\Base;
 
 abstract class MWSModel

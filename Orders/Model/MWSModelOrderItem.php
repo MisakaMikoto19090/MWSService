@@ -1,12 +1,12 @@
 <?php
 /*******************************************************************************
  * Copyright 2009-2017 Amazon Services. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * Licensed under the Apache License, Version 2.0 (the "License");
  *
- * You may not use this file except in compliance with the License. 
+ * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at: http://aws.amazon.com/apache2.0
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
- * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  *******************************************************************************
  * PHP Version 5
@@ -18,18 +18,20 @@
  */
 
 /**
- *  @see MWSModel
+ * @see MWSModel
  */
 
-namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
+namespace MWSService\Orders\Model;
+
+use MWSService\Orders\Base\MWSModel;
 
 
 /**
  * MWSModel_OrderItem
- * 
+ *
  * Properties:
  * <ul>
- * 
+ *
  * <li>ASIN: string</li>
  * <li>SellerSKU: string</li>
  * <li>OrderItemId: string</li>
@@ -61,42 +63,42 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
  *
  * </ul>
  */
-
- class MWSModelOrderItem extends MWSModel {
+class MWSModelOrderItem extends MWSModel
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'ASIN' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'SellerSKU' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'OrderItemId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Title' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'QuantityOrdered' => array('FieldValue' => null, 'FieldType' => 'int'),
-    'QuantityShipped' => array('FieldValue' => null, 'FieldType' => 'int'),
-    'PointsGranted' => array('FieldValue' => null, 'FieldType' => 'MWSModel_PointsGrantedDetail'),
-    'ItemPrice' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
-    'ShippingPrice' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
-    'GiftWrapPrice' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
-    'ItemTax' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
-    'ShippingTax' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
-    'GiftWrapTax' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
-    'ShippingDiscount' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
-    'PromotionDiscount' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
-    'PromotionIds' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'PromotionId'),
-    'CODFee' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
-    'CODFeeDiscount' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
-    'GiftMessageText' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'GiftWrapLevel' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'InvoiceData' => array('FieldValue' => null, 'FieldType' => 'MWSModel_InvoiceData'),
-    'ConditionNote' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ConditionId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ConditionSubtypeId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ScheduledDeliveryStartDate' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ScheduledDeliveryEndDate' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'PriceDesignation' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'BuyerCustomizedInfo' => array('FieldValue' => null, 'FieldType' => 'MWSModel_BuyerCustomizedInfoDetail'),
-    );
-    parent::__construct($data);
+        $this->_fields = array(
+            'ASIN' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'SellerSKU' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'OrderItemId' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'Title' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'QuantityOrdered' => array('FieldValue' => null, 'FieldType' => 'int'),
+            'QuantityShipped' => array('FieldValue' => null, 'FieldType' => 'int'),
+            'PointsGranted' => array('FieldValue' => null, 'FieldType' => 'MWSModel_PointsGrantedDetail'),
+            'ItemPrice' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
+            'ShippingPrice' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
+            'GiftWrapPrice' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
+            'ItemTax' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
+            'ShippingTax' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
+            'GiftWrapTax' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
+            'ShippingDiscount' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
+            'PromotionDiscount' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
+            'PromotionIds' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'PromotionId'),
+            'CODFee' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
+            'CODFeeDiscount' => array('FieldValue' => null, 'FieldType' => 'MWSModel_Money'),
+            'GiftMessageText' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'GiftWrapLevel' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'InvoiceData' => array('FieldValue' => null, 'FieldType' => 'MWSModel_InvoiceData'),
+            'ConditionNote' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'ConditionId' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'ConditionSubtypeId' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'ScheduledDeliveryStartDate' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'ScheduledDeliveryEndDate' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'PriceDesignation' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'BuyerCustomizedInfo' => array('FieldValue' => null, 'FieldType' => 'MWSModel_BuyerCustomizedInfoDetail'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -128,8 +130,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetASIN()
     {
-                return !is_null($this->_fields['ASIN']['FieldValue']);
-            }
+        return !is_null($this->_fields['ASIN']['FieldValue']);
+    }
 
     /**
      * Set the value of ASIN, return this.
@@ -174,8 +176,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetSellerSKU()
     {
-                return !is_null($this->_fields['SellerSKU']['FieldValue']);
-            }
+        return !is_null($this->_fields['SellerSKU']['FieldValue']);
+    }
 
     /**
      * Set the value of SellerSKU, return this.
@@ -220,8 +222,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetOrderItemId()
     {
-                return !is_null($this->_fields['OrderItemId']['FieldValue']);
-            }
+        return !is_null($this->_fields['OrderItemId']['FieldValue']);
+    }
 
     /**
      * Set the value of OrderItemId, return this.
@@ -266,8 +268,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetTitle()
     {
-                return !is_null($this->_fields['Title']['FieldValue']);
-            }
+        return !is_null($this->_fields['Title']['FieldValue']);
+    }
 
     /**
      * Set the value of Title, return this.
@@ -312,8 +314,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetQuantityOrdered()
     {
-                return !is_null($this->_fields['QuantityOrdered']['FieldValue']);
-            }
+        return !is_null($this->_fields['QuantityOrdered']['FieldValue']);
+    }
 
     /**
      * Set the value of QuantityOrdered, return this.
@@ -358,8 +360,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetQuantityShipped()
     {
-                return !is_null($this->_fields['QuantityShipped']['FieldValue']);
-            }
+        return !is_null($this->_fields['QuantityShipped']['FieldValue']);
+    }
 
     /**
      * Set the value of QuantityShipped, return this.
@@ -404,8 +406,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetPointsGranted()
     {
-                return !is_null($this->_fields['PointsGranted']['FieldValue']);
-            }
+        return !is_null($this->_fields['PointsGranted']['FieldValue']);
+    }
 
     /**
      * Set the value of PointsGranted, return this.
@@ -450,8 +452,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetItemPrice()
     {
-                return !is_null($this->_fields['ItemPrice']['FieldValue']);
-            }
+        return !is_null($this->_fields['ItemPrice']['FieldValue']);
+    }
 
     /**
      * Set the value of ItemPrice, return this.
@@ -496,8 +498,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetShippingPrice()
     {
-                return !is_null($this->_fields['ShippingPrice']['FieldValue']);
-            }
+        return !is_null($this->_fields['ShippingPrice']['FieldValue']);
+    }
 
     /**
      * Set the value of ShippingPrice, return this.
@@ -542,8 +544,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetGiftWrapPrice()
     {
-                return !is_null($this->_fields['GiftWrapPrice']['FieldValue']);
-            }
+        return !is_null($this->_fields['GiftWrapPrice']['FieldValue']);
+    }
 
     /**
      * Set the value of GiftWrapPrice, return this.
@@ -588,8 +590,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetItemTax()
     {
-                return !is_null($this->_fields['ItemTax']['FieldValue']);
-            }
+        return !is_null($this->_fields['ItemTax']['FieldValue']);
+    }
 
     /**
      * Set the value of ItemTax, return this.
@@ -634,8 +636,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetShippingTax()
     {
-                return !is_null($this->_fields['ShippingTax']['FieldValue']);
-            }
+        return !is_null($this->_fields['ShippingTax']['FieldValue']);
+    }
 
     /**
      * Set the value of ShippingTax, return this.
@@ -680,8 +682,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetGiftWrapTax()
     {
-                return !is_null($this->_fields['GiftWrapTax']['FieldValue']);
-            }
+        return !is_null($this->_fields['GiftWrapTax']['FieldValue']);
+    }
 
     /**
      * Set the value of GiftWrapTax, return this.
@@ -726,8 +728,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetShippingDiscount()
     {
-                return !is_null($this->_fields['ShippingDiscount']['FieldValue']);
-            }
+        return !is_null($this->_fields['ShippingDiscount']['FieldValue']);
+    }
 
     /**
      * Set the value of ShippingDiscount, return this.
@@ -772,8 +774,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetPromotionDiscount()
     {
-                return !is_null($this->_fields['PromotionDiscount']['FieldValue']);
-            }
+        return !is_null($this->_fields['PromotionDiscount']['FieldValue']);
+    }
 
     /**
      * Set the value of PromotionDiscount, return this.
@@ -796,8 +798,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function getPromotionIds()
     {
-        if ($this->_fields['PromotionIds']['FieldValue'] == null)
-        {
+        if ($this->_fields['PromotionIds']['FieldValue'] == null) {
             $this->_fields['PromotionIds']['FieldValue'] = array();
         }
         return $this->_fields['PromotionIds']['FieldValue'];
@@ -812,7 +813,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
     public function setPromotionIds($value)
     {
         if (!$this->_isNumericArray($value)) {
-            $value = array ($value);
+            $value = array($value);
         }
         $this->_fields['PromotionIds']['FieldValue'] = $value;
         return $this;
@@ -833,8 +834,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetPromotionIds()
     {
-                return !empty($this->_fields['PromotionIds']['FieldValue']);
-            }
+        return !empty($this->_fields['PromotionIds']['FieldValue']);
+    }
 
     /**
      * Add values for PromotionIds, return this.
@@ -846,8 +847,7 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function withPromotionIds()
     {
-        foreach (func_get_args() as $PromotionIds)
-        {
+        foreach (func_get_args() as $PromotionIds) {
             $this->_fields['PromotionIds']['FieldValue'][] = $PromotionIds;
         }
         return $this;
@@ -882,8 +882,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetCODFee()
     {
-                return !is_null($this->_fields['CODFee']['FieldValue']);
-            }
+        return !is_null($this->_fields['CODFee']['FieldValue']);
+    }
 
     /**
      * Set the value of CODFee, return this.
@@ -928,8 +928,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetCODFeeDiscount()
     {
-                return !is_null($this->_fields['CODFeeDiscount']['FieldValue']);
-            }
+        return !is_null($this->_fields['CODFeeDiscount']['FieldValue']);
+    }
 
     /**
      * Set the value of CODFeeDiscount, return this.
@@ -974,8 +974,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetGiftMessageText()
     {
-                return !is_null($this->_fields['GiftMessageText']['FieldValue']);
-            }
+        return !is_null($this->_fields['GiftMessageText']['FieldValue']);
+    }
 
     /**
      * Set the value of GiftMessageText, return this.
@@ -1020,8 +1020,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetGiftWrapLevel()
     {
-                return !is_null($this->_fields['GiftWrapLevel']['FieldValue']);
-            }
+        return !is_null($this->_fields['GiftWrapLevel']['FieldValue']);
+    }
 
     /**
      * Set the value of GiftWrapLevel, return this.
@@ -1066,8 +1066,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetInvoiceData()
     {
-                return !is_null($this->_fields['InvoiceData']['FieldValue']);
-            }
+        return !is_null($this->_fields['InvoiceData']['FieldValue']);
+    }
 
     /**
      * Set the value of InvoiceData, return this.
@@ -1112,8 +1112,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetConditionNote()
     {
-                return !is_null($this->_fields['ConditionNote']['FieldValue']);
-            }
+        return !is_null($this->_fields['ConditionNote']['FieldValue']);
+    }
 
     /**
      * Set the value of ConditionNote, return this.
@@ -1158,8 +1158,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetConditionId()
     {
-                return !is_null($this->_fields['ConditionId']['FieldValue']);
-            }
+        return !is_null($this->_fields['ConditionId']['FieldValue']);
+    }
 
     /**
      * Set the value of ConditionId, return this.
@@ -1204,8 +1204,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetConditionSubtypeId()
     {
-                return !is_null($this->_fields['ConditionSubtypeId']['FieldValue']);
-            }
+        return !is_null($this->_fields['ConditionSubtypeId']['FieldValue']);
+    }
 
     /**
      * Set the value of ConditionSubtypeId, return this.
@@ -1250,8 +1250,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetScheduledDeliveryStartDate()
     {
-                return !is_null($this->_fields['ScheduledDeliveryStartDate']['FieldValue']);
-            }
+        return !is_null($this->_fields['ScheduledDeliveryStartDate']['FieldValue']);
+    }
 
     /**
      * Set the value of ScheduledDeliveryStartDate, return this.
@@ -1296,8 +1296,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetScheduledDeliveryEndDate()
     {
-                return !is_null($this->_fields['ScheduledDeliveryEndDate']['FieldValue']);
-            }
+        return !is_null($this->_fields['ScheduledDeliveryEndDate']['FieldValue']);
+    }
 
     /**
      * Set the value of ScheduledDeliveryEndDate, return this.
@@ -1342,8 +1342,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetPriceDesignation()
     {
-                return !is_null($this->_fields['PriceDesignation']['FieldValue']);
-            }
+        return !is_null($this->_fields['PriceDesignation']['FieldValue']);
+    }
 
     /**
      * Set the value of PriceDesignation, return this.
@@ -1388,8 +1388,8 @@ namespace MWSService\Orders\Model;use MWSService\Orders\Base\MWSModel;
      */
     public function isSetBuyerCustomizedInfo()
     {
-                return !is_null($this->_fields['BuyerCustomizedInfo']['FieldValue']);
-            }
+        return !is_null($this->_fields['BuyerCustomizedInfo']['FieldValue']);
+    }
 
     /**
      * Set the value of BuyerCustomizedInfo, return this.
