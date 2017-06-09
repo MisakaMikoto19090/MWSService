@@ -44,7 +44,7 @@ class MWSModelPointsGrantedDetail extends MWSModel
     {
         $this->_fields = array(
             'PointsNumber' => array('FieldValue' => null, 'FieldType' => 'int'),
-            'PointsMonetaryValue' => array('FieldValue' => null, 'FieldType' => 'MWSModelMoney'),
+            'PointsMonetaryValue' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
         );
         parent::__construct($data);
     }

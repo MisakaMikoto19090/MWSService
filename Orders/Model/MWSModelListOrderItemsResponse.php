@@ -45,9 +45,9 @@ class MWSModelListOrderItemsResponse extends MWSModel
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'ListOrderItemsResult' => array('FieldValue' => null, 'FieldType' => 'MWSModelListOrderItemsResult'),
-            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModelResponseMetadata'),
-            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModelResponseHeaderMetadata'),
+            'ListOrderItemsResult' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelListOrderItemsResult'),
+            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseMetadata'),
+            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseHeaderMetadata'),
         );
         parent::__construct($data);
     }

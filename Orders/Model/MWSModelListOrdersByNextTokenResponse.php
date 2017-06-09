@@ -45,9 +45,9 @@ class  MWSModelListOrdersByNextTokenResponse extends MWSModel
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'ListOrdersByNextTokenResult' => array('FieldValue' => null, 'FieldType' => 'MWSModelListOrdersByNextTokenResult'),
-            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModelResponseMetadata'),
-            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModelResponseHeaderMetadata'),
+            'ListOrdersByNextTokenResult' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelListOrdersByNextTokenResult'),
+            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseMetadata'),
+            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseHeaderMetadata'),
         );
         parent::__construct($data);
     }

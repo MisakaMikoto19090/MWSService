@@ -45,9 +45,9 @@ class MWSModelGetServiceStatusResponse extends MWSModel
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'GetServiceStatusResult' => array('FieldValue' => null, 'FieldType' => 'MWSModelGetServiceStatusResult'),
-            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModelResponseMetadata'),
-            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSModelResponseHeaderMetadata'),
+            'GetServiceStatusResult' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelGetServiceStatusResult'),
+            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseMetadata'),
+            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseHeaderMetadata'),
         );
         parent::__construct($data);
     }

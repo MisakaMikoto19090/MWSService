@@ -43,7 +43,7 @@ class MWSModelPaymentExecutionDetailItem extends MWSModel
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'Payment' => array('FieldValue' => null, 'FieldType' => 'MWSModelMoney'),
+            'Payment' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
             'PaymentMethod' => array('FieldValue' => null, 'FieldType' => 'string'),
         );
         parent::__construct($data);
