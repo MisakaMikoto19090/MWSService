@@ -2,7 +2,7 @@
 
 namespace MWSService;
 
-Class MWSDefineExample
+Class MWSDefine
 {
     /************************************************************************
      * REQUIRED

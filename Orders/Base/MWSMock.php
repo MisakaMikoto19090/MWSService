@@ -40,7 +40,6 @@ class MWSMock implements MWSInterface
      */
     public function getOrder($request)
     {
-        require_once(dirname(__FILE__) . '/Model/GetOrderResponse.php');
         return  Model\MWSModelGetOrderResponse::fromXML($this->_invoke('GetOrder'));
     }
 
@@ -57,7 +56,6 @@ class MWSMock implements MWSInterface
      */
     public function getServiceStatus($request)
     {
-        require_once(dirname(__FILE__) . '/Model/GetServiceStatusResponse.php');
         return  Model\MWSModelGetServiceStatusResponse::fromXML($this->_invoke('GetServiceStatus'));
     }
 
@@ -74,7 +72,6 @@ class MWSMock implements MWSInterface
      */
     public function listOrderItems($request)
     {
-        require_once(dirname(__FILE__) . '/Model/ListOrderItemsResponse.php');
         return  Model\MWSModelListOrderItemsResponse::fromXML($this->_invoke('ListOrderItems'));
     }
 
@@ -92,7 +89,6 @@ class MWSMock implements MWSInterface
      */
     public function listOrderItemsByNextToken($request)
     {
-        require_once(dirname(__FILE__) . '/Model/ListOrderItemsByNextTokenResponse.php');
         return  Model\MWSModelListOrderItemsByNextTokenResponse::fromXML($this->_invoke('ListOrderItemsByNextToken'));
     }
 
@@ -108,7 +104,6 @@ class MWSMock implements MWSInterface
      */
     public function listOrders($request)
     {
-        require_once(dirname(__FILE__) . '/Model/ListOrdersResponse.php');
         return  Model\MWSModelListOrdersResponse::fromXML($this->_invoke('ListOrders'));
     }
 
@@ -126,7 +121,6 @@ class MWSMock implements MWSInterface
      */
     public function listOrdersByNextToken($request)
     {
-        require_once(dirname(__FILE__) . '/Model/ListOrdersByNextTokenResponse.php');
         return  Model\MWSModelListOrdersByNextTokenResponse::fromXML($this->_invoke('ListOrdersByNextToken'));
     }
 

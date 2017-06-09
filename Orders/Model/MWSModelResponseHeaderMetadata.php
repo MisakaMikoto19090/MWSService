@@ -31,7 +31,7 @@ class MWSModelResponseHeaderMetadata
     private $metadata = array();
 
     public function __construct($requestId = null, $responseContext = null, $timestamp = null,
-                                $quotaMax = null, $quotaMax = null, $quotaResetsAt = null)
+                                $quotaMax = null, $quotaResetsAt = null)
     {
         $this->metadata[self::REQUEST_ID] = $requestId;
         $this->metadata[self::RESPONSE_CONTEXT] = $responseContext;

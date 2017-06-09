@@ -70,14 +70,12 @@ class MWSClient implements MWSInterface
     public function getOrder($request)
     {
         if (!($request instanceof Model\MWSModelGetOrderRequest)) {
-            require_once(dirname(__FILE__) . '/Model/GetOrderRequest.php');
             $request = new  Model\MWSModelGetOrderRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'GetOrder';
         $httpResponse = $this->_invoke($parameters);
 
-        require_once(dirname(__FILE__) . '/Model/GetOrderResponse.php');
         $response = Model\MWSModelGetOrderResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
@@ -120,14 +118,12 @@ class MWSClient implements MWSInterface
     public function getServiceStatus($request)
     {
         if (!($request instanceof Model\MWSModelGetServiceStatusRequest)) {
-            require_once(dirname(__FILE__) . '/Model/GetServiceStatusRequest.php');
             $request = new  Model\MWSModelGetServiceStatusRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'GetServiceStatus';
         $httpResponse = $this->_invoke($parameters);
 
-        require_once(dirname(__FILE__) . '/Model/GetServiceStatusResponse.php');
         $response = Model\MWSModelGetServiceStatusResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
@@ -167,14 +163,12 @@ class MWSClient implements MWSInterface
     public function listOrderItems($request)
     {
         if (!($request instanceof Model\MWSModelListOrderItemsRequest)) {
-            require_once(dirname(__FILE__) . '/Model/ListOrderItemsRequest.php');
             $request = new  Model\MWSModelListOrderItemsRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'ListOrderItems';
         $httpResponse = $this->_invoke($parameters);
 
-        require_once(dirname(__FILE__) . '/Model/ListOrderItemsResponse.php');
         $response = Model\MWSModelListOrderItemsResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
@@ -218,14 +212,12 @@ class MWSClient implements MWSInterface
     public function listOrderItemsByNextToken($request)
     {
         if (!($request instanceof Model\MWSModelListOrderItemsByNextTokenRequest)) {
-            require_once(dirname(__FILE__) . '/Model/ListOrderItemsByNextTokenRequest.php');
             $request = new  Model\MWSModelListOrderItemsByNextTokenRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'ListOrderItemsByNextToken';
         $httpResponse = $this->_invoke($parameters);
 
-        require_once(dirname(__FILE__) . '/Model/ListOrderItemsByNextTokenResponse.php');
         $response = Model\MWSModelListOrderItemsByNextTokenResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
@@ -267,14 +259,12 @@ class MWSClient implements MWSInterface
     public function listOrders($request)
     {
         if (!($request instanceof Model\MWSModelListOrdersRequest)) {
-            require_once(dirname(__FILE__) . '/Model/ListOrdersRequest.php');
             $request = new  Model\MWSModelListOrdersRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'ListOrders';
         $httpResponse = $this->_invoke($parameters);
 
-        require_once(dirname(__FILE__) . '/Model/ListOrdersResponse.php');
         $response = Model\MWSModelListOrdersResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
@@ -351,14 +341,12 @@ class MWSClient implements MWSInterface
     public function listOrdersByNextToken($request)
     {
         if (!($request instanceof Model\MWSModelListOrdersByNextTokenRequest)) {
-            require_once(dirname(__FILE__) . '/Model/ListOrdersByNextTokenRequest.php');
             $request = new  Model\MWSModelListOrdersByNextTokenRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'ListOrdersByNextToken';
         $httpResponse = $this->_invoke($parameters);
 
-        require_once(dirname(__FILE__) . '/Model/ListOrdersByNextTokenResponse.php');
         $response = Model\MWSModelListOrdersByNextTokenResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
@@ -554,7 +542,6 @@ class MWSClient implements MWSInterface
     {
         try {
             if (empty($this->_config['ServiceURL'])) {
-                require_once(dirname(__FILE__) . '/Exception.php');
                 throw new MWSException(
                     array('ErrorCode' => 'InvalidServiceURL',
                         'Message' => "Missing serviceUrl configuration value. You may obtain a list of valid MWS URLs by consulting the MWS Developer's Guide, or reviewing the sample code published along side this library."));
@@ -577,7 +564,6 @@ class MWSClient implements MWSInterface
         } catch (MWSException $se) {
             throw $se;
         } catch (Exception $t) {
-            require_once(dirname(__FILE__) . '/Exception.php');
             throw new MWSException(array('Exception' => $t, 'Message' => $t->getMessage()));
         }
     }
@@ -604,7 +590,6 @@ class MWSClient implements MWSInterface
             $exProps["Message"] = "Internal Error";
         }
 
-        require_once(dirname(__FILE__) . '/Exception.php');
         return new MWSException($exProps);
     }
 
@@ -666,7 +651,6 @@ class MWSClient implements MWSInterface
         $response = curl_exec($ch);
 
         if ($response === false) {
-            require_once(dirname(__FILE__) . '/Exception.php');
             $exProps["Message"] = curl_error($ch);
             $exProps["ErrorType"] = "HTTP";
             curl_close($ch);
@@ -720,7 +704,6 @@ class MWSClient implements MWSInterface
 
         //If the body is null here then we were unable to parse the response and will throw an exception
         if ($body == null) {
-            require_once(dirname(__FILE__) . '/Exception.php');
             $exProps["Message"] = "Failed to parse valid HTTP response (" . $response . ")";
             $exProps["ErrorType"] = "HTTP";
             throw new MWSException($exProps);
@@ -787,7 +770,6 @@ class MWSClient implements MWSInterface
             }
         }
 
-        require_once(dirname(__FILE__) . '/Model/ResponseHeaderMetadata.php');
         return new  Model\MWSModelResponseHeaderMetadata(
             $headers['x-mws-request-id'],
             $headers['x-mws-response-context'],
