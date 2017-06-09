@@ -25,7 +25,7 @@ namespace MWSService\Orders\Base;
 use Exception;
 use DOMElement;
 use DOMXPath;
-use DOMDocument;
+use \DOMDocument;
 abstract class  MWSModel
 {
 

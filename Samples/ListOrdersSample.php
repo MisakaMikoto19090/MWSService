@@ -23,7 +23,7 @@
 
 namespace MWSService\Samples;
 
-use DOMDocument;
+use \DOMDocument;
 use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSClient;
 use MWSService\Orders\Base\MWSException;

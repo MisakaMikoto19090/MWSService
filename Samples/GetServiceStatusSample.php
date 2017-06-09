@@ -25,6 +25,7 @@ use MWSService\Orders\Base\MWSClient;
 use MWSService\Orders\Base\MWSException;
 use MWSService\Orders\Base\MWSInterface;
 use MWSService\Orders\Model;
+use DOMDocument;
 
 /************************************************************************
  * Instantiate Implementation of MarketplaceWebServiceOrders
