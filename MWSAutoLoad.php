@@ -14,7 +14,7 @@ class MWSAutoLoad
     public static function autoload($class)
     {
         // Don't interfere with other autoloaders
-        if (0 !== strpos($class, 'Swift_')) {
+        if (0 !== strpos($class, 'MWS')) {
             return;
         }
 
@@ -46,6 +46,12 @@ class MWSAutoLoad
         if (null !== $callable) {
             self::$inits[] = $callable;
         }
-        spl_autoload_register(array('Swift', 'autoload'));
+        spl_autoload_register(array('MWSAutoLoad', 'autoload'));
     }
 }
+if (!function_exists('_mws_init')){
+    function _mws_init(){
+        require_once __DIR__.'.config.inc.php';
+    }
+}
+MWSAutoLoad::registerAutoload('_mws_init');

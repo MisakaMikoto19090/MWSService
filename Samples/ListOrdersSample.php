@@ -24,8 +24,7 @@ namespace MWSService\Samples;
 use MWSService\Orders\Base\MWSClient;
 use MWSService\Orders\Base\MWSInterface;
 use MWSService\Orders\Model\MWSModelListOrdersRequest;
-require_once('../.config.inc.php');
-
+use MWSService\MWSDefine;
 /************************************************************************
  * Instantiate Implementation of MarketplaceWebServiceOrders
  *
@@ -54,10 +53,10 @@ $config = array(
 );
 
 $service = new MWSClient(
-    AWS_ACCESS_KEY_ID,
-    AWS_SECRET_ACCESS_KEY,
-    APPLICATION_NAME,
-    APPLICATION_VERSION,
+    MWSDefine::AWS_ACCESS_KEY_ID,
+    MWSDefine::AWS_SECRET_ACCESS_KEY,
+    MWSDefine::APPLICATION_NAME,
+    MWSDefine::APPLICATION_VERSION,
     $config);
 
 /************************************************************************
@@ -78,8 +77,8 @@ $service = new MWSClient(
  ***********************************************************************/
 // @TODO: set request. Action can be passed as MWSModel_ListOrders
 $request = new MWSModelListOrdersRequest();
-$request->setSellerId(MERCHANT_ID);
-$request->setMarketplaceId(MARKETPLACE_ID);
+$request->setSellerId(MWSDefine::MERCHANT_ID);
+$request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);
 //$request->setCreatedAfter(date('yyyy-MM-ddThh:mm:00Z'),time());
 $request->setCreatedAfter('2017-06-01T00:00:00Z');
 $request->setOrderStatus('Shipped');

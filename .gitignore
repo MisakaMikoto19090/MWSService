@@ -47,3 +47,4 @@ fabric.properties
 .idea/
 .config.inc.php
 /vendor/
+MWSDefine.php
