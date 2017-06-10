@@ -29,35 +29,13 @@ use MWSService\Orders\Base\MWSClient;
 use MWSService\Orders\Base\MWSException;
 use MWSService\Orders\Base\MWSInterface;
 use MWSService\Orders\Model;
+use MWSService\OrdersCommon;
+use SimpleXMLElement;
 
-Class ListOrdersSample
+Class ListOrdersSample extends OrdersCommon
 {
-    /************************************************************************
-     * Instantiate Implementation of MarketplaceWebServiceOrders
-     *
-     * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY constants
-     * are defined in the .config.inc.php located in the same
-     * directory as this sample
-     ***********************************************************************/
-    // More endpoints are listed in the MWS Developer Guide
-    // North America:
-    //$serviceUrl = "https://mws.amazonservices.com/Orders/2013-09-01";
-    // Europe
-    const serviceUrl = "https://mws-eu.amazonservices.com/Orders/2013-09-01";
-    // Japan
-    //$serviceUrl = "https://mws.amazonservices.jp/Orders/2013-09-01";
-    // China
-    //$serviceUrl = "https://mws.amazonservices.com.cn/Orders/2013-09-01";
-    public static $config = [
-        'ServiceURL' => self::serviceUrl,
-        'ProxyHost' => null,
-        'ProxyPort' => -1,
-        'ProxyUsername' => null,
-        'ProxyPassword' => null,
-        'MaxErrorRetry' => 3,
-    ];
 
-    public static function GetOrders()
+    public static function ListOrders(    )
     {
         $service = new MWSClient(
             MWSDefine::AWS_ACCESS_KEY_ID,
@@ -86,11 +64,12 @@ Class ListOrdersSample
         $request = new  Model\MWSModelListOrdersRequest();
         $request->setSellerId(MWSDefine::MERCHANT_ID);
         $request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);
-        $request->setCreatedAfter(date('yyyy-MM-ddThh:mm:00Z'), time());
+        $date = date_format('yyyy-MM-01', time());
+        $time = '00:00:00';
+        $final_date = $date . 'T' . $time . 'Z';
+        $request->setCreatedAfter($final_date);//Format:   2017-06-01T00:00:00Z
 
-//        $request->setCreatedAfter('2017-06-01T00:00:00Z');
         $request->setOrderStatus('Shipped');
-// object or array of parameters
         self::invokeListOrders($service, $request);
 
 
@@ -108,17 +87,20 @@ Class ListOrdersSample
     {
         try {
             $response = $service->ListOrders($request);
-
-            echo("Service Response\n");
-            echo("=============================================================================\n");
-
+//            echo("Service Response\n");
+//            echo("=============================================================================\n");
             $dom = new DOMDocument();
             $dom->loadXML($response->toXML());
             $dom->preserveWhiteSpace = false;
             $dom->formatOutput = true;
-            echo $dom->saveXML();
-            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
+//            echo $dom->saveXML();
+//            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
+            $xml = $dom->saveXML();//get xml string
+            $orderData = new SimpleXMLElement($xml);//convert to xml object
+            $array = json_encode($orderData, true);
+            $result = json_decode($array, true);//convert to array
 
+            return $result;
         } catch (MWSException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
             echo("Response Status Code: " . $ex->getStatusCode() . "\n");

@@ -21,41 +21,21 @@
  * List Order Items Sample
  */
 
-require_once('.config.inc.php');
+namespace MWSService\Samples;
 
-/************************************************************************
- * Instantiate Implementation of MarketplaceWebServiceOrders
- *
- * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY constants
- * are defined in the .config.inc.php located in the same
- * directory as this sample
- ***********************************************************************/
-// More endpoints are listed in the MWS Developer Guide
-// North America:
-//$serviceUrl = "https://mws.amazonservices.com/Orders/2013-09-01";
-// Europe
-//$serviceUrl = "https://mws-eu.amazonservices.com/Orders/2013-09-01";
-// Japan
-//$serviceUrl = "https://mws.amazonservices.jp/Orders/2013-09-01";
-// China
-//$serviceUrl = "https://mws.amazonservices.com.cn/Orders/2013-09-01";
+use DOMDocument;
+use MWSService\Orders\Base\MWSException;
+use MWSService\Orders\Base\MWSInterface;
+use MWSService\Orders\Model;
 
+Class ListOrderItemsSample
+{
+    public static function GetOrderItems($amazon_order_id)
+    {
 
-$config = array(
-    'ServiceURL' => $serviceUrl,
-    'ProxyHost' => null,
-    'ProxyPort' => -1,
-    'ProxyUsername' => null,
-    'ProxyPassword' => null,
-    'MaxErrorRetry' => 3,
-);
+    }
+}
 
-$service = new MWSClient(
-    AWS_ACCESS_KEY_ID,
-    AWS_SECRET_ACCESS_KEY,
-    APPLICATION_NAME,
-    APPLICATION_VERSION,
-    $config);
 
 /************************************************************************
  * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
