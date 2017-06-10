@@ -23,9 +23,9 @@
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
 use DOMDocument;
 use DOMXPath;
+use MWSService\Orders\Base\MWSModel;
 
 /**
  * MWSModelListOrderItemsByNextTokenResponse

@@ -85,7 +85,7 @@ invokeListOrdersByNextToken($service, $request);
  * the MarketplaceId and ASIN.
  *
  * @param MWSInterface $service instance of MWSInterface
- * @param mixed $request  Model\MWSModelListOrdersByNextToken or array of parameters
+ * @param mixed $request Model\MWSModelListOrdersByNextToken or array of parameters
  */
 
 function invokeListOrdersByNextToken(MWSInterface $service, $request)

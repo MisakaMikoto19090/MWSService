@@ -23,8 +23,8 @@
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
 use DOMDocument;
+use MWSService\Orders\Base\MWSModel;
 
 
 /**

@@ -18,6 +18,7 @@
  */
 
 namespace MWSService\Orders\Model;
+
 use MWSService\Orders\Base\MWSModel;
 
 class MWSModelResponseHeaderMetadata extends MWSModel

@@ -85,7 +85,7 @@ invokeListOrderItems($service, $request);
  * the MarketplaceId and ASIN.
  *
  * @param MWSInterface $service instance of MWSInterface
- * @param mixed $request  Model\MWSModelListOrderItems or array of parameters
+ * @param mixed $request Model\MWSModelListOrderItems or array of parameters
  */
 
 function invokeListOrderItems(MWSInterface $service, $request)
