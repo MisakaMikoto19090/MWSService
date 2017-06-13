@@ -24,7 +24,6 @@
 namespace MWSService\Samples;
 
 use DOMDocument;
-use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSClient;
 use MWSService\Orders\Base\MWSException;
 use MWSService\Orders\Base\MWSInterface;
@@ -34,8 +33,51 @@ use SimpleXMLElement;
 
 Class ListOrdersSample extends OrdersCommon
 {
+    private static $OrderStatusArr = [
+        0 => 'PendingAvailability',
+        1 => 'Pending',
+        2 => 'Unshipped',
+        3 => 'PartiallyShipped',
+        4 => 'Shipped',
+        5 => 'InvoiceUnconfirmed',
+        6 => 'Canceled',
+        7 => 'Unfulfillable',
+    ];
+    public static $FulfillmentChannelArr = [
+        0 => 'AFN',
+        1 => 'MFN',
+    ];
+    public static $PaymentMethodArr = [
+        0 => 'COD',
+        1 => 'CVS',
+        2 => 'Other',
+    ];
+    public static $TFMShipmentStatus = [
+        0 => 'PendingPickUp',
+        1 => 'LabelCanceled',
+        2 => 'PickedUp',
+        3 => 'AtDestinationFC',
+        4 => 'Delivered',
+        5 => 'RejectedByBuyer',
+        6 => 'Undeliverable',
+        7 => 'ReturnedToSeller',
+        8 => 'Lost',
+    ];
 
-    public static function ListOrders(    )
+    public static function ListOrders(
+        $CreatedAfter,
+        $CreatedBefore,
+        $LastUpdateAfter,
+        $LastUpdateBefore,
+        $OrderStatus,
+        $MarketplaceId,
+        $FulfillmentChannel,
+        $PaymentMethod,
+        $BuyerEmail,
+        $SellerOrderId,
+        $MaxResultsPerPage,
+        $TFMShipmentStatus
+    )
     {
         $service = new MWSClient(
             MWSDefine::AWS_ACCESS_KEY_ID,
@@ -64,7 +106,7 @@ Class ListOrdersSample extends OrdersCommon
         $request = new  Model\MWSModelListOrdersRequest();
         $request->setSellerId(MWSDefine::MERCHANT_ID);
         $request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);
-        $date = date_format('yyyy-MM-01', time());
+        $date = date('yyyy-MM-01', time());
         $time = '00:00:00';
         $final_date = $date . 'T' . $time . 'Z';
         $request->setCreatedAfter($final_date);//Format:   2017-06-01T00:00:00Z
@@ -83,7 +125,8 @@ Class ListOrdersSample extends OrdersCommon
      * @param MWSInterface $service instance of MWSInterface
      * @param mixed $request Model\MWSModelListOrders or array of parameters
      */
-    public static function invokeListOrders(MWSInterface $service, $request)
+    public
+    static function invokeListOrders(MWSInterface $service, $request)
     {
         try {
             $response = $service->ListOrders($request);
