@@ -1,5 +1,10 @@
 <?php
+
 namespace MWSService;
+
+use MWSService\Orders\Base\MWSClient;
+use MWSService\Orders\Base\MWSMock;
+
 Abstract Class OrdersCommon
 {
 
@@ -28,5 +33,21 @@ Abstract Class OrdersCommon
         'ProxyPassword' => null,
         'MaxErrorRetry' => 3,
     ];
+
+    public static function GetMWSClient()
+    {
+        $service = new MWSClient(
+            MWSDefine::AWS_ACCESS_KEY_ID,
+            MWSDefine::AWS_SECRET_ACCESS_KEY,
+            MWSDefine::APPLICATION_NAME,
+            MWSDefine::APPLICATION_VERSION,
+            self::$config);
+        return $service;
+    }
+
+    public static function GetMockMWSClient()
+    {
+        $service = new MWSMock();
+    }
 
 }

@@ -24,7 +24,7 @@
 namespace MWSService\Samples;
 
 use DOMDocument;
-use MWSService\Orders\Base\MWSClient;
+use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSException;
 use MWSService\Orders\Base\MWSInterface;
 use MWSService\Orders\Model;
@@ -43,16 +43,16 @@ Class ListOrdersSample extends OrdersCommon
         6 => 'Canceled',
         7 => 'Unfulfillable',
     ];
-    public static $FulfillmentChannelArr = [
+    private static $FulfillmentChannelArr = [
         0 => 'AFN',
         1 => 'MFN',
     ];
-    public static $PaymentMethodArr = [
+    private static $PaymentMethodArr = [
         0 => 'COD',
         1 => 'CVS',
         2 => 'Other',
     ];
-    public static $TFMShipmentStatus = [
+    private static $TFMShipmentStatus = [
         0 => 'PendingPickUp',
         1 => 'LabelCanceled',
         2 => 'PickedUp',
@@ -64,7 +64,7 @@ Class ListOrdersSample extends OrdersCommon
         8 => 'Lost',
     ];
 
-    public static function ListOrders(
+    private static function ListOrders(
         $CreatedAfter,
         $CreatedBefore,
         $LastUpdateAfter,
@@ -79,12 +79,7 @@ Class ListOrdersSample extends OrdersCommon
         $TFMShipmentStatus
     )
     {
-        $service = new MWSClient(
-            MWSDefine::AWS_ACCESS_KEY_ID,
-            MWSDefine::AWS_SECRET_ACCESS_KEY,
-            MWSDefine::APPLICATION_NAME,
-            MWSDefine::APPLICATION_VERSION,
-            self::$config);
+        $service = parent::GetMWSClient();
 
         /************************************************************************
          * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
