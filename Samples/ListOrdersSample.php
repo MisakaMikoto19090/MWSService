@@ -68,6 +68,22 @@ Class ListOrdersSample extends OrdersCommon
         1 => 'JSON',
     ];
 
+    public $Params = [
+        'CreatedAfter',
+        'CreatedBefore',
+        'LastUpdateAfter',
+        'LastUpdateBefore',
+        'OrderStatus',
+        'MarketplaceId',
+        'FulfillmentChannel',
+        'PaymentMethod',
+        'BuyerEmail',
+        'SellerOrderId',
+        'MaxResultsPerPage',
+        'TFMShipmentStatus',
+        'Flag'
+    ];
+
     private static function ListOrders(
         $CreatedAfter,
         $CreatedBefore,
@@ -103,8 +119,9 @@ Class ListOrdersSample extends OrdersCommon
          * Setup request parameters and uncomment invoke to try out
          * sample for List Orders Action
          ***********************************************************************/
-// @TODO: set request. Action can be passed as  MWSModelListOrders
+//        @TODO: set request . Action can be passed as  MWSModelListOrders
         $request = new MWSModelListOrdersRequest();
+
         $request->setSellerId(MWSDefine::MERCHANT_ID);
         $request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);
         $date = date('Y-m-dTh:i:sZ', time());
@@ -130,6 +147,7 @@ Class ListOrdersSample extends OrdersCommon
     static function invokeListOrders(MWSInterface $service, $request, $Flag)
     {
         try {
+            //uncomment to get xml output
             $response = $service->ListOrders($request);
 //            echo("Service Response\n");
 //            echo("=============================================================================\n");
