@@ -18,7 +18,7 @@
  */
 
 /**
- *  Model\MWSModel - base class for all model classes
+ *  MWSModel - base class for all model classes
  */
 
 namespace MWSService\Orders\Base;
