@@ -27,7 +27,7 @@ use DOMDocument;
 use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSException;
 use MWSService\Orders\Base\MWSInterface;
-use MWSService\Orders\Model;
+use MWSService\Orders\Model\MWSModelListOrdersRequest;
 use MWSService\OrdersCommon;
 use SimpleXMLElement;
 
@@ -63,6 +63,10 @@ Class ListOrdersSample extends OrdersCommon
         7 => 'ReturnedToSeller',
         8 => 'Lost',
     ];
+    private static $FlagArr = [
+        0 => 'XML',
+        1 => 'JSON',
+    ];
 
     private static function ListOrders(
         $CreatedAfter,
@@ -76,7 +80,8 @@ Class ListOrdersSample extends OrdersCommon
         $BuyerEmail,
         $SellerOrderId,
         $MaxResultsPerPage,
-        $TFMShipmentStatus
+        $TFMShipmentStatus,
+        $Flag
     )
     {
         $service = parent::GetMWSClient();
@@ -91,23 +96,23 @@ Class ListOrdersSample extends OrdersCommon
          * XML files available under MarketplaceWebServiceOrders/Mock tree
          *
          ***********************************************************************/
-// $service = new MWSMock();
+//        $service = parent:: GetMockMWSClient();
+
 
         /************************************************************************
          * Setup request parameters and uncomment invoke to try out
          * sample for List Orders Action
          ***********************************************************************/
-// @TODO: set request. Action can be passed as  Model\MWSModelListOrders
-        $request = new  Model\MWSModelListOrdersRequest();
+// @TODO: set request. Action can be passed as  MWSModelListOrders
+        $request = new MWSModelListOrdersRequest();
         $request->setSellerId(MWSDefine::MERCHANT_ID);
         $request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);
-        $date = date('yyyy-MM-01', time());
-        $time = '00:00:00';
-        $final_date = $date . 'T' . $time . 'Z';
-        $request->setCreatedAfter($final_date);//Format:   2017-06-01T00:00:00Z
+        $date = date('Y-m-dTh:i:sZ', time());
+
+        $request->setCreatedAfter($date);//Format:   2017-06-01T00:00:00Z
 
         $request->setOrderStatus('Shipped');
-        self::invokeListOrders($service, $request);
+        self::invokeListOrders($service, $request, $Flag);
 
 
     }
@@ -116,12 +121,13 @@ Class ListOrdersSample extends OrdersCommon
      * Get List Orders Action Sample
      * Gets competitive pricing and related information for a product identified by
      * the MarketplaceId and ASIN.
-     *
      * @param MWSInterface $service instance of MWSInterface
-     * @param mixed $request Model\MWSModelListOrders or array of parameters
+     * @param $request
+     * @param $Flag
+     * @return mixed|SimpleXMLElement
      */
     public
-    static function invokeListOrders(MWSInterface $service, $request)
+    static function invokeListOrders(MWSInterface $service, $request, $Flag)
     {
         try {
             $response = $service->ListOrders($request);
@@ -134,9 +140,11 @@ Class ListOrdersSample extends OrdersCommon
 //            echo $dom->saveXML();
 //            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
             $xml = $dom->saveXML();//get xml string
-            $orderData = new SimpleXMLElement($xml);//convert to xml object
-            $array = json_encode($orderData, true);
-            $result = json_decode($array, true);//convert to array
+            $result = new SimpleXMLElement($xml);//convert to xml object
+            if ($Flag) {
+                $result_json = json_encode($result, true);
+                $result = json_decode($result_json, true);//convert to array
+            }
 
             return $result;
         } catch (MWSException $ex) {

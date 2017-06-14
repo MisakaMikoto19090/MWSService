@@ -48,6 +48,7 @@ Abstract Class OrdersCommon
     public static function GetMockMWSClient()
     {
         $service = new MWSMock();
+        return $service;
     }
 
 }
