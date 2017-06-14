@@ -232,9 +232,19 @@ Class ListOrdersSample extends OrdersCommon
                 $CreatedBeforeTimeStamp = strtotime($CreatedBefore);
             }
             if ($CreatedAfterTimeStamp && $CreatedBeforeTimeStamp && $CreatedBeforeTimeStamp > $CreatedAfterTimeStamp) {
-                throw  new MWSException(['Message' => 'CreatedBefore must be greater than CreatedAfter']);
+                throw new MWSException(['Message' => 'CreatedBefore must be greater than CreatedAfter']);
             }
-
+            if (!$CreatedAfter && $CreatedBefore) {
+                throw new MWSException(['Message' => 'Must set CreatedAfter first']);
+            }
+            if ($LastUpdatedAfter) {
+                $LastUpdatedAfter = self::ConvertToISO8601($LastUpdatedAfter);
+                $LastUpdatedAfterTimeStamp = strtotime($LastUpdatedAfter);
+            }
+            if ($LastUpdatedBefore) {
+                $LastUpdatedBefore = self::ConvertToISO8601($LastUpdatedBefore);
+                $LastUpdatedBeforeTimeStamp = strtotime($LastUpdatedBefore);
+            }
             if ($CreatedAfter && $LastUpdatedAfter) {
                 throw new MWSException(['Message' => 'CreatedAfter and LastUpdatedAfter can not be set and the same time']);
             }
