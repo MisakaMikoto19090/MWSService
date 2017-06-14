@@ -68,7 +68,7 @@ Class ListOrdersSample extends OrdersCommon
         1 => 'JSON',
     ];
 
-    public $Params = [
+    public static $Params = [
         'CreatedAfter',
         'CreatedBefore',
         'LastUpdateAfter',
@@ -84,11 +84,27 @@ Class ListOrdersSample extends OrdersCommon
         'Flag'
     ];
 
-    private static function ListOrders(
+    /**
+     *
+     * @param $CreatedAfter
+     * @param $CreatedBefore
+     * @param $LastUpdateAfter
+     * @param $LastUpdateBefore
+     * @param $OrderStatus
+     * @param $MarketplaceId
+     * @param $FulfillmentChannel
+     * @param $PaymentMethod
+     * @param $BuyerEmail
+     * @param $SellerOrderId
+     * @param $MaxResultsPerPage
+     * @param $TFMShipmentStatus
+     * @param $Flag
+     */
+    public static function ListOrders(
         $CreatedAfter,
         $CreatedBefore,
-        $LastUpdateAfter,
-        $LastUpdateBefore,
+        $LastUpdatedAfter,
+        $LastUpdatedBefore,
         $OrderStatus,
         $MarketplaceId,
         $FulfillmentChannel,
@@ -122,14 +138,30 @@ Class ListOrdersSample extends OrdersCommon
 //        @TODO: set request . Action can be passed as  MWSModelListOrders
         $request = new MWSModelListOrdersRequest();
 
+
         $request->setSellerId(MWSDefine::MERCHANT_ID);
         $request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);
+        $request = self::SetRequestParams($request, $CreatedAfter,
+            $CreatedBefore,
+            $LastUpdatedAfter,
+            $LastUpdatedBefore,
+            $OrderStatus,
+            $MarketplaceId,
+            $FulfillmentChannel,
+            $PaymentMethod,
+            $BuyerEmail,
+            $SellerOrderId,
+            $MaxResultsPerPage,
+            $TFMShipmentStatus
+        );
+
+
         $date = date('Y-m-dTh:i:sZ', time());
 
         $request->setCreatedAfter($date);//Format:   2017-06-01T00:00:00Z
 
         $request->setOrderStatus('Shipped');
-        self::invokeListOrders($service, $request, $Flag);
+        return self::invokeListOrders($service, $request, $Flag);
 
 
     }
@@ -174,6 +206,82 @@ Class ListOrdersSample extends OrdersCommon
             echo("XML: " . $ex->getXML() . "\n");
             echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
         }
+    }
+
+    public static function SetRequestParams($request, $CreatedAfter,
+                                            $CreatedBefore,
+                                            $LastUpdatedAfter,
+                                            $LastUpdatedBefore,
+                                            $OrderStatus,
+                                            $MarketplaceId,
+                                            $FulfillmentChannel,
+                                            $PaymentMethod,
+                                            $BuyerEmail,
+                                            $SellerOrderId,
+                                            $MaxResultsPerPage,
+                                            $TFMShipmentStatus,
+                                            $Flag)
+    {
+        try {
+            if ($CreatedAfter) {
+                $CreatedAfter = self::ConvertToISO8601($CreatedAfter);
+                $CreatedAfterTimeStamp = strtotime($CreatedAfter);
+            }
+            if ($CreatedBefore) {
+                $CreatedBefore = self::ConvertToISO8601($CreatedBefore);
+                $CreatedBeforeTimeStamp = strtotime($CreatedBefore);
+            }
+            if ($CreatedAfterTimeStamp && $CreatedBeforeTimeStamp && $CreatedBeforeTimeStamp > $CreatedAfterTimeStamp) {
+                throw  new MWSException(['Message' => 'CreatedBefore must be greater than CreatedAfter']);
+            }
+
+            if ($CreatedAfter && $LastUpdatedAfter) {
+                throw new MWSException(['Message' => 'CreatedAfter and LastUpdatedAfter can not be set and the same time']);
+            }
+            if ($CreatedBefore) {
+                if (is_int($CreatedBefore)) {
+
+                }
+            }
+
+
+            if ($CreatedBefore && $LastUpdatedBefore) {
+                throw new MWSException(['Message' => 'CreatedBefore and LastUpdatedBefore can not be set and the same time']);
+            }
+            if (is_int($CreatedAfter) || is_int($LastUpdatedAfter)) {
+                if ($CreatedAfter > time() || $LastUpdatedAfter > time()) {
+                    throw new MWSException(['Message' => 'CreatedAfter or LastUpdatedAfter must be less than the current timestamp']);
+                }
+
+                $LastUpdatedAfterDate = date('Y-m-d', $LastUpdatedAfter);
+                $LastUpdatedAfterTime = date('h:i:s', $LastUpdatedAfter);
+                $LastUpdatedAfter = $LastUpdatedAfterDate . 'T' . $LastUpdatedAfterTime . 'Z';
+            }
+
+
+        } catch (MWSException $ex) {
+            echo("Caught Exception: " . $ex->getMessage() . "\n");
+            echo("Response Status Code: " . $ex->getStatusCode() . "\n");
+            echo("Error Code: " . $ex->getErrorCode() . "\n");
+            echo("Error Type: " . $ex->getErrorType() . "\n");
+            echo("Request ID: " . $ex->getRequestId() . "\n");
+            echo("XML: " . $ex->getXML() . "\n");
+            echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
+        }
+    }
+
+    public static function ConvertToISO8601($time)
+    {
+        if (is_int($time)) {
+            $timeDate = date('Y-m-d', $time);
+            $timeTime = date('h:i:s', $time);
+            $time = $timeDate . 'T' . $timeTime . 'Z';
+        } else {
+            $timeDate = date('Y-m-d', $time);
+            $timeTime = date('h:i:s', $time);
+            $time = $timeDate . 'T' . $timeTime . 'Z';
+        }
+        return $time;
     }
 }
 
