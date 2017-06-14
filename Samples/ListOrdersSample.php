@@ -231,12 +231,7 @@ Class ListOrdersSample extends OrdersCommon
                 $CreatedBefore = self::ConvertToISO8601($CreatedBefore);
                 $CreatedBeforeTimeStamp = strtotime($CreatedBefore);
             }
-            if ($CreatedAfterTimeStamp && $CreatedBeforeTimeStamp && $CreatedBeforeTimeStamp > $CreatedAfterTimeStamp) {
-                throw new MWSException(['Message' => 'CreatedBefore must be greater than CreatedAfter']);
-            }
-            if (!$CreatedAfter && $CreatedBefore) {
-                throw new MWSException(['Message' => 'Must set CreatedAfter first']);
-            }
+
             if ($LastUpdatedAfter) {
                 $LastUpdatedAfter = self::ConvertToISO8601($LastUpdatedAfter);
                 $LastUpdatedAfterTimeStamp = strtotime($LastUpdatedAfter);
@@ -245,27 +240,29 @@ Class ListOrdersSample extends OrdersCommon
                 $LastUpdatedBefore = self::ConvertToISO8601($LastUpdatedBefore);
                 $LastUpdatedBeforeTimeStamp = strtotime($LastUpdatedBefore);
             }
+            if ($OrderStatus) {
+                if (is_int($OrderStatus)) {
+                    $OrderStatus = self::$OrderStatusArr[$OrderStatus];
+                } elseif (!in_array($OrderStatus, self::$OrderStatusArr)) {
+                    $OrderStatus = 'Shipped';
+                }
+            }
+            if ($MarketplaceId){
+
+            }
+
+
             if ($CreatedAfter && $LastUpdatedAfter) {
                 throw new MWSException(['Message' => 'CreatedAfter and LastUpdatedAfter can not be set and the same time']);
             }
-            if ($CreatedBefore) {
-                if (is_int($CreatedBefore)) {
-
-                }
-            }
-
-
             if ($CreatedBefore && $LastUpdatedBefore) {
                 throw new MWSException(['Message' => 'CreatedBefore and LastUpdatedBefore can not be set and the same time']);
             }
-            if (is_int($CreatedAfter) || is_int($LastUpdatedAfter)) {
-                if ($CreatedAfter > time() || $LastUpdatedAfter > time()) {
-                    throw new MWSException(['Message' => 'CreatedAfter or LastUpdatedAfter must be less than the current timestamp']);
-                }
-
-                $LastUpdatedAfterDate = date('Y-m-d', $LastUpdatedAfter);
-                $LastUpdatedAfterTime = date('h:i:s', $LastUpdatedAfter);
-                $LastUpdatedAfter = $LastUpdatedAfterDate . 'T' . $LastUpdatedAfterTime . 'Z';
+            if ($CreatedAfterTimeStamp && $CreatedBeforeTimeStamp && $CreatedBeforeTimeStamp > $CreatedAfterTimeStamp) {
+                throw new MWSException(['Message' => 'CreatedBefore must be greater than CreatedAfter']);
+            }
+            if (!$CreatedAfter && $CreatedBefore) {
+                throw new MWSException(['Message' => 'Must set CreatedAfter first']);
             }
 
 
