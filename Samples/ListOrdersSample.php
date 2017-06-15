@@ -226,11 +226,30 @@ Class ListOrdersSample extends OrdersCommon
             if ($CreatedAfter) {
                 $CreatedAfter = self::ConvertToISO8601($CreatedAfter);
                 $CreatedAfterTimeStamp = strtotime($CreatedAfter);
+            } else {
+                $lastMonth = date('m', time()) - 1;
+                if (0 == $lastMonth) {
+                    $lastMonth = 12;
+                    $year = date('Y', time()) - 1;
+                }
+                $CreatedAfter = $year . '-' . $lastMonth . '-' . '01T00:00:00Z';
             }
             if ($CreatedBefore) {
                 $CreatedBefore = self::ConvertToISO8601($CreatedBefore);
                 $CreatedBeforeTimeStamp = strtotime($CreatedBefore);
+            } else {
+                $year = date('Y', time());
+                $lastMonth = date('m', time()) - 1;
+                if (0 == $lastMonth) {
+                    $lastMonth = 12;
+                    $year = date('Y', time()) - 1;
+                }
+                $month = date('m', time());
+                $lastDay = date('t', strtotime($year . '-' . $lastMonth . '-01 00:00:00'));
+
+                $CreatedBefore = $year . '-' . $month . '-' . $lastDay.'T23:59:59Z';
             }
+
 
             if ($LastUpdatedAfter) {
                 $LastUpdatedAfter = self::ConvertToISO8601($LastUpdatedAfter);
@@ -247,7 +266,7 @@ Class ListOrdersSample extends OrdersCommon
                     $OrderStatus = 'Shipped';
                 }
             }
-            if ($MarketplaceId){
+            if ($MarketplaceId) {
 
             }
 
