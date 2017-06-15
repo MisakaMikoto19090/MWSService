@@ -233,6 +233,8 @@ Class ListOrdersSample extends OrdersCommon
                     $year = date('Y', time()) - 1;
                 }
                 $CreatedAfter = $year . '-' . $lastMonth . '-' . '01T00:00:00Z';
+                $CreatedAfterTimeStamp = strtotime($CreatedAfter);
+
             }
             if ($CreatedBefore) {
                 $CreatedBefore = self::ConvertToISO8601($CreatedBefore);
@@ -247,16 +249,39 @@ Class ListOrdersSample extends OrdersCommon
                 $month = date('m', time());
                 $lastDay = date('t', strtotime($year . '-' . $lastMonth . '-01 00:00:00'));
 
-                $CreatedBefore = $year . '-' . $month . '-' . $lastDay.'T23:59:59Z';
+                $CreatedBefore = $year . '-' . $month . '-' . $lastDay . 'T23:59:59Z';
+                $CreatedBeforeTimeStamp = strtotime($CreatedBefore);
+
             }
 
 
             if ($LastUpdatedAfter) {
                 $LastUpdatedAfter = self::ConvertToISO8601($LastUpdatedAfter);
                 $LastUpdatedAfterTimeStamp = strtotime($LastUpdatedAfter);
+            } else {
+                $lastMonth = date('m', time()) - 1;
+                if (0 == $lastMonth) {
+                    $lastMonth = 12;
+                    $year = date('Y', time()) - 1;
+                }
+                $LastUpdatedAfter = $year . '-' . $lastMonth . '-' . '01T00:00:00Z';
+                $LastUpdatedAfterTimeStamp = strtotime($LastUpdatedAfter);
+
             }
             if ($LastUpdatedBefore) {
                 $LastUpdatedBefore = self::ConvertToISO8601($LastUpdatedBefore);
+                $LastUpdatedBeforeTimeStamp = strtotime($LastUpdatedBefore);
+            } else {
+                $year = date('Y', time());
+                $lastMonth = date('m', time()) - 1;
+                if (0 == $lastMonth) {
+                    $lastMonth = 12;
+                    $year = date('Y', time()) - 1;
+                }
+                $month = date('m', time());
+                $lastDay = date('t', strtotime($year . '-' . $lastMonth . '-01 00:00:00'));
+
+                $LastUpdatedBefore = $year . '-' . $month . '-' . $lastDay . 'T23:59:59Z';
                 $LastUpdatedBeforeTimeStamp = strtotime($LastUpdatedBefore);
             }
             if ($OrderStatus) {
@@ -265,10 +290,40 @@ Class ListOrdersSample extends OrdersCommon
                 } elseif (!in_array($OrderStatus, self::$OrderStatusArr)) {
                     $OrderStatus = 'Shipped';
                 }
+            } else {
+                $OrderStatus = 'Shipped';
             }
             if ($MarketplaceId) {
 
+            } else {
+                $MarketplaceId = MWSDefine::MARKETPLACE_ID;
             }
+            if ($FulfillmentChannel) {
+                if (is_int($FulfillmentChannel)) {
+                    $FulfillmentChannel = self::$FulfillmentChannelArr[$FulfillmentChannel];
+                } elseif (!in_array($FulfillmentChannel, self::$FulfillmentChannelArr)) {
+                    $FulfillmentChannel = 'All';//check out default value
+                }
+            }
+            if ($BuyerEmail) {
+
+            } else {
+                $BuyerEmail = null;
+            }
+            if ($SellerOrderId) {
+
+            }
+            if ($MaxResultsPerPage) {
+
+            } else {
+                $MaxResultsPerPage = 100;
+            }
+            if ($TFMShipmentStatus){
+
+            }else{
+                //only for china
+            }
+
 
 
             if ($CreatedAfter && $LastUpdatedAfter) {

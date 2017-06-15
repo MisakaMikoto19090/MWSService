@@ -21,7 +21,14 @@
  * List Orders By Next Token Sample
  */
 
-require_once('.config.inc.php');
+namespace MWSService\Samples;
+
+use DOMDocument;
+use MWSService\MWSDefine;
+use MWSService\Orders\Base\MWSException;
+use MWSService\Orders\Base\MWSInterface;
+use MWSService\Orders\Model\MWSModelListOrdersByNextTokenRequest;
+use MWSService\OrdersCommon;
 
 /************************************************************************
  * Instantiate Implementation of MarketplaceWebServiceOrders
@@ -40,22 +47,45 @@ require_once('.config.inc.php');
 // China
 //$serviceUrl = "https://mws.amazonservices.com.cn/Orders/2013-09-01";
 
+Class ListOrdersByNextTokenSample extends OrdersCommon
+{
+    public static function ListOrdersByNextToken()
+    {
+        $service = parent::GetMWSClient();
+        $request = new MWSModelListOrdersByNextTokenRequest();
+        $request->setSellerId(MWSDefine::MERCHANT_ID);
+// object or array of parameters
+        self::invokeListOrdersByNextToken($service, $request);
 
-$config = array(
-    'ServiceURL' => $serviceUrl,
-    'ProxyHost' => null,
-    'ProxyPort' => -1,
-    'ProxyUsername' => null,
-    'ProxyPassword' => null,
-    'MaxErrorRetry' => 3,
-);
+    }
 
-$service = new MWSClient(
-    AWS_ACCESS_KEY_ID,
-    AWS_SECRET_ACCESS_KEY,
-    APPLICATION_NAME,
-    APPLICATION_VERSION,
-    $config);
+    public static function invokeListOrdersByNextToken(MWSInterface $service, $request)
+    {
+        try {
+            $response = $service->ListOrdersByNextToken($request);
+
+//            echo("Service Response\n");
+//            echo("=============================================================================\n");
+
+            $dom = new DOMDocument();
+            $dom->loadXML($response->toXML());
+            $dom->preserveWhiteSpace = false;
+            $dom->formatOutput = true;
+//            echo $dom->saveXML();
+//            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
+
+        } catch (MWSException $ex) {
+            echo("Caught Exception: " . $ex->getMessage() . "\n");
+            echo("Response Status Code: " . $ex->getStatusCode() . "\n");
+            echo("Error Code: " . $ex->getErrorCode() . "\n");
+            echo("Error Type: " . $ex->getErrorType() . "\n");
+            echo("Request ID: " . $ex->getRequestId() . "\n");
+            echo("XML: " . $ex->getXML() . "\n");
+            echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
+        }
+    }
+
+}
 
 /************************************************************************
  * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
@@ -74,10 +104,7 @@ $service = new MWSClient(
  * sample for List Orders By Next Token Action
  ***********************************************************************/
 // @TODO: set request. Action can be passed as  Model\MWSModelListOrdersByNextToken
-$request = new  Model\MWSModelListOrdersByNextTokenRequest();
-$request->setSellerId(MERCHANT_ID);
-// object or array of parameters
-invokeListOrdersByNextToken($service, $request);
+
 
 /**
  * Get List Orders By Next Token Action Sample
@@ -88,29 +115,4 @@ invokeListOrdersByNextToken($service, $request);
  * @param mixed $request Model\MWSModelListOrdersByNextToken or array of parameters
  */
 
-function invokeListOrdersByNextToken(MWSInterface $service, $request)
-{
-    try {
-        $response = $service->ListOrdersByNextToken($request);
-
-        echo("Service Response\n");
-        echo("=============================================================================\n");
-
-        $dom = new DOMDocument();
-        $dom->loadXML($response->toXML());
-        $dom->preserveWhiteSpace = false;
-        $dom->formatOutput = true;
-        echo $dom->saveXML();
-        echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
-
-    } catch (MWSException $ex) {
-        echo("Caught Exception: " . $ex->getMessage() . "\n");
-        echo("Response Status Code: " . $ex->getStatusCode() . "\n");
-        echo("Error Code: " . $ex->getErrorCode() . "\n");
-        echo("Error Type: " . $ex->getErrorType() . "\n");
-        echo("Request ID: " . $ex->getRequestId() . "\n");
-        echo("XML: " . $ex->getXML() . "\n");
-        echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
-    }
-}
 
