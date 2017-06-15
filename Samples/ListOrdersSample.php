@@ -101,19 +101,19 @@ Class ListOrdersSample extends OrdersCommon
      * @param $Flag
      */
     public static function ListOrders(
-        $CreatedAfter,
-        $CreatedBefore,
-        $LastUpdatedAfter,
-        $LastUpdatedBefore,
-        $OrderStatus,
-        $MarketplaceId,
-        $FulfillmentChannel,
-        $PaymentMethod,
-        $BuyerEmail,
-        $SellerOrderId,
-        $MaxResultsPerPage,
-        $TFMShipmentStatus,
-        $Flag
+        $CreatedAfter = null,
+        $CreatedBefore = null,
+        $LastUpdatedAfter = null,
+        $LastUpdatedBefore = null,
+        $OrderStatus = null,
+        $MarketplaceId = null,
+        $FulfillmentChannel = null,
+        $PaymentMethod = null,
+        $BuyerEmail = null,
+        $SellerOrderId = null,
+        $MaxResultsPerPage = null,
+        $TFMShipmentStatus = null,
+        $Flag = null
     )
     {
         $service = parent::GetMWSClient();
@@ -141,7 +141,9 @@ Class ListOrdersSample extends OrdersCommon
 
         $request->setSellerId(MWSDefine::MERCHANT_ID);
         $request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);
-        $request = self::SetRequestParams($request, $CreatedAfter,
+        $request = self::SetRequestParams(
+            $request,
+            $CreatedAfter,
             $CreatedBefore,
             $LastUpdatedAfter,
             $LastUpdatedBefore,
@@ -226,7 +228,8 @@ Class ListOrdersSample extends OrdersCommon
             if ($CreatedAfter) {
                 $CreatedAfter = self::ConvertToISO8601($CreatedAfter);
                 $CreatedAfterTimeStamp = strtotime($CreatedAfter);
-            } else {
+            } else if (!$LastUpdatedAfter) {
+                //if LastUpdatedAfter is note defined ,set CreatedAfter
                 $lastMonth = date('m', time()) - 1;
                 if (0 == $lastMonth) {
                     $lastMonth = 12;
@@ -234,12 +237,18 @@ Class ListOrdersSample extends OrdersCommon
                 }
                 $CreatedAfter = $year . '-' . $lastMonth . '-' . '01T00:00:00Z';
                 $CreatedAfterTimeStamp = strtotime($CreatedAfter);
-
             }
             if ($CreatedBefore) {
+                if (!$CreatedAfter) {
+                    throw new MWSException(['Message' => 'When CreatedBefore Is Set,CreatedAfter Must Be Set']);
+                }
                 $CreatedBefore = self::ConvertToISO8601($CreatedBefore);
                 $CreatedBeforeTimeStamp = strtotime($CreatedBefore);
-            } else {
+                if ($CreatedBeforeTimeStamp < $CreatedAfterTimeStamp) {
+                    throw new MWSException(['Message' => 'CreatedBefore Must Be Greater Than CreatedAfter']);
+                }
+            } else if (!$LastUpdatedAfter && $CreatedAfter) {
+                //if LastUpdatedAfter is not defined and CreatedAfter is defined
                 $year = date('Y', time());
                 $lastMonth = date('m', time()) - 1;
                 if (0 == $lastMonth) {
@@ -251,7 +260,6 @@ Class ListOrdersSample extends OrdersCommon
 
                 $CreatedBefore = $year . '-' . $month . '-' . $lastDay . 'T23:59:59Z';
                 $CreatedBeforeTimeStamp = strtotime($CreatedBefore);
-
             }
 
 
@@ -318,12 +326,11 @@ Class ListOrdersSample extends OrdersCommon
             } else {
                 $MaxResultsPerPage = 100;
             }
-            if ($TFMShipmentStatus){
+            if ($TFMShipmentStatus) {
 
-            }else{
+            } else {
                 //only for china
             }
-
 
 
             if ($CreatedAfter && $LastUpdatedAfter) {
@@ -353,15 +360,19 @@ Class ListOrdersSample extends OrdersCommon
 
     public static function ConvertToISO8601($time)
     {
-        if (is_int($time)) {
-            $timeDate = date('Y-m-d', $time);
-            $timeTime = date('h:i:s', $time);
-            $time = $timeDate . 'T' . $timeTime . 'Z';
+        if (is_int($time)) {//timestamp
+            if ($time > (time() - 120)) {
+                throw new MWSException(['Message' => 'Timestamp Must Not Be Greater Than 2 Minutes Less From Now']);
+            }
         } else {
-            $timeDate = date('Y-m-d', $time);
-            $timeTime = date('h:i:s', $time);
-            $time = $timeDate . 'T' . $timeTime . 'Z';
+            $time = strtotime($time);
+            if (!is_int($time)) {
+                throw new MWSException(['Message' => 'This String Can`t Covert To Timestamp']);
+            }
         }
+        $timeDate = date('Y-m-d', $time);
+        $timeTime = date('h:i:s', $time);
+        $time = $timeDate . 'T' . $timeTime . 'Z';
         return $time;
     }
 }
