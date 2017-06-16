@@ -26,7 +26,7 @@ namespace MWSService\Samples;
 use DOMDocument;
 use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSOrdersException;
-use MWSService\Orders\Base\MWSInterface;
+use MWSService\Orders\Base\MWSOrdersInterface;
 use MWSService\Orders\Model\MWSOrdersModelListOrdersByNextTokenRequest;
 use MWSService\OrdersCommon;
 
@@ -51,7 +51,7 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
 {
     public static function ListOrdersByNextToken()
     {
-        $service = parent::GetMWSClient();
+        $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelListOrdersByNextTokenRequest();
         $request->setSellerId(MWSDefine::MERCHANT_ID);
 // object or array of parameters
@@ -59,7 +59,7 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
 
     }
 
-    public static function invokeListOrdersByNextToken(MWSInterface $service, $request)
+    public static function invokeListOrdersByNextToken(MWSOrdersInterface $service, $request)
     {
         try {
             $response = $service->ListOrdersByNextToken($request);
@@ -111,7 +111,7 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
  * Gets competitive pricing and related information for a product identified by
  * the MarketplaceId and ASIN.
  *
- * @param MWSInterface $service instance of MWSInterface
+ * @param MWSOrdersInterface $service instance of MWSOrdersInterface
  * @param mixed $request Model\MWSOrdersModelListOrdersByNextToken or array of parameters
  */
 

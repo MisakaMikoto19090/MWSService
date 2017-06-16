@@ -25,10 +25,11 @@ namespace MWSService\Samples;
 
 use DOMDocument;
 use MWSService\Orders\Base\MWSOrdersException;
-use MWSService\Orders\Base\MWSInterface;
+use MWSService\Orders\Base\MWSOrdersInterface;
 use MWSService\Orders\Model;
+use MWSService\Orders\OrdersCommon;
 
-Class ListOrderItemsSample
+Class ListOrderItemsSample extends OrdersCommon
 {
     public static function GetOrderItems($amazon_order_id)
     {
@@ -64,11 +65,11 @@ invokeListOrderItems($service, $request);
  * Gets competitive pricing and related information for a product identified by
  * the MarketplaceId and ASIN.
  *
- * @param MWSInterface $service instance of MWSInterface
+ * @param MWSOrdersInterface $service instance of MWSOrdersInterface
  * @param mixed $request Model\MWSOrdersModelListOrderItems or array of parameters
  */
 
-function invokeListOrderItems(MWSInterface $service, $request)
+function invokeListOrderItems(MWSOrdersInterface $service, $request)
 {
     try {
         $response = $service->ListOrderItems($request);

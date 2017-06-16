@@ -18,7 +18,7 @@
  */
 
 /**
- * @see MWSInterface
+ * @see MWSOrdersInterface
  */
 
 namespace MWSService\Orders\Base;

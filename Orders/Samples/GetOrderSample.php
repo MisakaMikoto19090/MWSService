@@ -57,7 +57,7 @@ $config = array(
     'MaxErrorRetry' => 3,
 );
 
-$service = new MWSClient(
+$service = new MWSOrdersClient(
     MWSDefine::AWS_ACCESS_KEY_ID,
     MWSDefine::AWS_SECRET_ACCESS_KEY,
     MWSDefine::APPLICATION_NAME,
@@ -91,11 +91,11 @@ invokeGetOrder($service, $request);
  * Gets competitive pricing and related information for a product identified by
  * the MarketplaceId and ASIN.
  *
- * @param MWSInterface $service instance of MWSInterface
+ * @param MWSOrdersInterface $service instance of MWSOrdersInterface
  * @param mixed $request Model\MWSOrdersModelGetOrder or array of parameters
  */
 
-function invokeGetOrder(MWSInterface $service, $request)
+function invokeGetOrder(MWSOrdersInterface $service, $request)
 {
     try {
         $response = $service->GetOrder($request);

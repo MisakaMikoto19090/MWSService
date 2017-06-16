@@ -35,7 +35,7 @@ Abstract Class OrdersCommon
     ];
 
     /**
-     * @return MWSClient
+     * @return MWSOrdersClient
      */
     public static function GetMWSOrdersClient()
     {
@@ -48,7 +48,7 @@ Abstract Class OrdersCommon
         return $service;
     }
 
-    public static function GetMockMWSClient()
+    public static function GetMockMWSOrdersClient()
     {
         $service = new MWSOrdersMock();
         return $service;

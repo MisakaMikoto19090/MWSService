@@ -122,7 +122,7 @@ Class ListOrdersSample extends OrdersCommon
          * XML files available under MarketplaceWebServiceOrders/Mock tree
          *
          ***********************************************************************/
-//        $service = parent:: GetMockMWSClient();
+//        $service = parent:: GetMockMWSOrdersClient();
 
 
         /************************************************************************
@@ -166,7 +166,7 @@ Class ListOrdersSample extends OrdersCommon
      * Get List Orders Action Sample
      * Gets competitive pricing and related information for a product identified by
      * the MarketplaceId and ASIN.
-     * @param MWSInterface $service instance of MWSInterface
+     * @param MWSOrdersInterface $service instance of MWSOrdersInterface
      * @param $request
      * @param $Flag
      * @return mixed|SimpleXMLElement

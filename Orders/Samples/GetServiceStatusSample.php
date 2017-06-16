@@ -21,9 +21,9 @@
  * Get Service Status Sample
  */
 use MWSService\MWSDefine;
-use MWSService\Orders\Base\MWSClient;
+use MWSService\Orders\Base\MWSOrdersClient;
 use MWSService\Orders\Base\MWSOrdersException;
-use MWSService\Orders\Base\MWSInterface;
+use MWSService\Orders\Base\MWSOrdersInterface;
 use MWSService\Orders\Model;
 
 /************************************************************************
@@ -53,7 +53,7 @@ $config = array(
     'MaxErrorRetry' => 3,
 );
 
-$service = new MWSClient(
+$service = new MWSOrdersClient(
     MWSDefine::AWS_ACCESS_KEY_ID,
     MWSDefine::AWS_SECRET_ACCESS_KEY,
     MWSDefine::APPLICATION_NAME,
@@ -87,11 +87,11 @@ invokeGetServiceStatus($service, $request);
  * Gets competitive pricing and related information for a product identified by
  * the MarketplaceId and ASIN.
  *
- * @param MWSInterface $service instance of MWSInterface
+ * @param MWSOrdersInterface $service instance of MWSOrdersInterface
  * @param mixed $request Model\MWSOrdersModelGetServiceStatus or array of parameters
  */
 
-function invokeGetServiceStatus(MWSInterface $service, $request)
+function invokeGetServiceStatus(MWSOrdersInterface $service, $request)
 {
     try {
         $response = $service->GetServiceStatus($request);

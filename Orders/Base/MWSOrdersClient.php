@@ -18,7 +18,7 @@
  */
 
 /**
- * @see MWSInterface
+ * @see MWSOrdersInterface
  */
 
 namespace MWSService\Orders\Base;
@@ -40,7 +40,7 @@ use MWSService\Orders\Model\MWSOrdersModelListOrdersResponse as MWSOrdersModelLi
 use MWSService\Orders\Model\MWSOrdersModelResponseHeaderMetadata as MWSOrdersModelResponseHeaderMetadata;
 
 /**
- * MWSClient is an implementation of MarketplaceWebServiceOrders
+ * MWSOrdersClient is an implementation of MarketplaceWebServiceOrders
  *
  */
 class MWSOrdersClient implements MWSOrdersInterface
@@ -452,7 +452,7 @@ class MWSOrdersClient implements MWSOrdersInterface
         $userAgent .= '; ';
         $userAgent .= 'Platform=' . php_uname('s') . '/' . php_uname('m') . '/' . php_uname('r');
         $userAgent .= '; ';
-        $userAgent .= 'MWSClientVersion=' . self::MWS_CLIENT_VERSION;
+        $userAgent .= 'MWSOrdersClientVersion=' . self::MWS_CLIENT_VERSION;
 
         foreach ($attributes as $key => $value) {
             if (empty($value)) {
