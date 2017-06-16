@@ -43,7 +43,7 @@ use MWSService\Orders\Model\MWSModelResponseHeaderMetadata as MWSModelResponseHe
  * MWSClient is an implementation of MarketplaceWebServiceOrders
  *
  */
-class MWSClient implements MWSInterface
+class MWSOrdersClient implements MWSOrdersInterface
 {
 
     const SERVICE_VERSION = '2013-09-01';

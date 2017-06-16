@@ -17,37 +17,23 @@
  * Generated: Thu Mar 02 12:41:08 UTC 2017
  */
 
-/**
- * @see MWSInterface
- */
-
 namespace MWSService\Orders\Base;
 
-use MWSService\Orders\Model\MWSModelGetOrderResponse;
-use MWSService\Orders\Model\MWSModelGetServiceStatusResponse;
-use MWSService\Orders\Model\MWSModelListOrderItemsByNextTokenResponse;
-use MWSService\Orders\Model\MWSModelListOrderItemsResponse;
-use MWSService\Orders\Model\MWSModelListOrdersByNextTokenResponse;
-use MWSService\Orders\Model\MWSModelListOrdersResponse;
-
-class MWSMock implements MWSInterface
+interface  MWSOrdersInterface
 {
-    // Public API ------------------------------------------------------------//
 
     /**
      * Get Order
      * This operation takes up to 50 order ids and returns the corresponding orders.
      *
      * @param mixed $request array of parameters for  MWSModelGetOrder request or  MWSModelGetOrder object itself
-     * @see  MWSModelGetOrder
+     * @see  MWSModelGetOrderRequest
      * @return  MWSModelGetOrderResponse
      *
      * @throws MWSException
      */
-    public function getOrder($request)
-    {
-        return MWSModelGetOrderResponse::fromXML($this->_invoke('GetOrder'));
-    }
+    public function getOrder($request);
+
 
     /**
      * Get Service Status
@@ -55,15 +41,13 @@ class MWSMock implements MWSInterface
      *        takes no input.
      *
      * @param mixed $request array of parameters for  MWSModelGetServiceStatus request or  MWSModelGetServiceStatus object itself
-     * @see  MWSModelGetServiceStatus
+     * @see  MWSModelGetServiceStatusRequest
      * @return  MWSModelGetServiceStatusResponse
      *
      * @throws MWSException
      */
-    public function getServiceStatus($request)
-    {
-        return MWSModelGetServiceStatusResponse::fromXML($this->_invoke('GetServiceStatus'));
-    }
+    public function getServiceStatus($request);
+
 
     /**
      * List Order Items
@@ -71,15 +55,13 @@ class MWSMock implements MWSInterface
      *         given order id (only a single Amazon order id is allowed).
      *
      * @param mixed $request array of parameters for  MWSModelListOrderItems request or  MWSModelListOrderItems object itself
-     * @see  MWSModelListOrderItems
+     * @see  MWSModelListOrderItemsRequest
      * @return  MWSModelListOrderItemsResponse
      *
      * @throws MWSException
      */
-    public function listOrderItems($request)
-    {
-        return MWSModelListOrderItemsResponse::fromXML($this->_invoke('ListOrderItems'));
-    }
+    public function listOrderItems($request);
+
 
     /**
      * List Order Items By Next Token
@@ -88,30 +70,26 @@ class MWSMock implements MWSInterface
      *         retrive the next batch of items for that order.
      *
      * @param mixed $request array of parameters for  MWSModelListOrderItemsByNextToken request or  MWSModelListOrderItemsByNextToken object itself
-     * @see  MWSModelListOrderItemsByNextToken
+     * @see  MWSModelListOrderItemsByNextTokenRequest
      * @return  MWSModelListOrderItemsByNextTokenResponse
      *
      * @throws MWSException
      */
-    public function listOrderItemsByNextToken($request)
-    {
-        return MWSModelListOrderItemsByNextTokenResponse::fromXML($this->_invoke('ListOrderItemsByNextToken'));
-    }
+    public function listOrderItemsByNextToken($request);
+
 
     /**
      * List Orders
      * ListOrders can be used to find orders that meet the specified criteria.
      *
      * @param mixed $request array of parameters for  MWSModelListOrders request or  MWSModelListOrders object itself
-     * @see  MWSModelListOrders
+     * @see  MWSModelListOrdersRequest
      * @return  MWSModelListOrdersResponse
      *
      * @throws MWSException
      */
-    public function listOrders($request)
-    {
-        return MWSModelListOrdersResponse::fromXML($this->_invoke('ListOrders'));
-    }
+    public function listOrders($request);
+
 
     /**
      * List Orders By Next Token
@@ -120,22 +98,11 @@ class MWSMock implements MWSInterface
      *         can be used to retrieve those other orders using that nextToken.
      *
      * @param mixed $request array of parameters for  MWSModelListOrdersByNextToken request or  MWSModelListOrdersByNextToken object itself
-     * @see  MWSModelListOrdersByNextToken
+     * @see  MWSModelListOrdersByNextTokenRequest
      * @return  MWSModelListOrdersByNextTokenResponse
      *
      * @throws MWSException
      */
-    public function listOrdersByNextToken($request)
-    {
-        return MWSModelListOrdersByNextTokenResponse::fromXML($this->_invoke('ListOrdersByNextToken'));
-    }
-
-    // Private API ------------------------------------------------------------//
-
-    private function _invoke($actionName)
-    {
-        return $xml = file_get_contents(dirname(__DIR__) . '/Mock/' . $actionName . 'Response.xml', /** search include path */
-            TRUE);
-    }
+    public function listOrdersByNextToken($request);
 
 }

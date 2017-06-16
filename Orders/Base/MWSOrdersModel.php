@@ -29,7 +29,7 @@ use DOMXPath;
 use Exception;
 
 
-abstract class  MWSModel
+abstract class  MWSOrdersModel
 {
 
     /** @var array */

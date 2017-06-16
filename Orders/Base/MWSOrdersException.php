@@ -26,7 +26,7 @@ use Exception;
  * returned by Marketplace Web Service Orders service
  *
  */
-class MWSException extends Exception
+class MWSOrdersException extends Exception
 
 {
     /** @var string */

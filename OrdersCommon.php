@@ -34,7 +34,10 @@ Abstract Class OrdersCommon
         'MaxErrorRetry' => 3,
     ];
 
-    public static function GetMWSClient()
+    /**
+     * @return MWSClient
+     */
+    public static function GetMWSOrdersClient()
     {
         $service = new MWSClient(
             MWSDefine::AWS_ACCESS_KEY_ID,
