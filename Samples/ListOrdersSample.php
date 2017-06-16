@@ -34,86 +34,80 @@ use SimpleXMLElement;
 Class ListOrdersSample extends OrdersCommon
 {
     private static $OrderStatusArr = [
-        0 => 'PendingAvailability',
-        1 => 'Pending',
-        2 => 'Unshipped',
-        3 => 'PartiallyShipped',
-        4 => 'Shipped',
-        5 => 'InvoiceUnconfirmed',
-        6 => 'Canceled',
-        7 => 'Unfulfillable',
+        'PendingAvailability',
+        'Pending',
+        'Unshipped',
+        'PartiallyShipped',
+        'Shipped',
+        'InvoiceUnconfirmed',
+        'Canceled',
+        'Unfulfillable',
     ];
     private static $FulfillmentChannelArr = [
-        0 => 'AFN',
-        1 => 'MFN',
+        'AFN',
+        'MFN',
     ];
     private static $PaymentMethodArr = [
-        0 => 'COD',
-        1 => 'CVS',
-        2 => 'Other',
+        'COD',
+        'CVS',
+        'Other',
     ];
     private static $TFMShipmentStatus = [
-        0 => 'PendingPickUp',
-        1 => 'LabelCanceled',
-        2 => 'PickedUp',
-        3 => 'AtDestinationFC',
-        4 => 'Delivered',
-        5 => 'RejectedByBuyer',
-        6 => 'Undeliverable',
-        7 => 'ReturnedToSeller',
-        8 => 'Lost',
+        //Amazon has not pick up product from seller
+        'PendingPickUp',
+        //Seller canceled pick up
+        'LabelCanceled',
+        //Amazon picked up product from seller
+        'PickedUp',
+        //Package Arrived Amazon Center
+        'AtDestinationFC',
+        //Package on delivering
+        'Delivered',
+        //Package Rejected by buyer
+        'RejectedByBuyer',
+        //Package can not be delivered
+        'Undeliverable',
+        //Package returned to seller
+        'ReturnedToSeller',
+        //Package Lost
+        'Lost',
     ];
     private static $FlagArr = [
-        0 => 'XML',
-        1 => 'JSON',
-    ];
-
-    public static $Params = [
-        'CreatedAfter',
-        'CreatedBefore',
-        'LastUpdateAfter',
-        'LastUpdateBefore',
-        'OrderStatus',
-        'MarketplaceId',
-        'FulfillmentChannel',
-        'PaymentMethod',
-        'BuyerEmail',
-        'SellerOrderId',
-        'MaxResultsPerPage',
-        'TFMShipmentStatus',
-        'Flag'
+        'XML',
+        'JSON',
     ];
 
     /**
-     *
-     * @param $CreatedAfter
-     * @param $CreatedBefore
-     * @param $LastUpdateAfter
-     * @param $LastUpdateBefore
-     * @param $OrderStatus
-     * @param $MarketplaceId
-     * @param $FulfillmentChannel
-     * @param $PaymentMethod
-     * @param $BuyerEmail
-     * @param $SellerOrderId
-     * @param $MaxResultsPerPage
-     * @param $TFMShipmentStatus
-     * @param $Flag
+     * List Orders According to the giving parameters
+     * @param null $CreatedAfter ISO8601 i.e: 2017-06-01T00:00:00Z
+     * @param null $CreatedBefore ISO8601 i.e: 2017-06-30T23:59:59Z
+     * @param null $LastUpdatedAfter ISO8601 i.e: 2017-06-01T00:00:00Z
+     * @param null $LastUpdatedBefore ISO8601 i.e: 2017-06-30T23:59:59Z
+     * @param array $OrderStatus check out self::OrderStatusArr
+     * @param array $MarketplaceId check out MWSDefine::MWS_MARKETPLACE_ID_DEFINE
+     * @param array $FulfillmentChannel check out self::FulfillmentChannel
+     * @param array $PaymentMethod check out PaymentMethodArr
+     * @param null $BuyerEmail i.e: test@amazon.fr
+     * @param null $SellerOrderId OrderId defined by seller
+     * @param null $MaxResultsPerPage 1~100
+     * @param array $TFMShipmentStatus check out TFMShipmentStatusArr
+     * @param null $Flag 0~1 1:out put array
+     * @return mixed|SimpleXMLElement || Array
      */
     public static function ListOrders(
         $CreatedAfter = null,
         $CreatedBefore = null,
         $LastUpdatedAfter = null,
         $LastUpdatedBefore = null,
-        $OrderStatus = null,
-        $MarketplaceId = null,
-        $FulfillmentChannel = null,
-        $PaymentMethod = null,
+        array $OrderStatus = [],
+        array $MarketplaceId = [],
+        array $FulfillmentChannel = [],
+        array $PaymentMethod = [],
         $BuyerEmail = null,
         $SellerOrderId = null,
         $MaxResultsPerPage = null,
-        $TFMShipmentStatus = null,
-        $Flag = null
+        array $TFMShipmentStatus = [],
+        $Flag = 1
     )
     {
         $service = parent::GetMWSClient();
@@ -138,9 +132,9 @@ Class ListOrdersSample extends OrdersCommon
 //        @TODO: set request . Action can be passed as  MWSModelListOrders
         $request = new MWSModelListOrdersRequest();
 
-
         $request->setSellerId(MWSDefine::MERCHANT_ID);
-        $request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);
+//        $request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);
+//Format:   2017-06-01T00:00:00Z
         $request = self::SetRequestParams(
             $request,
             $CreatedAfter,
@@ -158,11 +152,11 @@ Class ListOrdersSample extends OrdersCommon
         );
 
 
-        $date = date('Y-m-dTh:i:sZ', time());
+//        $request->setCreatedAfter($date);
 
-        $request->setCreatedAfter($date);//Format:   2017-06-01T00:00:00Z
+//        $request->setOrderStatus('Shipped');
 
-        $request->setOrderStatus('Shipped');
+
         return self::invokeListOrders($service, $request, $Flag);
 
 
@@ -210,143 +204,199 @@ Class ListOrdersSample extends OrdersCommon
         }
     }
 
-    public static function SetRequestParams($request, $CreatedAfter,
-                                            $CreatedBefore,
-                                            $LastUpdatedAfter,
-                                            $LastUpdatedBefore,
-                                            $OrderStatus,
-                                            $MarketplaceId,
-                                            $FulfillmentChannel,
-                                            $PaymentMethod,
-                                            $BuyerEmail,
-                                            $SellerOrderId,
-                                            $MaxResultsPerPage,
-                                            $TFMShipmentStatus,
-                                            $Flag)
+    public static function SetRequestParams(
+        $request,
+        $CreatedAfter,
+        $CreatedBefore,
+        $LastUpdatedAfter,
+        $LastUpdatedBefore,
+        $OrderStatus,
+        $MarketplaceId,
+        $FulfillmentChannel,
+        $PaymentMethod,
+        $BuyerEmail,
+        $SellerOrderId,
+        $MaxResultsPerPage,
+        $TFMShipmentStatus
+    )
     {
         try {
+
             if ($CreatedAfter) {
+                //if CreatedAfter is set,convert to ISO8601
                 $CreatedAfter = self::ConvertToISO8601($CreatedAfter);
                 $CreatedAfterTimeStamp = strtotime($CreatedAfter);
+
             } else if (!$LastUpdatedAfter) {
-                //if LastUpdatedAfter is note defined ,set CreatedAfter
+                //if LastUpdatedAfter is not defined and CreatedAfter is not set,set CreatedAfter
                 $lastMonth = date('m', time()) - 1;
+                $year = date('Y', time());
                 if (0 == $lastMonth) {
                     $lastMonth = 12;
-                    $year = date('Y', time()) - 1;
+                    $year -= 1;
                 }
-                $CreatedAfter = $year . '-' . $lastMonth . '-' . '01T00:00:00Z';
+                $CreatedAfter = self::ConvertToISO8601($year . '-' . $lastMonth . '-' . '01');
                 $CreatedAfterTimeStamp = strtotime($CreatedAfter);
             }
+
             if ($CreatedBefore) {
+                //CreatedBefore is set
                 if (!$CreatedAfter) {
                     throw new MWSException(['Message' => 'When CreatedBefore Is Set,CreatedAfter Must Be Set']);
                 }
                 $CreatedBefore = self::ConvertToISO8601($CreatedBefore);
                 $CreatedBeforeTimeStamp = strtotime($CreatedBefore);
-                if ($CreatedBeforeTimeStamp < $CreatedAfterTimeStamp) {
+                if ($CreatedBeforeTimeStamp <= $CreatedAfterTimeStamp) {
                     throw new MWSException(['Message' => 'CreatedBefore Must Be Greater Than CreatedAfter']);
                 }
-            } else if (!$LastUpdatedAfter && $CreatedAfter) {
-                //if LastUpdatedAfter is not defined and CreatedAfter is defined
-                $year = date('Y', time());
-                $lastMonth = date('m', time()) - 1;
-                if (0 == $lastMonth) {
-                    $lastMonth = 12;
-                    $year = date('Y', time()) - 1;
-                }
-                $month = date('m', time());
-                $lastDay = date('t', strtotime($year . '-' . $lastMonth . '-01 00:00:00'));
-
-                $CreatedBefore = $year . '-' . $month . '-' . $lastDay . 'T23:59:59Z';
-                $CreatedBeforeTimeStamp = strtotime($CreatedBefore);
             }
-
 
             if ($LastUpdatedAfter) {
+                if ($CreatedAfter) {
+                    throw new MWSException(['Message' => 'When CreatedAfter Is Set,LastUpdatedAfter Can`t Be Set']);
+                }
                 $LastUpdatedAfter = self::ConvertToISO8601($LastUpdatedAfter);
                 $LastUpdatedAfterTimeStamp = strtotime($LastUpdatedAfter);
-            } else {
+            } else if (!$CreatedAfter) {
+                //if CreatedAfter not set ,Set LastUpdatedAfter
                 $lastMonth = date('m', time()) - 1;
+                $year = date('Y', time());
                 if (0 == $lastMonth) {
                     $lastMonth = 12;
-                    $year = date('Y', time()) - 1;
+                    $year -= 1;
                 }
-                $LastUpdatedAfter = $year . '-' . $lastMonth . '-' . '01T00:00:00Z';
+                $LastUpdatedAfter = self::ConvertToISO8601($year . '-' . $lastMonth . '-' . '01');
                 $LastUpdatedAfterTimeStamp = strtotime($LastUpdatedAfter);
-
             }
+
             if ($LastUpdatedBefore) {
+                if (!$LastUpdatedAfter) {
+                    throw new MWSException(['Message' => 'When LastUpdatedBefore Is Set,LastUpdatedAfter Must Be Set']);
+                }
                 $LastUpdatedBefore = self::ConvertToISO8601($LastUpdatedBefore);
                 $LastUpdatedBeforeTimeStamp = strtotime($LastUpdatedBefore);
-            } else {
-                $year = date('Y', time());
-                $lastMonth = date('m', time()) - 1;
-                if (0 == $lastMonth) {
-                    $lastMonth = 12;
-                    $year = date('Y', time()) - 1;
+                if ($LastUpdatedBeforeTimeStamp <= $LastUpdatedAfterTimeStamp) {
+                    throw new MWSException(['Message' => 'LastUpdatedBefore Must Be Greater Than LastUpdatedAfter']);
                 }
-                $month = date('m', time());
-                $lastDay = date('t', strtotime($year . '-' . $lastMonth . '-01 00:00:00'));
-
-                $LastUpdatedBefore = $year . '-' . $month . '-' . $lastDay . 'T23:59:59Z';
-                $LastUpdatedBeforeTimeStamp = strtotime($LastUpdatedBefore);
             }
+
             if ($OrderStatus) {
-                if (is_int($OrderStatus)) {
-                    $OrderStatus = self::$OrderStatusArr[$OrderStatus];
-                } elseif (!in_array($OrderStatus, self::$OrderStatusArr)) {
-                    $OrderStatus = 'Shipped';
+                if (count($OrderStatus)) {
+                    foreach ($OrderStatus as $eachOrderStatus) {
+                        if (!in_array($eachOrderStatus, self::$OrderStatusArr)) {
+                            throw new MWSException(['Message' => $eachOrderStatus . 'Is Not A Valid OrderStatus']);
+                        }
+                    }
+                    if (in_array("Unshipped", $OrderStatus) && !in_array('PartiallyShipped', $OrderStatus)) {
+                        $OrderStatus[] = 'PartiallyShipped';
+                    }
+                    if (!in_array("Unshipped", $OrderStatus) && in_array('PartiallyShipped', $OrderStatus)) {
+                        $OrderStatus[] = 'Unshipped';
+                    }
                 }
-            } else {
-                $OrderStatus = 'Shipped';
+
             }
+
             if ($MarketplaceId) {
-
+                if (count($MarketplaceId)) {
+                    foreach ($MarketplaceId as $eachMarketplaceId) {
+                        if (!in_array($eachMarketplaceId, MWSDefine::MWS_MARKETPLACE_ID_DEFINE)) {
+                            throw new MWSException(['Message' => $eachMarketplaceId . 'Is Not A Valid MarketplaceId']);
+                        }
+                    }
+                } else {
+                    $MarketplaceId = [MWSDefine::MARKETPLACE_ID];
+                }
             } else {
-                $MarketplaceId = MWSDefine::MARKETPLACE_ID;
+                $MarketplaceId = [MWSDefine::MARKETPLACE_ID];
             }
+
             if ($FulfillmentChannel) {
-                if (is_int($FulfillmentChannel)) {
-                    $FulfillmentChannel = self::$FulfillmentChannelArr[$FulfillmentChannel];
-                } elseif (!in_array($FulfillmentChannel, self::$FulfillmentChannelArr)) {
-                    $FulfillmentChannel = 'All';//check out default value
+                if (count($FulfillmentChannel)) {
+                    foreach ($FulfillmentChannel as $eachFulfillmentChannel) {
+                        if (!in_array($eachFulfillmentChannel, self::$FulfillmentChannelArr)) {
+                            throw new MWSException(['Message' => $eachFulfillmentChannel . 'Is Not A Valid FulfillmentChannel']);
+                        }
+                    }
                 }
             }
-            if ($BuyerEmail) {
+            if ($PaymentMethod) {
+                if (count($PaymentMethod)) {
+                    foreach ($PaymentMethod as $eachPaymentMethod) {
+                        if (!in_array($eachPaymentMethod, self::$PaymentMethodArr)) {
+                            throw new MWSException(['Message' => $eachPaymentMethod . 'Is Not A Valid PaymentMethod,P.S. COD,CVS Is Only Available In Japan']);
+                        }
+                    }
+                }
+            }
 
-            } else {
-                $BuyerEmail = null;
+            if ($BuyerEmail) {
+                $BuyerEmail = filter_var($BuyerEmail, FILTER_VALIDATE_EMAIL);
+                $FulfillmentChannel = [];
+                $OrderStatus = [];
+                $PaymentMethod = [];
+                $LastUpdatedAfter = null;
+                $LastUpdatedBefore = null;
+                $SellerOrderId = null;
             }
             if ($SellerOrderId) {
-
+                $FulfillmentChannel = [];
+                $OrderStatus = [];
+                $PaymentMethod = [];
+                $LastUpdatedAfter = null;
+                $LastUpdatedBefore = null;
+                $BuyerEmail = null;
             }
             if ($MaxResultsPerPage) {
-
-            } else {
-                $MaxResultsPerPage = 100;
+                $MaxResultsPerPage = abs(intval($MaxResultsPerPage));
+                if ($MaxResultsPerPage < 1 || $MaxResultsPerPage > 100) {
+                    throw new MWSException(['Message' => 'MaxResultsPerPage Must Between 1 and 100']);
+                }
             }
             if ($TFMShipmentStatus) {
-
-            } else {
-                //only for china
+                foreach ($TFMShipmentStatus as $eachTFMShipmentStatus) {
+                    if (!in_array($eachTFMShipmentStatus, $TFMShipmentStatus)) {
+                        throw new MWSException(['Message' => $eachTFMShipmentStatus . 'Is Not A Valid TFMShipmentStatus']);
+                    }
+                }
             }
-
-
-            if ($CreatedAfter && $LastUpdatedAfter) {
-                throw new MWSException(['Message' => 'CreatedAfter and LastUpdatedAfter can not be set and the same time']);
+            if ($CreatedAfter) {
+                $request->setCreatedAfter($CreatedAfter);
             }
-            if ($CreatedBefore && $LastUpdatedBefore) {
-                throw new MWSException(['Message' => 'CreatedBefore and LastUpdatedBefore can not be set and the same time']);
+            if ($CreatedBefore) {
+                $request->setCreatedBefore($CreatedBefore);
             }
-            if ($CreatedAfterTimeStamp && $CreatedBeforeTimeStamp && $CreatedBeforeTimeStamp > $CreatedAfterTimeStamp) {
-                throw new MWSException(['Message' => 'CreatedBefore must be greater than CreatedAfter']);
+            if ($LastUpdatedAfter) {
+                $request->setLastUpdatedAfter($LastUpdatedAfter);
             }
-            if (!$CreatedAfter && $CreatedBefore) {
-                throw new MWSException(['Message' => 'Must set CreatedAfter first']);
+            if ($LastUpdatedBefore) {
+                $request->setLastUpdatedBefore($LastUpdatedBefore);
             }
-
-
+            if ($OrderStatus) {
+                $request->setOrderStatus($OrderStatus);
+            }
+            if ($MarketplaceId) {
+                $request->setMarketplaceId($MarketplaceId);
+            }
+            if ($FulfillmentChannel) {
+                $request->setFulfillmentChannel($FulfillmentChannel);
+            }
+            if ($PaymentMethod) {
+                $request->setPaymentMethod($PaymentMethod);
+            }
+            if ($BuyerEmail) {
+                $request->setBuyerEmail($BuyerEmail);
+            }
+            if ($SellerOrderId) {
+                $request->setSellerId($SellerOrderId);
+            }
+            if ($MaxResultsPerPage) {
+                $request->isSetMaxResultsPerPage($MaxResultsPerPage);
+            }
+            if ($TFMShipmentStatus) {
+                $request->setTFMShipmentStatus($TFMShipmentStatus);
+            }
+            return $request;
         } catch (MWSException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
             echo("Response Status Code: " . $ex->getStatusCode() . "\n");
@@ -370,10 +420,7 @@ Class ListOrdersSample extends OrdersCommon
                 throw new MWSException(['Message' => 'This String Can`t Covert To Timestamp']);
             }
         }
-        $timeDate = date('Y-m-d', $time);
-        $timeTime = date('h:i:s', $time);
-        $time = $timeDate . 'T' . $timeTime . 'Z';
-        return $time;
+        return gmdate("Y-m-d\TH:i:s.\\0\\0\\0\\Z", $time);
     }
 }
 
