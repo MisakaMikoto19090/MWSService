@@ -42,7 +42,7 @@ class MWSOrdersMock implements MWSOrdersInterface
      * @see  MWSOrdersModelGetOrder
      * @return  MWSOrdersModelGetOrderResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function getOrder($request)
     {
@@ -58,7 +58,7 @@ class MWSOrdersMock implements MWSOrdersInterface
      * @see  MWSOrdersModelGetServiceStatus
      * @return  MWSOrdersModelGetServiceStatusResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function getServiceStatus($request)
     {
@@ -74,7 +74,7 @@ class MWSOrdersMock implements MWSOrdersInterface
      * @see  MWSOrdersModelListOrderItems
      * @return  MWSOrdersModelListOrderItemsResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function listOrderItems($request)
     {
@@ -91,7 +91,7 @@ class MWSOrdersMock implements MWSOrdersInterface
      * @see  MWSOrdersModelListOrderItemsByNextToken
      * @return  MWSOrdersModelListOrderItemsByNextTokenResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function listOrderItemsByNextToken($request)
     {
@@ -106,7 +106,7 @@ class MWSOrdersMock implements MWSOrdersInterface
      * @see  MWSOrdersModelListOrders
      * @return  MWSOrdersModelListOrdersResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function listOrders($request)
     {
@@ -123,7 +123,7 @@ class MWSOrdersMock implements MWSOrdersInterface
      * @see  MWSOrdersModelListOrdersByNextToken
      * @return  MWSOrdersModelListOrdersByNextTokenResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function listOrdersByNextToken($request)
     {

@@ -24,7 +24,7 @@
 namespace MWSService\Samples;
 
 use DOMDocument;
-use MWSService\Orders\Base\MWSException;
+use MWSService\Orders\Base\MWSOrdersException;
 use MWSService\Orders\Base\MWSInterface;
 use MWSService\Orders\Model;
 
@@ -83,7 +83,7 @@ function invokeListOrderItems(MWSInterface $service, $request)
         echo $dom->saveXML();
         echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
 
-    } catch (MWSException $ex) {
+    } catch (MWSOrdersException $ex) {
         echo("Caught Exception: " . $ex->getMessage() . "\n");
         echo("Response Status Code: " . $ex->getStatusCode() . "\n");
         echo("Error Code: " . $ex->getErrorCode() . "\n");

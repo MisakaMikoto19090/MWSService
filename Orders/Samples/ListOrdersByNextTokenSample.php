@@ -25,7 +25,7 @@ namespace MWSService\Samples;
 
 use DOMDocument;
 use MWSService\MWSDefine;
-use MWSService\Orders\Base\MWSException;
+use MWSService\Orders\Base\MWSOrdersException;
 use MWSService\Orders\Base\MWSInterface;
 use MWSService\Orders\Model\MWSOrdersModelListOrdersByNextTokenRequest;
 use MWSService\OrdersCommon;
@@ -74,7 +74,7 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
 //            echo $dom->saveXML();
 //            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
 
-        } catch (MWSException $ex) {
+        } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
             echo("Response Status Code: " . $ex->getStatusCode() . "\n");
             echo("Error Code: " . $ex->getErrorCode() . "\n");

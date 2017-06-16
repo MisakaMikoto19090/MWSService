@@ -103,7 +103,7 @@ function invokeListOrderItemsByNextToken(MWSInterface $service, $request)
         echo $dom->saveXML();
         echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
 
-    } catch (MWSException $ex) {
+    } catch (MWSOrdersException $ex) {
         echo("Caught Exception: " . $ex->getMessage() . "\n");
         echo("Response Status Code: " . $ex->getStatusCode() . "\n");
         echo("Error Code: " . $ex->getErrorCode() . "\n");

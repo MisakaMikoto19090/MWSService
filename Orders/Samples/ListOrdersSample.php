@@ -25,10 +25,10 @@ namespace MWSService\Samples;
 
 use DOMDocument;
 use MWSService\MWSDefine;
-use MWSService\Orders\Base\MWSException;
-use MWSService\Orders\Base\MWSInterface;
+use MWSService\Orders\Base\MWSOrdersException;
+use MWSService\Orders\Base\MWSOrdersInterface;
 use MWSService\Orders\Model\MWSOrdersModelListOrdersRequest;
-use MWSService\OrdersCommon;
+use MWSService\Orders\OrdersCommon;
 use SimpleXMLElement;
 
 Class ListOrdersSample extends OrdersCommon
@@ -110,7 +110,7 @@ Class ListOrdersSample extends OrdersCommon
         $Flag = 1
     )
     {
-        $service = parent::GetMWSClient();
+        $service = parent::GetMWSOrdersClient();
 
         /************************************************************************
          * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
@@ -172,7 +172,7 @@ Class ListOrdersSample extends OrdersCommon
      * @return mixed|SimpleXMLElement
      */
     public
-    static function invokeListOrders(MWSInterface $service, $request, $Flag)
+    static function invokeListOrders(MWSOrdersInterface $service, $request, $Flag)
     {
         try {
             //uncomment to get xml output
@@ -193,7 +193,7 @@ Class ListOrdersSample extends OrdersCommon
             }
 
             return $result;
-        } catch (MWSException $ex) {
+        } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
             echo("Response Status Code: " . $ex->getStatusCode() . "\n");
             echo("Error Code: " . $ex->getErrorCode() . "\n");
@@ -242,12 +242,12 @@ Class ListOrdersSample extends OrdersCommon
             if ($CreatedBefore) {
                 //CreatedBefore is set
                 if (!$CreatedAfter) {
-                    throw new MWSException(['Message' => 'When CreatedBefore Is Set,CreatedAfter Must Be Set']);
+                    throw new MWSOrdersException(['Message' => 'When CreatedBefore Is Set,CreatedAfter Must Be Set']);
                 }
                 $CreatedBefore = self::ConvertToISO8601($CreatedBefore);
                 $CreatedBeforeTimeStamp = strtotime($CreatedBefore);
                 if ($CreatedBeforeTimeStamp <= $CreatedAfterTimeStamp) {
-                    throw new MWSException(['Message' => 'CreatedBefore Must Be Greater Than CreatedAfter']);
+                    throw new MWSOrdersException(['Message' => 'CreatedBefore Must Be Greater Than CreatedAfter']);
                 }
             } else if ($CreatedAfter) {
                 //if  CreatedAfter is defined,set CreatedBefore
@@ -261,13 +261,13 @@ Class ListOrdersSample extends OrdersCommon
                 $CreatedBefore = self::ConvertToISO8601($year . '-' . $lastMonth . '-' . $lastDay . ' 23:59:59');
                 $CreatedBeforeTimeStamp = strtotime($CreatedBefore);
                 if ($CreatedBeforeTimeStamp <= $CreatedAfterTimeStamp) {
-                    throw new MWSException(['Message' => 'CreatedBefore Must Be Greater Than CreatedAfter']);
+                    throw new MWSOrdersException(['Message' => 'CreatedBefore Must Be Greater Than CreatedAfter']);
                 }
             }
 
             if ($LastUpdatedAfter) {
                 if ($CreatedAfter) {
-                    throw new MWSException(['Message' => 'When CreatedAfter Is Set,LastUpdatedAfter Can`t Be Set']);
+                    throw new MWSOrdersException(['Message' => 'When CreatedAfter Is Set,LastUpdatedAfter Can`t Be Set']);
                 }
                 $LastUpdatedAfter = self::ConvertToISO8601($LastUpdatedAfter);
                 $LastUpdatedAfterTimeStamp = strtotime($LastUpdatedAfter);
@@ -285,12 +285,12 @@ Class ListOrdersSample extends OrdersCommon
 
             if ($LastUpdatedBefore) {
                 if (!$LastUpdatedAfter) {
-                    throw new MWSException(['Message' => 'When LastUpdatedBefore Is Set,LastUpdatedAfter Must Be Set']);
+                    throw new MWSOrdersException(['Message' => 'When LastUpdatedBefore Is Set,LastUpdatedAfter Must Be Set']);
                 }
                 $LastUpdatedBefore = self::ConvertToISO8601($LastUpdatedBefore);
                 $LastUpdatedBeforeTimeStamp = strtotime($LastUpdatedBefore);
                 if ($LastUpdatedBeforeTimeStamp <= $LastUpdatedAfterTimeStamp) {
-                    throw new MWSException(['Message' => 'LastUpdatedBefore Must Be Greater Than LastUpdatedAfter']);
+                    throw new MWSOrdersException(['Message' => 'LastUpdatedBefore Must Be Greater Than LastUpdatedAfter']);
                 }
             } else if (!$CreatedAfter) {
                 $year = date('Y', time());
@@ -305,7 +305,7 @@ Class ListOrdersSample extends OrdersCommon
                 $LastUpdatedBefore = $year . '-' . $month . '-' . $lastDay . 'T23:59:59Z';
                 $LastUpdatedBeforeTimeStamp = strtotime($LastUpdatedBefore);
                 if ($LastUpdatedBeforeTimeStamp <= $LastUpdatedAfterTimeStamp) {
-                    throw new MWSException(['Message' => 'LastUpdatedBefore Must Be Greater Than LastUpdatedAfter']);
+                    throw new MWSOrdersException(['Message' => 'LastUpdatedBefore Must Be Greater Than LastUpdatedAfter']);
                 }
             }
 
@@ -313,7 +313,7 @@ Class ListOrdersSample extends OrdersCommon
                 if (count($OrderStatus)) {
                     foreach ($OrderStatus as $eachOrderStatus) {
                         if (!in_array($eachOrderStatus, self::$OrderStatusArr)) {
-                            throw new MWSException(['Message' => $eachOrderStatus . 'Is Not A Valid OrderStatus']);
+                            throw new MWSOrdersException(['Message' => $eachOrderStatus . 'Is Not A Valid OrderStatus']);
                         }
                     }
                     if (in_array("Unshipped", $OrderStatus) && !in_array('PartiallyShipped', $OrderStatus)) {
@@ -334,7 +334,7 @@ Class ListOrdersSample extends OrdersCommon
                 if (count($MarketplaceId)) {
                     foreach ($MarketplaceId as $eachMarketplaceId) {
                         if (!in_array($eachMarketplaceId, MWSDefine::MWS_MARKETPLACE_ID_DEFINE)) {
-                            throw new MWSException(['Message' => $eachMarketplaceId . 'Is Not A Valid MarketplaceId']);
+                            throw new MWSOrdersException(['Message' => $eachMarketplaceId . 'Is Not A Valid MarketplaceId']);
                         }
                     }
                 } else {
@@ -348,7 +348,7 @@ Class ListOrdersSample extends OrdersCommon
                 if (count($FulfillmentChannel)) {
                     foreach ($FulfillmentChannel as $eachFulfillmentChannel) {
                         if (!in_array($eachFulfillmentChannel, self::$FulfillmentChannelArr)) {
-                            throw new MWSException(['Message' => $eachFulfillmentChannel . 'Is Not A Valid FulfillmentChannel']);
+                            throw new MWSOrdersException(['Message' => $eachFulfillmentChannel . 'Is Not A Valid FulfillmentChannel']);
                         }
                     }
                 } else {
@@ -361,7 +361,7 @@ Class ListOrdersSample extends OrdersCommon
                 if (count($PaymentMethod)) {
                     foreach ($PaymentMethod as $eachPaymentMethod) {
                         if (!in_array($eachPaymentMethod, self::$PaymentMethodArr)) {
-                            throw new MWSException(['Message' => $eachPaymentMethod . 'Is Not A Valid PaymentMethod,P.S. COD,CVS Is Only Available In Japan']);
+                            throw new MWSOrdersException(['Message' => $eachPaymentMethod . 'Is Not A Valid PaymentMethod,P.S. COD,CVS Is Only Available In Japan']);
                         }
                     }
                 } else {
@@ -391,7 +391,7 @@ Class ListOrdersSample extends OrdersCommon
             if ($MaxResultsPerPage) {
                 $MaxResultsPerPage = abs(intval($MaxResultsPerPage));
                 if ($MaxResultsPerPage < 1 || $MaxResultsPerPage > 100) {
-                    throw new MWSException(['Message' => 'MaxResultsPerPage Must Between 1 and 100']);
+                    throw new MWSOrdersException(['Message' => 'MaxResultsPerPage Must Between 1 and 100']);
                 }
             } else {
                 $MaxResultsPerPage = 100;
@@ -399,7 +399,7 @@ Class ListOrdersSample extends OrdersCommon
             if ($TFMShipmentStatus) {
                 foreach ($TFMShipmentStatus as $eachTFMShipmentStatus) {
                     if (!in_array($eachTFMShipmentStatus, $TFMShipmentStatus)) {
-                        throw new MWSException(['Message' => $eachTFMShipmentStatus . 'Is Not A Valid TFMShipmentStatus,Besides TFMShipmentStatus Is Only Available In China']);
+                        throw new MWSOrdersException(['Message' => $eachTFMShipmentStatus . 'Is Not A Valid TFMShipmentStatus,Besides TFMShipmentStatus Is Only Available In China']);
                     }
                 }
             }
@@ -440,7 +440,7 @@ Class ListOrdersSample extends OrdersCommon
                 $request->setTFMShipmentStatus($TFMShipmentStatus);
             }
             return $request;
-        } catch (MWSException $ex) {
+        } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
             echo("Response Status Code: " . $ex->getStatusCode() . "\n");
             echo("Error Code: " . $ex->getErrorCode() . "\n");
@@ -456,12 +456,12 @@ Class ListOrdersSample extends OrdersCommon
     {
         if (is_int($time)) {//timestamp
             if ($time > (time() - 120)) {
-                throw new MWSException(['Message' => 'Timestamp Must Not Be Greater Than 2 Minutes Less From Now']);
+                throw new MWSOrdersException(['Message' => 'Timestamp Must Not Be Greater Than 2 Minutes Less From Now']);
             }
         } else {
             $time = strtotime($time);
             if (!is_int($time)) {
-                throw new MWSException(['Message' => 'This String Can`t Covert To Timestamp']);
+                throw new MWSOrdersException(['Message' => 'This String Can`t Covert To Timestamp']);
             }
         }
         return gmdate("Y-m-d\TH:i:s.\\0\\0\\0\\Z", $time);

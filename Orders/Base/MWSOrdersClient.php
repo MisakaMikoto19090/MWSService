@@ -77,7 +77,7 @@ class MWSOrdersClient implements MWSOrdersInterface
      * @see  MWSOrdersModelGetOrderRequest
      * @return  MWSOrdersModelGetOrderResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function getOrder($request)
     {
@@ -125,7 +125,7 @@ class MWSOrdersClient implements MWSOrdersInterface
      * @see  MWSOrdersModelGetServiceStatusRequest
      * @return  MWSOrdersModelGetServiceStatusResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function getServiceStatus($request)
     {
@@ -170,7 +170,7 @@ class MWSOrdersClient implements MWSOrdersInterface
      * @see  MWSOrdersModelListOrderItemsRequest
      * @return  MWSOrdersModelListOrderItemsResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function listOrderItems($request)
     {
@@ -219,7 +219,7 @@ class MWSOrdersClient implements MWSOrdersInterface
      * @see  MWSOrdersModelListOrderItemsByNextTokenRequest
      * @return  MWSOrdersModelListOrderItemsByNextTokenResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function listOrderItemsByNextToken($request)
     {
@@ -266,7 +266,7 @@ class MWSOrdersClient implements MWSOrdersInterface
      * @see  MWSOrdersModelListOrdersRequest
      * @return  MWSOrdersModelListOrdersResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function listOrders($request)
     {
@@ -348,7 +348,7 @@ class MWSOrdersClient implements MWSOrdersInterface
      * @see  MWSOrdersModelListOrdersByNextTokenRequest
      * @return  MWSOrdersModelListOrdersByNextTokenResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function listOrdersByNextToken($request)
     {
@@ -554,7 +554,7 @@ class MWSOrdersClient implements MWSOrdersInterface
     {
         try {
             if (empty($this->_config['ServiceURL'])) {
-                throw new MWSException(
+                throw new MWSOrdersException(
                     array('ErrorCode' => 'InvalidServiceURL',
                         'Message' => "Missing serviceUrl configuration value. You may obtain a list of valid MWS URLs by consulting the MWS Developer's Guide, or reviewing the sample code published along side this library."));
             }
@@ -573,10 +573,10 @@ class MWSOrdersClient implements MWSOrdersInterface
                 throw $this->_reportAnyErrors($response['ResponseBody'],
                     $status, $response['ResponseHeaderMetadata']);
             }
-        } catch (MWSException $se) {
+        } catch (MWSOrdersException $se) {
             throw $se;
         } catch (Exception $t) {
-            throw new MWSException(array('Exception' => $t, 'Message' => $t->getMessage()));
+            throw new MWSOrdersException(array('Exception' => $t, 'Message' => $t->getMessage()));
         }
     }
 
@@ -602,7 +602,7 @@ class MWSOrdersClient implements MWSOrdersInterface
             $exProps["Message"] = "Internal Error";
         }
 
-        return new MWSException($exProps);
+        return new MWSOrdersException($exProps);
     }
 
 
@@ -666,7 +666,7 @@ class MWSOrdersClient implements MWSOrdersInterface
             $exProps["Message"] = curl_error($ch);
             $exProps["ErrorType"] = "HTTP";
             curl_close($ch);
-            throw new MWSException($exProps);
+            throw new MWSOrdersException($exProps);
         }
 
         curl_close($ch);
@@ -718,7 +718,7 @@ class MWSOrdersClient implements MWSOrdersInterface
         if ($body == null) {
             $exProps["Message"] = "Failed to parse valid HTTP response (" . $response . ")";
             $exProps["ErrorType"] = "HTTP";
-            throw new MWSException($exProps);
+            throw new MWSOrdersException($exProps);
         }
 
         return array(

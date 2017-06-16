@@ -30,5 +30,19 @@ Class MWSDefine
      ***********************************************************************/
     const MERCHANT_ID = '<Your Merchant Id>';
     const MARKETPLACE_ID = '<Your Marketplace Id>';
+
+    const MWS_MARKETPLACE_ID_DEFINE = [
+        'A2EUQ1WTGCTBG2',
+        'ATVPDKIKX0DER',
+
+        'A1PA6795UKMFR9',
+        'A1RKKUPIHCS9HS',
+        'A13V1IB3VIYZZH',
+        'A21TJRUUN4KGV',
+        'APJ6JRA9NG5V4',
+        'A1F83G8C2ARO7P',
+        'A1VC38T7YXB528',
+        'AAHKV2X7AFYLW',
+    ];
 }
 

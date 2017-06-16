@@ -45,7 +45,7 @@ class MWSOrdersException extends Exception
     private $_responseHeaderMetadata = null;
 
     /**
-     * Constructs MWSException
+     * Constructs MWSOrdersException
      * @param array $errorInfo details of exception.
      * Keys are:
      * <ul>
@@ -65,7 +65,7 @@ class MWSOrdersException extends Exception
         parent::__construct($this->_message);
         if (array_key_exists("Exception", $errorInfo)) {
             $exception = $errorInfo["Exception"];
-            if ($exception instanceof MWSException) {
+            if ($exception instanceof MWSOrdersException) {
                 $this->_statusCode = $exception->getStatusCode();
                 $this->_errorCode = $exception->getErrorCode();
                 $this->_errorType = $exception->getErrorType();

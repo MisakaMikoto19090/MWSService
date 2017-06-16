@@ -30,7 +30,7 @@ interface  MWSOrdersInterface
      * @see  MWSOrdersModelGetOrderRequest
      * @return  MWSOrdersModelGetOrderResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function getOrder($request);
 
@@ -44,7 +44,7 @@ interface  MWSOrdersInterface
      * @see  MWSOrdersModelGetServiceStatusRequest
      * @return  MWSOrdersModelGetServiceStatusResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function getServiceStatus($request);
 
@@ -58,7 +58,7 @@ interface  MWSOrdersInterface
      * @see  MWSOrdersModelListOrderItemsRequest
      * @return  MWSOrdersModelListOrderItemsResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function listOrderItems($request);
 
@@ -73,7 +73,7 @@ interface  MWSOrdersInterface
      * @see  MWSOrdersModelListOrderItemsByNextTokenRequest
      * @return  MWSOrdersModelListOrderItemsByNextTokenResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function listOrderItemsByNextToken($request);
 
@@ -86,7 +86,7 @@ interface  MWSOrdersInterface
      * @see  MWSOrdersModelListOrdersRequest
      * @return  MWSOrdersModelListOrdersResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function listOrders($request);
 
@@ -101,7 +101,7 @@ interface  MWSOrdersInterface
      * @see  MWSOrdersModelListOrdersByNextTokenRequest
      * @return  MWSOrdersModelListOrdersByNextTokenResponse
      *
-     * @throws MWSException
+     * @throws MWSOrdersException
      */
     public function listOrdersByNextToken($request);
 
