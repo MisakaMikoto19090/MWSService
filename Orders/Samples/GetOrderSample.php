@@ -21,14 +21,14 @@
  * Get Order Sample
  */
 
-namespace MWSService\Samples;
+namespace MWSService\Orders\Samples;
 
 use DOMDocument;
 use MWSService\MWSDefine;
-use MWSService\Orders\Base\MWSClient;
-use MWSService\Orders\Base\MWSException;
-use MWSService\Orders\Base\MWSInterface;
-use MWSService\Orders\Model;
+use MWSService\Orders\Base\MWSOrdersClient;
+use MWSService\Orders\Base\MWSOrdersException;
+use MWSService\Orders\Base\MWSOrdersInterface;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 /************************************************************************
  * Instantiate Implementation of MarketplaceWebServiceOrders

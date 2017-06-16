@@ -1,10 +1,10 @@
 <?php
 
-namespace MWSService;
+namespace MWSService\Orders;
 
-use MWSService\Orders\Base\MWSClient;
-use MWSService\Orders\Base\MWSMock;
-
+use MWSService\Orders\Base\MWSOrdersClient;
+use MWSService\Orders\Base\MWSOrdersMock;
+use MWSService\MWSDefine;
 Abstract Class OrdersCommon
 {
 
@@ -39,7 +39,7 @@ Abstract Class OrdersCommon
      */
     public static function GetMWSOrdersClient()
     {
-        $service = new MWSClient(
+        $service = new MWSOrdersClient(
             MWSDefine::AWS_ACCESS_KEY_ID,
             MWSDefine::AWS_SECRET_ACCESS_KEY,
             MWSDefine::APPLICATION_NAME,
@@ -50,7 +50,7 @@ Abstract Class OrdersCommon
 
     public static function GetMockMWSClient()
     {
-        $service = new MWSMock();
+        $service = new MWSOrdersMock();
         return $service;
     }
 
