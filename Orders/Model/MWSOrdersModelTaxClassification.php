@@ -18,16 +18,16 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 
 /**
- * MWSModelTaxClassification
+ * MWSOrdersModelTaxClassification
  *
  * Properties:
  * <ul>
@@ -37,7 +37,7 @@ use MWSService\Orders\Base\MWSModel;
  *
  * </ul>
  */
-class MWSModelTaxClassification extends MWSModel
+class MWSOrdersModelTaxClassification extends MWSOrdersModel
 {
 
     public function __construct($data = null)

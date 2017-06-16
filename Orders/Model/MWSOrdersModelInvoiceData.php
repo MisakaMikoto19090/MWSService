@@ -18,16 +18,16 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 
 /**
- * MWSModelInvoiceData
+ * MWSOrdersModelInvoiceData
  *
  * Properties:
  * <ul>
@@ -39,7 +39,7 @@ use MWSService\Orders\Base\MWSModel;
  *
  * </ul>
  */
-class MWSModelInvoiceData extends MWSModel
+class MWSOrdersModelInvoiceData extends MWSOrdersModel
 {
 
     public function __construct($data = null)

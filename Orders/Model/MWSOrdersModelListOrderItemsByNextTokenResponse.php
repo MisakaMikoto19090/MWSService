@@ -18,83 +18,83 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
 use DOMDocument;
-use MWSService\Orders\Base\MWSModel;
 use DOMXPath;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 /**
- * MWSModelListOrderItemsResponse
+ * MWSOrdersModelListOrderItemsByNextTokenResponse
  *
  * Properties:
  * <ul>
  *
- * <li>ListOrderItemsResult: MWSModelListOrderItemsResult</li>
- * <li>ResponseMetadata: MWSModelResponseMetadata</li>
- * <li>ResponseHeaderMetadata: MWSModelResponseHeaderMetadata</li>
+ * <li>ListOrderItemsByNextTokenResult: MWSOrdersModelListOrderItemsByNextTokenResult</li>
+ * <li>ResponseMetadata: MWSOrdersModelResponseMetadata</li>
+ * <li>ResponseHeaderMetadata: MWSOrdersModelResponseHeaderMetadata</li>
  *
  * </ul>
  */
-class MWSModelListOrderItemsResponse extends MWSModel
+class MWSOrdersModelListOrderItemsByNextTokenResponse extends MWSOrdersModel
 {
 
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'ListOrderItemsResult' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelListOrderItemsResult'),
-            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseMetadata'),
-            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseHeaderMetadata'),
+            'ListOrderItemsByNextTokenResult' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelListOrderItemsByNextTokenResult'),
+            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelResponseMetadata'),
+            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelResponseHeaderMetadata'),
         );
         parent::__construct($data);
     }
 
     /**
-     * Get the value of the ListOrderItemsResult property.
+     * Get the value of the ListOrderItemsByNextTokenResult property.
      *
-     * @return ListOrderItemsResult ListOrderItemsResult.
+     * @return ListOrderItemsByNextTokenResult ListOrderItemsByNextTokenResult.
      */
-    public function getListOrderItemsResult()
+    public function getListOrderItemsByNextTokenResult()
     {
-        return $this->_fields['ListOrderItemsResult']['FieldValue'];
+        return $this->_fields['ListOrderItemsByNextTokenResult']['FieldValue'];
     }
 
     /**
-     * Set the value of the ListOrderItemsResult property.
+     * Set the value of the ListOrderItemsByNextTokenResult property.
      *
-     * @param MWSModelListOrderItemsResult listOrderItemsResult
+     * @param MWSOrdersModelListOrderItemsByNextTokenResult listOrderItemsByNextTokenResult
      * @return this instance
      */
-    public function setListOrderItemsResult($value)
+    public function setListOrderItemsByNextTokenResult($value)
     {
-        $this->_fields['ListOrderItemsResult']['FieldValue'] = $value;
+        $this->_fields['ListOrderItemsByNextTokenResult']['FieldValue'] = $value;
         return $this;
     }
 
     /**
-     * Check to see if ListOrderItemsResult is set.
+     * Check to see if ListOrderItemsByNextTokenResult is set.
      *
-     * @return true if ListOrderItemsResult is set.
+     * @return true if ListOrderItemsByNextTokenResult is set.
      */
-    public function isSetListOrderItemsResult()
+    public function isSetListOrderItemsByNextTokenResult()
     {
-        return !is_null($this->_fields['ListOrderItemsResult']['FieldValue']);
+        return !is_null($this->_fields['ListOrderItemsByNextTokenResult']['FieldValue']);
     }
 
     /**
-     * Set the value of ListOrderItemsResult, return this.
+     * Set the value of ListOrderItemsByNextTokenResult, return this.
      *
-     * @param listOrderItemsResult
+     * @param listOrderItemsByNextTokenResult
      *             The new value to set.
      *
      * @return This instance.
      */
-    public function withListOrderItemsResult($value)
+    public function withListOrderItemsByNextTokenResult($value)
     {
-        $this->setListOrderItemsResult($value);
+        $this->setListOrderItemsByNextTokenResult($value);
         return $this;
     }
 
@@ -111,7 +111,7 @@ class MWSModelListOrderItemsResponse extends MWSModel
     /**
      * Set the value of the ResponseMetadata property.
      *
-     * @param MWSModelResponseMetadata responseMetadata
+     * @param MWSOrdersModelResponseMetadata responseMetadata
      * @return this instance
      */
     public function setResponseMetadata($value)
@@ -157,7 +157,7 @@ class MWSModelListOrderItemsResponse extends MWSModel
     /**
      * Set the value of the ResponseHeaderMetadata property.
      *
-     * @param MWSModelResponseHeaderMetadata responseHeaderMetadata
+     * @param MWSOrdersModelResponseHeaderMetadata responseHeaderMetadata
      * @return this instance
      */
     public function setResponseHeaderMetadata($value)
@@ -191,24 +191,24 @@ class MWSModelListOrderItemsResponse extends MWSModel
     }
 
     /**
-     * Construct MWSModelListOrderItemsResponse from XML string
+     * Construct MWSOrdersModelListOrderItemsByNextTokenResponse from XML string
      *
      * @param $xml
      *        XML string to construct from
      *
-     * @return MWSModelListOrderItemsResponse
+     * @return MWSOrdersModelListOrderItemsByNextTokenResponse
      */
     public static function fromXML($xml)
     {
         $dom = new DOMDocument();
         $dom->loadXML($xml);
         $xpath = new DOMXPath($dom);
-        $response = $xpath->query("//*[local-name()='ListOrderItemsResponse']");
+        $response = $xpath->query("//*[local-name()='ListOrderItemsByNextTokenResponse']");
         if ($response->length == 1) {
-            return new MWSModelListOrderItemsResponse(($response->item(0)));
+            return new MWSOrdersModelListOrderItemsByNextTokenResponse(($response->item(0)));
         } else {
-            throw new Exception ("Unable to construct MWSModelListOrderItemsResponse from provided XML. 
-                                  Make sure that ListOrderItemsResponse is a root element");
+            throw new Exception ("Unable to construct MWSOrdersModelListOrderItemsByNextTokenResponse from provided XML. 
+                                  Make sure that ListOrderItemsByNextTokenResponse is a root element");
         }
     }
 
@@ -220,9 +220,9 @@ class MWSModelListOrderItemsResponse extends MWSModel
     public function toXML()
     {
         $xml = "";
-        $xml .= "<ListOrderItemsResponse xmlns=\"https://mws.amazonservices.com/Orders/2013-09-01\">";
+        $xml .= "<ListOrderItemsByNextTokenResponse xmlns=\"https://mws.amazonservices.com/Orders/2013-09-01\">";
         $xml .= $this->_toXMLFragment();
-        $xml .= "</ListOrderItemsResponse>";
+        $xml .= "</ListOrderItemsByNextTokenResponse>";
         return $xml;
     }
 

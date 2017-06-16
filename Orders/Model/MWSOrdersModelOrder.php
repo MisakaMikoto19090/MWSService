@@ -18,16 +18,16 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 
 /**
- * MWSModelOrder
+ * MWSOrdersModelOrder
  *
  * Properties:
  * <ul>
@@ -41,8 +41,8 @@ use MWSService\Orders\Base\MWSModel;
  * <li>SalesChannel: string</li>
  * <li>OrderChannel: string</li>
  * <li>ShipServiceLevel: string</li>
- * <li>ShippingAddress: MWSModelAddress</li>
- * <li>OrderTotal: MWSModelMoney</li>
+ * <li>ShippingAddress: MWSOrdersModelAddress</li>
+ * <li>OrderTotal: MWSOrdersModelMoney</li>
  * <li>NumberOfItemsShipped: int</li>
  * <li>NumberOfItemsUnshipped: int</li>
  * <li>PaymentExecutionDetail: array</li>
@@ -52,7 +52,7 @@ use MWSService\Orders\Base\MWSModel;
  * <li>BuyerEmail: string</li>
  * <li>BuyerName: string</li>
  * <li>BuyerCounty: string</li>
- * <li>BuyerTaxInfo: MWSModelBuyerTaxInfo</li>
+ * <li>BuyerTaxInfo: MWSOrdersModelBuyerTaxInfo</li>
  * <li>ShipmentServiceLevelCategory: string</li>
  * <li>ShippedByAmazonTFM: bool</li>
  * <li>TFMShipmentStatus: string</li>
@@ -71,7 +71,7 @@ use MWSService\Orders\Base\MWSModel;
  *
  * </ul>
  */
-class MWSModelOrder extends MWSModel
+class MWSOrdersModelOrder extends MWSOrdersModel
 {
 
     public function __construct($data = null)
@@ -86,18 +86,18 @@ class MWSModelOrder extends MWSModel
             'SalesChannel' => array('FieldValue' => null, 'FieldType' => 'string'),
             'OrderChannel' => array('FieldValue' => null, 'FieldType' => 'string'),
             'ShipServiceLevel' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'ShippingAddress' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelAddress'),
-            'OrderTotal' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
+            'ShippingAddress' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelAddress'),
+            'OrderTotal' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelMoney'),
             'NumberOfItemsShipped' => array('FieldValue' => null, 'FieldType' => 'int'),
             'NumberOfItemsUnshipped' => array('FieldValue' => null, 'FieldType' => 'int'),
-            'PaymentExecutionDetail' => array('FieldValue' => array(), 'FieldType' => array('MWSService\Orders\Model\MWSModelPaymentExecutionDetailItem'), 'ListMemberName' => 'PaymentExecutionDetailItem'),
+            'PaymentExecutionDetail' => array('FieldValue' => array(), 'FieldType' => array('MWSService\Orders\Model\MWSOrdersModelPaymentExecutionDetailItem'), 'ListMemberName' => 'PaymentExecutionDetailItem'),
             'PaymentMethod' => array('FieldValue' => null, 'FieldType' => 'string'),
             'PaymentMethodDetails' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'PaymentMethodDetail'),
             'MarketplaceId' => array('FieldValue' => null, 'FieldType' => 'string'),
             'BuyerEmail' => array('FieldValue' => null, 'FieldType' => 'string'),
             'BuyerName' => array('FieldValue' => null, 'FieldType' => 'string'),
             'BuyerCounty' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'BuyerTaxInfo' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelBuyerTaxInfo'),
+            'BuyerTaxInfo' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelBuyerTaxInfo'),
             'ShipmentServiceLevelCategory' => array('FieldValue' => null, 'FieldType' => 'string'),
             'ShippedByAmazonTFM' => array('FieldValue' => null, 'FieldType' => 'bool'),
             'TFMShipmentStatus' => array('FieldValue' => null, 'FieldType' => 'string'),
@@ -544,7 +544,7 @@ class MWSModelOrder extends MWSModel
     /**
      * Set the value of the ShippingAddress property.
      *
-     * @param MWSModelAddress shippingAddress
+     * @param MWSOrdersModelAddress shippingAddress
      * @return this instance
      */
     public function setShippingAddress($value)
@@ -590,7 +590,7 @@ class MWSModelOrder extends MWSModel
     /**
      * Set the value of the OrderTotal property.
      *
-     * @param MWSModelMoney orderTotal
+     * @param MWSOrdersModelMoney orderTotal
      * @return this instance
      */
     public function setOrderTotal($value)
@@ -1082,7 +1082,7 @@ class MWSModelOrder extends MWSModel
     /**
      * Set the value of the BuyerTaxInfo property.
      *
-     * @param MWSModelBuyerTaxInfo buyerTaxInfo
+     * @param MWSOrdersModelBuyerTaxInfo buyerTaxInfo
      * @return this instance
      */
     public function setBuyerTaxInfo($value)

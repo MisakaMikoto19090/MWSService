@@ -18,16 +18,16 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 
 /**
- * MWSModelListOrderItemsResult
+ * MWSOrdersModelListOrderItemsResult
  *
  * Properties:
  * <ul>
@@ -38,7 +38,7 @@ use MWSService\Orders\Base\MWSModel;
  *
  * </ul>
  */
-class MWSModelListOrderItemsResult extends MWSModel
+class MWSOrdersModelListOrderItemsResult extends MWSOrdersModel
 {
 
     public function __construct($data = null)
@@ -46,7 +46,7 @@ class MWSModelListOrderItemsResult extends MWSModel
         $this->_fields = array(
             'NextToken' => array('FieldValue' => null, 'FieldType' => 'string'),
             'AmazonOrderId' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'OrderItems' => array('FieldValue' => array(), 'FieldType' => array('MWSService\Orders\Model\MWSModelOrderItem'), 'ListMemberName' => 'OrderItem'),
+            'OrderItems' => array('FieldValue' => array(), 'FieldType' => array('MWSService\Orders\Model\MWSOrdersModelOrderItem'), 'ListMemberName' => 'OrderItem'),
         );
         parent::__construct($data);
     }

@@ -18,16 +18,16 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 
 /**
- * MWSModelBuyerTaxInfo
+ * MWSOrdersModelBuyerTaxInfo
  *
  * Properties:
  * <ul>
@@ -38,7 +38,7 @@ use MWSService\Orders\Base\MWSModel;
  *
  * </ul>
  */
-class MWSModelBuyerTaxInfo extends MWSModel
+class MWSOrdersModelBuyerTaxInfo extends MWSOrdersModel
 {
 
     public function __construct($data = null)
@@ -46,7 +46,7 @@ class MWSModelBuyerTaxInfo extends MWSModel
         $this->_fields = array(
             'CompanyLegalName' => array('FieldValue' => null, 'FieldType' => 'string'),
             'TaxingRegion' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'TaxClassifications' => array('FieldValue' => array(), 'FieldType' => array('MWSService\Orders\Model\MWSModelTaxClassification'), 'ListMemberName' => 'TaxClassification'),
+            'TaxClassifications' => array('FieldValue' => array(), 'FieldType' => array('MWSService\Orders\Model\MWSOrdersModelTaxClassification'), 'ListMemberName' => 'TaxClassification'),
         );
         parent::__construct($data);
     }

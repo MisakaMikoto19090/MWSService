@@ -18,32 +18,32 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 
 /**
- * MWSModelPaymentExecutionDetailItem
+ * MWSOrdersModelPaymentExecutionDetailItem
  *
  * Properties:
  * <ul>
  *
- * <li>Payment: MWSModelMoney</li>
+ * <li>Payment: MWSOrdersModelMoney</li>
  * <li>PaymentMethod: string</li>
  *
  * </ul>
  */
-class MWSModelPaymentExecutionDetailItem extends MWSModel
+class MWSOrdersModelPaymentExecutionDetailItem extends MWSOrdersModel
 {
 
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'Payment' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
+            'Payment' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelMoney'),
             'PaymentMethod' => array('FieldValue' => null, 'FieldType' => 'string'),
         );
         parent::__construct($data);
@@ -62,7 +62,7 @@ class MWSModelPaymentExecutionDetailItem extends MWSModel
     /**
      * Set the value of the Payment property.
      *
-     * @param MWSModelMoney payment
+     * @param MWSOrdersModelMoney payment
      * @return this instance
      */
     public function setPayment($value)

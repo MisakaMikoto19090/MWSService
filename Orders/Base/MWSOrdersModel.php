@@ -18,7 +18,7 @@
  */
 
 /**
- *  MWSModel - base class for all model classes
+ *  MWSOrdersModel - base class for all model classes
  */
 
 namespace MWSService\Orders\Base;
@@ -310,7 +310,7 @@ abstract class  MWSOrdersModel
         $xml = "";
         foreach ($this->_fields as $fieldName => $field) {
             $fieldValue = $field['FieldValue'];
-            if (!is_null($fieldValue) && $field['FieldType'] != " MWSService\Orders\Model\MWSModelResponseHeaderMetadata") {
+            if (!is_null($fieldValue) && $field['FieldType'] != " MWSService\Orders\Model\MWSOrdersModelResponseHeaderMetadata") {
                 $fieldType = $field['FieldType'];
                 if (is_array($fieldType)) {
                     if ($fieldType[0] == "object") {

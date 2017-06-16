@@ -18,84 +18,83 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
 use DOMDocument;
+use MWSService\Orders\Base\MWSOrdersModel;
 use DOMXPath;
-use Exception;
-use MWSService\Orders\Base\MWSModel;
 
 /**
- * MWSModelListOrdersResponse
+ * MWSOrdersModelListOrderItemsResponse
  *
  * Properties:
  * <ul>
  *
- * <li>ListOrdersResult: MWSModelListOrdersResult</li>
- * <li>ResponseMetadata: MWSModelResponseMetadata</li>
- * <li>ResponseHeaderMetadata: MWSModelResponseHeaderMetadata</li>
+ * <li>ListOrderItemsResult: MWSOrdersModelListOrderItemsResult</li>
+ * <li>ResponseMetadata: MWSOrdersModelResponseMetadata</li>
+ * <li>ResponseHeaderMetadata: MWSOrdersModelResponseHeaderMetadata</li>
  *
  * </ul>
  */
-class MWSModelListOrdersResponse extends MWSModel
+class MWSOrdersModelListOrderItemsResponse extends MWSOrdersModel
 {
 
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'ListOrdersResult' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelListOrdersResult'),
-            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseMetadata'),
-            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseHeaderMetadata'),
+            'ListOrderItemsResult' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelListOrderItemsResult'),
+            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelResponseMetadata'),
+            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelResponseHeaderMetadata'),
         );
         parent::__construct($data);
     }
 
     /**
-     * Get the value of the ListOrdersResult property.
+     * Get the value of the ListOrderItemsResult property.
      *
-     * @return ListOrdersResult ListOrdersResult.
+     * @return ListOrderItemsResult ListOrderItemsResult.
      */
-    public function getListOrdersResult()
+    public function getListOrderItemsResult()
     {
-        return $this->_fields['ListOrdersResult']['FieldValue'];
+        return $this->_fields['ListOrderItemsResult']['FieldValue'];
     }
 
     /**
-     * Set the value of the ListOrdersResult property.
+     * Set the value of the ListOrderItemsResult property.
      *
-     * @param MWSModelListOrdersResult listOrdersResult
+     * @param MWSOrdersModelListOrderItemsResult listOrderItemsResult
      * @return this instance
      */
-    public function setListOrdersResult($value)
+    public function setListOrderItemsResult($value)
     {
-        $this->_fields['ListOrdersResult']['FieldValue'] = $value;
+        $this->_fields['ListOrderItemsResult']['FieldValue'] = $value;
         return $this;
     }
 
     /**
-     * Check to see if ListOrdersResult is set.
+     * Check to see if ListOrderItemsResult is set.
      *
-     * @return true if ListOrdersResult is set.
+     * @return true if ListOrderItemsResult is set.
      */
-    public function isSetListOrdersResult()
+    public function isSetListOrderItemsResult()
     {
-        return !is_null($this->_fields['ListOrdersResult']['FieldValue']);
+        return !is_null($this->_fields['ListOrderItemsResult']['FieldValue']);
     }
 
     /**
-     * Set the value of ListOrdersResult, return this.
+     * Set the value of ListOrderItemsResult, return this.
      *
-     * @param listOrdersResult
+     * @param listOrderItemsResult
      *             The new value to set.
      *
      * @return This instance.
      */
-    public function withListOrdersResult($value)
+    public function withListOrderItemsResult($value)
     {
-        $this->setListOrdersResult($value);
+        $this->setListOrderItemsResult($value);
         return $this;
     }
 
@@ -112,7 +111,7 @@ class MWSModelListOrdersResponse extends MWSModel
     /**
      * Set the value of the ResponseMetadata property.
      *
-     * @param MWSModelResponseMetadata responseMetadata
+     * @param MWSOrdersModelResponseMetadata responseMetadata
      * @return this instance
      */
     public function setResponseMetadata($value)
@@ -158,7 +157,7 @@ class MWSModelListOrdersResponse extends MWSModel
     /**
      * Set the value of the ResponseHeaderMetadata property.
      *
-     * @param MWSModelResponseHeaderMetadata responseHeaderMetadata
+     * @param MWSOrdersModelResponseHeaderMetadata responseHeaderMetadata
      * @return this instance
      */
     public function setResponseHeaderMetadata($value)
@@ -192,24 +191,24 @@ class MWSModelListOrdersResponse extends MWSModel
     }
 
     /**
-     * Construct MWSModelListOrdersResponse from XML string
+     * Construct MWSOrdersModelListOrderItemsResponse from XML string
      *
      * @param $xml
      *        XML string to construct from
      *
-     * @return MWSModelListOrdersResponse
+     * @return MWSOrdersModelListOrderItemsResponse
      */
     public static function fromXML($xml)
     {
         $dom = new DOMDocument();
         $dom->loadXML($xml);
         $xpath = new DOMXPath($dom);
-        $response = $xpath->query("//*[local-name()='ListOrdersResponse']");
+        $response = $xpath->query("//*[local-name()='ListOrderItemsResponse']");
         if ($response->length == 1) {
-            return new MWSModelListOrdersResponse(($response->item(0)));
+            return new MWSOrdersModelListOrderItemsResponse(($response->item(0)));
         } else {
-            throw new Exception ("Unable to construct MWSModelListOrdersResponse from provided XML. 
-                                  Make sure that ListOrdersResponse is a root element");
+            throw new Exception ("Unable to construct MWSOrdersModelListOrderItemsResponse from provided XML. 
+                                  Make sure that ListOrderItemsResponse is a root element");
         }
     }
 
@@ -221,9 +220,9 @@ class MWSModelListOrdersResponse extends MWSModel
     public function toXML()
     {
         $xml = "";
-        $xml .= "<ListOrdersResponse xmlns=\"https://mws.amazonservices.com/Orders/2013-09-01\">";
+        $xml .= "<ListOrderItemsResponse xmlns=\"https://mws.amazonservices.com/Orders/2013-09-01\">";
         $xml .= $this->_toXMLFragment();
-        $xml .= "</ListOrdersResponse>";
+        $xml .= "</ListOrderItemsResponse>";
         return $xml;
     }
 

@@ -18,16 +18,16 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 
 /**
- * MWSModelGetOrderResult
+ * MWSOrdersModelGetOrderResult
  *
  * Properties:
  * <ul>
@@ -36,13 +36,13 @@ use MWSService\Orders\Base\MWSModel;
  *
  * </ul>
  */
-class MWSModelGetOrderResult extends MWSModel
+class MWSOrdersModelGetOrderResult extends MWSOrdersModel
 {
 
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'Orders' => array('FieldValue' => array(), 'FieldType' => array('MWSService\Orders\Model\MWSModelOrder'), 'ListMemberName' => 'Order'),
+            'Orders' => array('FieldValue' => array(), 'FieldType' => array('MWSService\Orders\Model\MWSOrdersModelOrder'), 'ListMemberName' => 'Order'),
         );
         parent::__construct($data);
     }

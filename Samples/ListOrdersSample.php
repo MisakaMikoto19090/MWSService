@@ -27,7 +27,7 @@ use DOMDocument;
 use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSException;
 use MWSService\Orders\Base\MWSInterface;
-use MWSService\Orders\Model\MWSModelListOrdersRequest;
+use MWSService\Orders\Model\MWSOrdersModelListOrdersRequest;
 use MWSService\OrdersCommon;
 use SimpleXMLElement;
 
@@ -129,8 +129,8 @@ Class ListOrdersSample extends OrdersCommon
          * Setup request parameters and uncomment invoke to try out
          * sample for List Orders Action
          ***********************************************************************/
-//        @TODO: set request . Action can be passed as  MWSModelListOrders
-        $request = new MWSModelListOrdersRequest();
+//        @TODO: set request . Action can be passed as  MWSOrdersModelListOrders
+        $request = new MWSOrdersModelListOrdersRequest();
 
         $request->setSellerId(MWSDefine::MERCHANT_ID);
 //        $request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);

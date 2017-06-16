@@ -27,7 +27,7 @@ use DOMDocument;
 use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSException;
 use MWSService\Orders\Base\MWSInterface;
-use MWSService\Orders\Model\MWSModelListOrdersByNextTokenRequest;
+use MWSService\Orders\Model\MWSOrdersModelListOrdersByNextTokenRequest;
 use MWSService\OrdersCommon;
 
 /************************************************************************
@@ -52,7 +52,7 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
     public static function ListOrdersByNextToken()
     {
         $service = parent::GetMWSClient();
-        $request = new MWSModelListOrdersByNextTokenRequest();
+        $request = new MWSOrdersModelListOrdersByNextTokenRequest();
         $request->setSellerId(MWSDefine::MERCHANT_ID);
 // object or array of parameters
         self::invokeListOrdersByNextToken($service, $request);
@@ -103,7 +103,7 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
  * Setup request parameters and uncomment invoke to try out
  * sample for List Orders By Next Token Action
  ***********************************************************************/
-// @TODO: set request. Action can be passed as  Model\MWSModelListOrdersByNextToken
+// @TODO: set request. Action can be passed as  Model\MWSOrdersModelListOrdersByNextToken
 
 
 /**
@@ -112,7 +112,7 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
  * the MarketplaceId and ASIN.
  *
  * @param MWSInterface $service instance of MWSInterface
- * @param mixed $request Model\MWSModelListOrdersByNextToken or array of parameters
+ * @param mixed $request Model\MWSOrdersModelListOrdersByNextToken or array of parameters
  */
 
 

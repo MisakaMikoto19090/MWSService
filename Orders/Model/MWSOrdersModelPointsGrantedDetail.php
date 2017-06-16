@@ -18,33 +18,33 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 
 /**
- * MWSModelPointsGrantedDetail
+ * MWSOrdersModelPointsGrantedDetail
  *
  * Properties:
  * <ul>
  *
  * <li>PointsNumber: int</li>
- * <li>PointsMonetaryValue: MWSModelMoney</li>
+ * <li>PointsMonetaryValue: MWSOrdersModelMoney</li>
  *
  * </ul>
  */
-class MWSModelPointsGrantedDetail extends MWSModel
+class MWSOrdersModelPointsGrantedDetail extends MWSOrdersModel
 {
 
     public function __construct($data = null)
     {
         $this->_fields = array(
             'PointsNumber' => array('FieldValue' => null, 'FieldType' => 'int'),
-            'PointsMonetaryValue' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
+            'PointsMonetaryValue' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelMoney'),
         );
         parent::__construct($data);
     }
@@ -108,7 +108,7 @@ class MWSModelPointsGrantedDetail extends MWSModel
     /**
      * Set the value of the PointsMonetaryValue property.
      *
-     * @param MWSModelMoney pointsMonetaryValue
+     * @param MWSOrdersModelMoney pointsMonetaryValue
      * @return this instance
      */
     public function setPointsMonetaryValue($value)

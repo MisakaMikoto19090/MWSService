@@ -19,9 +19,9 @@
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
-class MWSModelResponseHeaderMetadata extends MWSModel
+class MWSOrdersModelResponseHeaderMetadata extends MWSOrdersModel
 {
 
     const REQUEST_ID = 'x-mws-request-id';

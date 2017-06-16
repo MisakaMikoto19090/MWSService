@@ -18,26 +18,27 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 
 /**
- * MWSModelGetServiceStatusRequest
+ * MWSOrdersModelListOrderItemsRequest
  *
  * Properties:
  * <ul>
  *
  * <li>SellerId: string</li>
  * <li>MWSAuthToken: string</li>
+ * <li>AmazonOrderId: string</li>
  *
  * </ul>
  */
-class MWSModelGetServiceStatusRequest extends MWSModel
+class MWSOrdersModelListOrderItemsRequest extends MWSOrdersModel
 {
 
     public function __construct($data = null)
@@ -45,6 +46,7 @@ class MWSModelGetServiceStatusRequest extends MWSModel
         $this->_fields = array(
             'SellerId' => array('FieldValue' => null, 'FieldType' => 'string'),
             'MWSAuthToken' => array('FieldValue' => null, 'FieldType' => 'string'),
+            'AmazonOrderId' => array('FieldValue' => null, 'FieldType' => 'string'),
         );
         parent::__construct($data);
     }
@@ -138,6 +140,52 @@ class MWSModelGetServiceStatusRequest extends MWSModel
     public function withMWSAuthToken($value)
     {
         $this->setMWSAuthToken($value);
+        return $this;
+    }
+
+    /**
+     * Get the value of the AmazonOrderId property.
+     *
+     * @return String AmazonOrderId.
+     */
+    public function getAmazonOrderId()
+    {
+        return $this->_fields['AmazonOrderId']['FieldValue'];
+    }
+
+    /**
+     * Set the value of the AmazonOrderId property.
+     *
+     * @param string amazonOrderId
+     * @return this instance
+     */
+    public function setAmazonOrderId($value)
+    {
+        $this->_fields['AmazonOrderId']['FieldValue'] = $value;
+        return $this;
+    }
+
+    /**
+     * Check to see if AmazonOrderId is set.
+     *
+     * @return true if AmazonOrderId is set.
+     */
+    public function isSetAmazonOrderId()
+    {
+        return !is_null($this->_fields['AmazonOrderId']['FieldValue']);
+    }
+
+    /**
+     * Set the value of AmazonOrderId, return this.
+     *
+     * @param amazonOrderId
+     *             The new value to set.
+     *
+     * @return This instance.
+     */
+    public function withAmazonOrderId($value)
+    {
+        $this->setAmazonOrderId($value);
         return $this;
     }
 

@@ -18,16 +18,16 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 
 /**
- * MWSModelOrderItem
+ * MWSOrdersModelOrderItem
  *
  * Properties:
  * <ul>
@@ -38,32 +38,32 @@ use MWSService\Orders\Base\MWSModel;
  * <li>Title: string</li>
  * <li>QuantityOrdered: int</li>
  * <li>QuantityShipped: int</li>
- * <li>PointsGranted: MWSModelPointsGrantedDetail</li>
- * <li>ItemPrice: MWSModelMoney</li>
- * <li>ShippingPrice: MWSModelMoney</li>
- * <li>GiftWrapPrice: MWSModelMoney</li>
- * <li>ItemTax: MWSModelMoney</li>
- * <li>ShippingTax: MWSModelMoney</li>
- * <li>GiftWrapTax: MWSModelMoney</li>
- * <li>ShippingDiscount: MWSModelMoney</li>
- * <li>PromotionDiscount: MWSModelMoney</li>
+ * <li>PointsGranted: MWSOrdersModelPointsGrantedDetail</li>
+ * <li>ItemPrice: MWSOrdersModelMoney</li>
+ * <li>ShippingPrice: MWSOrdersModelMoney</li>
+ * <li>GiftWrapPrice: MWSOrdersModelMoney</li>
+ * <li>ItemTax: MWSOrdersModelMoney</li>
+ * <li>ShippingTax: MWSOrdersModelMoney</li>
+ * <li>GiftWrapTax: MWSOrdersModelMoney</li>
+ * <li>ShippingDiscount: MWSOrdersModelMoney</li>
+ * <li>PromotionDiscount: MWSOrdersModelMoney</li>
  * <li>PromotionIds: array</li>
- * <li>CODFee: MWSModelMoney</li>
- * <li>CODFeeDiscount: MWSModelMoney</li>
+ * <li>CODFee: MWSOrdersModelMoney</li>
+ * <li>CODFeeDiscount: MWSOrdersModelMoney</li>
  * <li>GiftMessageText: string</li>
  * <li>GiftWrapLevel: string</li>
- * <li>InvoiceData: MWSModelInvoiceData</li>
+ * <li>InvoiceData: MWSOrdersModelInvoiceData</li>
  * <li>ConditionNote: string</li>
  * <li>ConditionId: string</li>
  * <li>ConditionSubtypeId: string</li>
  * <li>ScheduledDeliveryStartDate: string</li>
  * <li>ScheduledDeliveryEndDate: string</li>
  * <li>PriceDesignation: string</li>
- * <li>BuyerCustomizedInfo: MWSModelBuyerCustomizedInfoDetail</li>
+ * <li>BuyerCustomizedInfo: MWSOrdersModelBuyerCustomizedInfoDetail</li>
  *
  * </ul>
  */
-class MWSModelOrderItem extends MWSModel
+class MWSOrdersModelOrderItem extends MWSOrdersModel
 {
 
     public function __construct($data = null)
@@ -75,28 +75,28 @@ class MWSModelOrderItem extends MWSModel
             'Title' => array('FieldValue' => null, 'FieldType' => 'string'),
             'QuantityOrdered' => array('FieldValue' => null, 'FieldType' => 'int'),
             'QuantityShipped' => array('FieldValue' => null, 'FieldType' => 'int'),
-            'PointsGranted' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelPointsGrantedDetail'),
-            'ItemPrice' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
-            'ShippingPrice' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
-            'GiftWrapPrice' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
-            'ItemTax' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
-            'ShippingTax' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
-            'GiftWrapTax' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
-            'ShippingDiscount' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
-            'PromotionDiscount' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
+            'PointsGranted' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelPointsGrantedDetail'),
+            'ItemPrice' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelMoney'),
+            'ShippingPrice' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelMoney'),
+            'GiftWrapPrice' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelMoney'),
+            'ItemTax' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelMoney'),
+            'ShippingTax' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelMoney'),
+            'GiftWrapTax' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelMoney'),
+            'ShippingDiscount' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelMoney'),
+            'PromotionDiscount' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelMoney'),
             'PromotionIds' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'PromotionId'),
-            'CODFee' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
-            'CODFeeDiscount' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelMoney'),
+            'CODFee' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelMoney'),
+            'CODFeeDiscount' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelMoney'),
             'GiftMessageText' => array('FieldValue' => null, 'FieldType' => 'string'),
             'GiftWrapLevel' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'InvoiceData' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelInvoiceData'),
+            'InvoiceData' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelInvoiceData'),
             'ConditionNote' => array('FieldValue' => null, 'FieldType' => 'string'),
             'ConditionId' => array('FieldValue' => null, 'FieldType' => 'string'),
             'ConditionSubtypeId' => array('FieldValue' => null, 'FieldType' => 'string'),
             'ScheduledDeliveryStartDate' => array('FieldValue' => null, 'FieldType' => 'string'),
             'ScheduledDeliveryEndDate' => array('FieldValue' => null, 'FieldType' => 'string'),
             'PriceDesignation' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'BuyerCustomizedInfo' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelBuyerCustomizedInfoDetail'),
+            'BuyerCustomizedInfo' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelBuyerCustomizedInfoDetail'),
         );
         parent::__construct($data);
     }
@@ -390,7 +390,7 @@ class MWSModelOrderItem extends MWSModel
     /**
      * Set the value of the PointsGranted property.
      *
-     * @param MWSModelPointsGrantedDetail pointsGranted
+     * @param MWSOrdersModelPointsGrantedDetail pointsGranted
      * @return this instance
      */
     public function setPointsGranted($value)
@@ -436,7 +436,7 @@ class MWSModelOrderItem extends MWSModel
     /**
      * Set the value of the ItemPrice property.
      *
-     * @param MWSModelMoney itemPrice
+     * @param MWSOrdersModelMoney itemPrice
      * @return this instance
      */
     public function setItemPrice($value)
@@ -482,7 +482,7 @@ class MWSModelOrderItem extends MWSModel
     /**
      * Set the value of the ShippingPrice property.
      *
-     * @param MWSModelMoney shippingPrice
+     * @param MWSOrdersModelMoney shippingPrice
      * @return this instance
      */
     public function setShippingPrice($value)
@@ -528,7 +528,7 @@ class MWSModelOrderItem extends MWSModel
     /**
      * Set the value of the GiftWrapPrice property.
      *
-     * @param MWSModelMoney giftWrapPrice
+     * @param MWSOrdersModelMoney giftWrapPrice
      * @return this instance
      */
     public function setGiftWrapPrice($value)
@@ -574,7 +574,7 @@ class MWSModelOrderItem extends MWSModel
     /**
      * Set the value of the ItemTax property.
      *
-     * @param MWSModelMoney itemTax
+     * @param MWSOrdersModelMoney itemTax
      * @return this instance
      */
     public function setItemTax($value)
@@ -620,7 +620,7 @@ class MWSModelOrderItem extends MWSModel
     /**
      * Set the value of the ShippingTax property.
      *
-     * @param MWSModelMoney shippingTax
+     * @param MWSOrdersModelMoney shippingTax
      * @return this instance
      */
     public function setShippingTax($value)
@@ -666,7 +666,7 @@ class MWSModelOrderItem extends MWSModel
     /**
      * Set the value of the GiftWrapTax property.
      *
-     * @param MWSModelMoney giftWrapTax
+     * @param MWSOrdersModelMoney giftWrapTax
      * @return this instance
      */
     public function setGiftWrapTax($value)
@@ -712,7 +712,7 @@ class MWSModelOrderItem extends MWSModel
     /**
      * Set the value of the ShippingDiscount property.
      *
-     * @param MWSModelMoney shippingDiscount
+     * @param MWSOrdersModelMoney shippingDiscount
      * @return this instance
      */
     public function setShippingDiscount($value)
@@ -758,7 +758,7 @@ class MWSModelOrderItem extends MWSModel
     /**
      * Set the value of the PromotionDiscount property.
      *
-     * @param MWSModelMoney promotionDiscount
+     * @param MWSOrdersModelMoney promotionDiscount
      * @return this instance
      */
     public function setPromotionDiscount($value)
@@ -866,7 +866,7 @@ class MWSModelOrderItem extends MWSModel
     /**
      * Set the value of the CODFee property.
      *
-     * @param MWSModelMoney codFee
+     * @param MWSOrdersModelMoney codFee
      * @return this instance
      */
     public function setCODFee($value)
@@ -912,7 +912,7 @@ class MWSModelOrderItem extends MWSModel
     /**
      * Set the value of the CODFeeDiscount property.
      *
-     * @param MWSModelMoney codFeeDiscount
+     * @param MWSOrdersModelMoney codFeeDiscount
      * @return this instance
      */
     public function setCODFeeDiscount($value)
@@ -1050,7 +1050,7 @@ class MWSModelOrderItem extends MWSModel
     /**
      * Set the value of the InvoiceData property.
      *
-     * @param MWSModelInvoiceData invoiceData
+     * @param MWSOrdersModelInvoiceData invoiceData
      * @return this instance
      */
     public function setInvoiceData($value)
@@ -1372,7 +1372,7 @@ class MWSModelOrderItem extends MWSModel
     /**
      * Set the value of the BuyerCustomizedInfo property.
      *
-     * @param MWSModelBuyerCustomizedInfoDetail buyerCustomizedInfo
+     * @param MWSOrdersModelBuyerCustomizedInfoDetail buyerCustomizedInfo
      * @return this instance
      */
     public function setBuyerCustomizedInfo($value)

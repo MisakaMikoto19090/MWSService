@@ -18,36 +18,36 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
 use DOMDocument;
 use DOMXPath;
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 /**
- * MWSModelGetOrderResponse
+ * MWSOrdersModelGetOrderResponse
  *
  * Properties:
  * <ul>
  *
- * <li>GetOrderResult: MWSModelGetOrderResult</li>
- * <li>ResponseMetadata: MWSModelResponseMetadata</li>
- * <li>ResponseHeaderMetadata: MWSModelResponseHeaderMetadata</li>
+ * <li>GetOrderResult: MWSOrdersModelGetOrderResult</li>
+ * <li>ResponseMetadata: MWSOrdersModelResponseMetadata</li>
+ * <li>ResponseHeaderMetadata: MWSOrdersModelResponseHeaderMetadata</li>
  *
  * </ul>
  */
-class MWSModelGetOrderResponse extends MWSModel
+class MWSOrdersModelGetOrderResponse extends MWSOrdersModel
 {
 
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'GetOrderResult' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelGetOrderResult'),
-            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseMetadata'),
-            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseHeaderMetadata'),
+            'GetOrderResult' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelGetOrderResult'),
+            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelResponseMetadata'),
+            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelResponseHeaderMetadata'),
         );
         parent::__construct($data);
     }
@@ -65,7 +65,7 @@ class MWSModelGetOrderResponse extends MWSModel
     /**
      * Set the value of the GetOrderResult property.
      *
-     * @param MWSModelGetOrderResult getOrderResult
+     * @param MWSOrdersModelGetOrderResult getOrderResult
      * @return this instance
      */
     public function setGetOrderResult($value)
@@ -111,7 +111,7 @@ class MWSModelGetOrderResponse extends MWSModel
     /**
      * Set the value of the ResponseMetadata property.
      *
-     * @param MWSModelResponseMetadata responseMetadata
+     * @param MWSOrdersModelResponseMetadata responseMetadata
      * @return this instance
      */
     public function setResponseMetadata($value)
@@ -157,7 +157,7 @@ class MWSModelGetOrderResponse extends MWSModel
     /**
      * Set the value of the ResponseHeaderMetadata property.
      *
-     * @param MWSModelResponseHeaderMetadata responseHeaderMetadata
+     * @param MWSOrdersModelResponseHeaderMetadata responseHeaderMetadata
      * @return this instance
      */
     public function setResponseHeaderMetadata($value)
@@ -191,12 +191,12 @@ class MWSModelGetOrderResponse extends MWSModel
     }
 
     /**
-     * Construct MWSModelGetOrderResponse from XML string
+     * Construct MWSOrdersModelGetOrderResponse from XML string
      *
      * @param $xml
      *        XML string to construct from
      *
-     * @return MWSModelGetOrderResponse
+     * @return MWSOrdersModelGetOrderResponse
      */
     public static function fromXML($xml)
     {
@@ -205,9 +205,9 @@ class MWSModelGetOrderResponse extends MWSModel
         $xpath = new DOMXPath($dom);
         $response = $xpath->query("//*[local-name()='GetOrderResponse']");
         if ($response->length == 1) {
-            return new MWSModelGetOrderResponse(($response->item(0)));
+            return new MWSOrdersModelGetOrderResponse(($response->item(0)));
         } else {
-            throw new Exception ("Unable to construct MWSModelGetOrderResponse from provided XML. 
+            throw new Exception ("Unable to construct MWSOrdersModelGetOrderResponse from provided XML. 
                                   Make sure that GetOrderResponse is a root element");
         }
     }

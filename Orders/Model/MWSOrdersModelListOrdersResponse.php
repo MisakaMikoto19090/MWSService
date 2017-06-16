@@ -18,83 +18,84 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
 use DOMDocument;
-use MWSService\Orders\Base\MWSModel;
-
+use DOMXPath;
+use Exception;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 /**
- * MWSModelGetServiceStatusResponse
+ * MWSOrdersModelListOrdersResponse
  *
  * Properties:
  * <ul>
  *
- * <li>GetServiceStatusResult: MWSModelGetServiceStatusResult</li>
- * <li>ResponseMetadata: MWSModelResponseMetadata</li>
- * <li>ResponseHeaderMetadata: MWSModelResponseHeaderMetadata</li>
+ * <li>ListOrdersResult: MWSOrdersModelListOrdersResult</li>
+ * <li>ResponseMetadata: MWSOrdersModelResponseMetadata</li>
+ * <li>ResponseHeaderMetadata: MWSOrdersModelResponseHeaderMetadata</li>
  *
  * </ul>
  */
-class MWSModelGetServiceStatusResponse extends MWSModel
+class MWSOrdersModelListOrdersResponse extends MWSOrdersModel
 {
 
     public function __construct($data = null)
     {
         $this->_fields = array(
-            'GetServiceStatusResult' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelGetServiceStatusResult'),
-            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseMetadata'),
-            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSModelResponseHeaderMetadata'),
+            'ListOrdersResult' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelListOrdersResult'),
+            'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelResponseMetadata'),
+            'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'MWSService\Orders\Model\MWSOrdersModelResponseHeaderMetadata'),
         );
         parent::__construct($data);
     }
 
     /**
-     * Get the value of the GetServiceStatusResult property.
+     * Get the value of the ListOrdersResult property.
      *
-     * @return GetServiceStatusResult GetServiceStatusResult.
+     * @return ListOrdersResult ListOrdersResult.
      */
-    public function getGetServiceStatusResult()
+    public function getListOrdersResult()
     {
-        return $this->_fields['GetServiceStatusResult']['FieldValue'];
+        return $this->_fields['ListOrdersResult']['FieldValue'];
     }
 
     /**
-     * Set the value of the GetServiceStatusResult property.
+     * Set the value of the ListOrdersResult property.
      *
-     * @param MWSModelGetServiceStatusResult getServiceStatusResult
+     * @param MWSOrdersModelListOrdersResult listOrdersResult
      * @return this instance
      */
-    public function setGetServiceStatusResult($value)
+    public function setListOrdersResult($value)
     {
-        $this->_fields['GetServiceStatusResult']['FieldValue'] = $value;
+        $this->_fields['ListOrdersResult']['FieldValue'] = $value;
         return $this;
     }
 
     /**
-     * Check to see if GetServiceStatusResult is set.
+     * Check to see if ListOrdersResult is set.
      *
-     * @return true if GetServiceStatusResult is set.
+     * @return true if ListOrdersResult is set.
      */
-    public function isSetGetServiceStatusResult()
+    public function isSetListOrdersResult()
     {
-        return !is_null($this->_fields['GetServiceStatusResult']['FieldValue']);
+        return !is_null($this->_fields['ListOrdersResult']['FieldValue']);
     }
 
     /**
-     * Set the value of GetServiceStatusResult, return this.
+     * Set the value of ListOrdersResult, return this.
      *
-     * @param getServiceStatusResult
+     * @param listOrdersResult
      *             The new value to set.
      *
      * @return This instance.
      */
-    public function withGetServiceStatusResult($value)
+    public function withListOrdersResult($value)
     {
-        $this->setGetServiceStatusResult($value);
+        $this->setListOrdersResult($value);
         return $this;
     }
 
@@ -111,7 +112,7 @@ class MWSModelGetServiceStatusResponse extends MWSModel
     /**
      * Set the value of the ResponseMetadata property.
      *
-     * @param MWSModelResponseMetadata responseMetadata
+     * @param MWSOrdersModelResponseMetadata responseMetadata
      * @return this instance
      */
     public function setResponseMetadata($value)
@@ -157,7 +158,7 @@ class MWSModelGetServiceStatusResponse extends MWSModel
     /**
      * Set the value of the ResponseHeaderMetadata property.
      *
-     * @param MWSModelResponseHeaderMetadata responseHeaderMetadata
+     * @param MWSOrdersModelResponseHeaderMetadata responseHeaderMetadata
      * @return this instance
      */
     public function setResponseHeaderMetadata($value)
@@ -191,24 +192,24 @@ class MWSModelGetServiceStatusResponse extends MWSModel
     }
 
     /**
-     * Construct MWSModelGetServiceStatusResponse from XML string
+     * Construct MWSOrdersModelListOrdersResponse from XML string
      *
      * @param $xml
      *        XML string to construct from
      *
-     * @return MWSModelGetServiceStatusResponse
+     * @return MWSOrdersModelListOrdersResponse
      */
     public static function fromXML($xml)
     {
         $dom = new DOMDocument();
         $dom->loadXML($xml);
         $xpath = new DOMXPath($dom);
-        $response = $xpath->query("//*[local-name()='GetServiceStatusResponse']");
+        $response = $xpath->query("//*[local-name()='ListOrdersResponse']");
         if ($response->length == 1) {
-            return new MWSModelGetServiceStatusResponse(($response->item(0)));
+            return new MWSOrdersModelListOrdersResponse(($response->item(0)));
         } else {
-            throw new Exception ("Unable to construct MWSModelGetServiceStatusResponse from provided XML. 
-                                  Make sure that GetServiceStatusResponse is a root element");
+            throw new Exception ("Unable to construct MWSOrdersModelListOrdersResponse from provided XML. 
+                                  Make sure that ListOrdersResponse is a root element");
         }
     }
 
@@ -220,9 +221,9 @@ class MWSModelGetServiceStatusResponse extends MWSModel
     public function toXML()
     {
         $xml = "";
-        $xml .= "<GetServiceStatusResponse xmlns=\"https://mws.amazonservices.com/Orders/2013-09-01\">";
+        $xml .= "<ListOrdersResponse xmlns=\"https://mws.amazonservices.com/Orders/2013-09-01\">";
         $xml .= $this->_toXMLFragment();
-        $xml .= "</GetServiceStatusResponse>";
+        $xml .= "</ListOrdersResponse>";
         return $xml;
     }
 

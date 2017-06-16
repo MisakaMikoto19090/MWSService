@@ -73,8 +73,8 @@ $service = new MWSClient(
  * Setup request parameters and uncomment invoke to try out
  * sample for List Order Items By Next Token Action
  ***********************************************************************/
-// @TODO: set request. Action can be passed as  Model\MWSModelListOrderItemsByNextToken
-$request = new  Model\MWSModelListOrderItemsByNextTokenRequest();
+// @TODO: set request. Action can be passed as  Model\MWSOrdersModelListOrderItemsByNextToken
+$request = new  Model\MWSOrdersModelListOrderItemsByNextTokenRequest();
 $request->setSellerId(MERCHANT_ID);
 // object or array of parameters
 invokeListOrderItemsByNextToken($service, $request);
@@ -85,7 +85,7 @@ invokeListOrderItemsByNextToken($service, $request);
  * the MarketplaceId and ASIN.
  *
  * @param MWSInterface $service instance of MWSInterface
- * @param mixed $request Model\MWSModelListOrderItemsByNextToken or array of parameters
+ * @param mixed $request Model\MWSOrdersModelListOrderItemsByNextToken or array of parameters
  */
 
 function invokeListOrderItemsByNextToken(MWSInterface $service, $request)

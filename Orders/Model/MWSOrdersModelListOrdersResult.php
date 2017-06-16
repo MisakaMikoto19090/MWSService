@@ -18,16 +18,16 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 
 /**
- * MWSModelListOrdersByNextTokenResult
+ * MWSOrdersModelListOrdersResult
  *
  * Properties:
  * <ul>
@@ -39,7 +39,7 @@ use MWSService\Orders\Base\MWSModel;
  *
  * </ul>
  */
-class MWSModelListOrdersByNextTokenResult extends MWSModel
+class MWSOrdersModelListOrdersResult extends MWSOrdersModel
 {
 
     public function __construct($data = null)
@@ -48,7 +48,7 @@ class MWSModelListOrdersByNextTokenResult extends MWSModel
             'NextToken' => array('FieldValue' => null, 'FieldType' => 'string'),
             'CreatedBefore' => array('FieldValue' => null, 'FieldType' => 'string'),
             'LastUpdatedBefore' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'Orders' => array('FieldValue' => array(), 'FieldType' => array('MWSService\Orders\Model\MWSModelOrder'), 'ListMemberName' => 'Order'),
+            'Orders' => array('FieldValue' => array(), 'FieldType' => array('MWSService\Orders\Model\MWSOrdersModelOrder'), 'ListMemberName' => 'Order'),
         );
         parent::__construct($data);
     }

@@ -53,8 +53,8 @@ Class ListOrderItemsSample
  * Setup request parameters and uncomment invoke to try out
  * sample for List Order Items Action
  ***********************************************************************/
-// @TODO: set request. Action can be passed as  Model\MWSModelListOrderItems
-$request = new  Model\MWSModelListOrderItemsRequest();
+// @TODO: set request. Action can be passed as  Model\MWSOrdersModelListOrderItems
+$request = new  Model\MWSOrdersModelListOrderItemsRequest();
 $request->setSellerId(MERCHANT_ID);
 // object or array of parameters
 invokeListOrderItems($service, $request);
@@ -65,7 +65,7 @@ invokeListOrderItems($service, $request);
  * the MarketplaceId and ASIN.
  *
  * @param MWSInterface $service instance of MWSInterface
- * @param mixed $request Model\MWSModelListOrderItems or array of parameters
+ * @param mixed $request Model\MWSOrdersModelListOrderItems or array of parameters
  */
 
 function invokeListOrderItems(MWSInterface $service, $request)

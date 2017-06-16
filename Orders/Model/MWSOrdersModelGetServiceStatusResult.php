@@ -18,16 +18,16 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 
 /**
- * MWSModelGetServiceStatusResult
+ * MWSOrdersModelGetServiceStatusResult
  *
  * Properties:
  * <ul>
@@ -39,7 +39,7 @@ use MWSService\Orders\Base\MWSModel;
  *
  * </ul>
  */
-class MWSModelGetServiceStatusResult extends MWSModel
+class MWSOrdersModelGetServiceStatusResult extends MWSOrdersModel
 {
 
     public function __construct($data = null)
@@ -48,7 +48,7 @@ class MWSModelGetServiceStatusResult extends MWSModel
             'Status' => array('FieldValue' => null, 'FieldType' => 'string'),
             'Timestamp' => array('FieldValue' => null, 'FieldType' => 'string'),
             'MessageId' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'Messages' => array('FieldValue' => array(), 'FieldType' => array('MWSModelMessage'), 'ListMemberName' => 'Message'),
+            'Messages' => array('FieldValue' => array(), 'FieldType' => array('MWSOrdersModelMessage'), 'ListMemberName' => 'Message'),
         );
         parent::__construct($data);
     }

@@ -18,16 +18,16 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
 
 
 /**
- * MWSModelListOrderItemsByNextTokenRequest
+ * MWSOrdersModelListOrdersByNextTokenRequest
  *
  * Properties:
  * <ul>
@@ -38,7 +38,7 @@ use MWSService\Orders\Base\MWSModel;
  *
  * </ul>
  */
-class MWSModelListOrderItemsByNextTokenRequest extends MWSModel
+class MWSOrdersModelListOrdersByNextTokenRequest extends MWSOrdersModel
 {
 
     public function __construct($data = null)

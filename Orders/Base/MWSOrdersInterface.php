@@ -26,9 +26,9 @@ interface  MWSOrdersInterface
      * Get Order
      * This operation takes up to 50 order ids and returns the corresponding orders.
      *
-     * @param mixed $request array of parameters for  MWSModelGetOrder request or  MWSModelGetOrder object itself
-     * @see  MWSModelGetOrderRequest
-     * @return  MWSModelGetOrderResponse
+     * @param mixed $request array of parameters for  MWSOrdersModelGetOrder request or  MWSOrdersModelGetOrder object itself
+     * @see  MWSOrdersModelGetOrderRequest
+     * @return  MWSOrdersModelGetOrderResponse
      *
      * @throws MWSException
      */
@@ -40,9 +40,9 @@ interface  MWSOrdersInterface
      * Returns the service status of a particular MWS API section. The operation
      *        takes no input.
      *
-     * @param mixed $request array of parameters for  MWSModelGetServiceStatus request or  MWSModelGetServiceStatus object itself
-     * @see  MWSModelGetServiceStatusRequest
-     * @return  MWSModelGetServiceStatusResponse
+     * @param mixed $request array of parameters for  MWSOrdersModelGetServiceStatus request or  MWSOrdersModelGetServiceStatus object itself
+     * @see  MWSOrdersModelGetServiceStatusRequest
+     * @return  MWSOrdersModelGetServiceStatusResponse
      *
      * @throws MWSException
      */
@@ -54,9 +54,9 @@ interface  MWSOrdersInterface
      * This operation can be used to list the items of the order indicated by the
      *         given order id (only a single Amazon order id is allowed).
      *
-     * @param mixed $request array of parameters for  MWSModelListOrderItems request or  MWSModelListOrderItems object itself
-     * @see  MWSModelListOrderItemsRequest
-     * @return  MWSModelListOrderItemsResponse
+     * @param mixed $request array of parameters for  MWSOrdersModelListOrderItems request or  MWSOrdersModelListOrderItems object itself
+     * @see  MWSOrdersModelListOrderItemsRequest
+     * @return  MWSOrdersModelListOrderItemsResponse
      *
      * @throws MWSException
      */
@@ -69,9 +69,9 @@ interface  MWSOrdersInterface
      *         provide a nextToken. That nextToken can be used with this operation to
      *         retrive the next batch of items for that order.
      *
-     * @param mixed $request array of parameters for  MWSModelListOrderItemsByNextToken request or  MWSModelListOrderItemsByNextToken object itself
-     * @see  MWSModelListOrderItemsByNextTokenRequest
-     * @return  MWSModelListOrderItemsByNextTokenResponse
+     * @param mixed $request array of parameters for  MWSOrdersModelListOrderItemsByNextToken request or  MWSOrdersModelListOrderItemsByNextToken object itself
+     * @see  MWSOrdersModelListOrderItemsByNextTokenRequest
+     * @return  MWSOrdersModelListOrderItemsByNextTokenResponse
      *
      * @throws MWSException
      */
@@ -82,9 +82,9 @@ interface  MWSOrdersInterface
      * List Orders
      * ListOrders can be used to find orders that meet the specified criteria.
      *
-     * @param mixed $request array of parameters for  MWSModelListOrders request or  MWSModelListOrders object itself
-     * @see  MWSModelListOrdersRequest
-     * @return  MWSModelListOrdersResponse
+     * @param mixed $request array of parameters for  MWSOrdersModelListOrders request or  MWSOrdersModelListOrders object itself
+     * @see  MWSOrdersModelListOrdersRequest
+     * @return  MWSOrdersModelListOrdersResponse
      *
      * @throws MWSException
      */
@@ -97,9 +97,9 @@ interface  MWSOrdersInterface
      *         than returned that matched the given filter criteria, ListOrdersByNextToken
      *         can be used to retrieve those other orders using that nextToken.
      *
-     * @param mixed $request array of parameters for  MWSModelListOrdersByNextToken request or  MWSModelListOrdersByNextToken object itself
-     * @see  MWSModelListOrdersByNextTokenRequest
-     * @return  MWSModelListOrdersByNextTokenResponse
+     * @param mixed $request array of parameters for  MWSOrdersModelListOrdersByNextToken request or  MWSOrdersModelListOrdersByNextToken object itself
+     * @see  MWSOrdersModelListOrdersByNextTokenRequest
+     * @return  MWSOrdersModelListOrdersByNextTokenResponse
      *
      * @throws MWSException
      */

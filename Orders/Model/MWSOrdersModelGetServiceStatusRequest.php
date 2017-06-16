@@ -18,26 +18,26 @@
  */
 
 /**
- * @see MWSModel
+ * @see MWSOrdersModel
  */
 
 namespace MWSService\Orders\Model;
 
-use MWSService\Orders\Base\MWSModel;
+use MWSService\Orders\Base\MWSOrdersModel;
+
 
 /**
- * MWSModelGetOrderRequest
+ * MWSOrdersModelGetServiceStatusRequest
  *
  * Properties:
  * <ul>
  *
  * <li>SellerId: string</li>
  * <li>MWSAuthToken: string</li>
- * <li>AmazonOrderId: array</li>
  *
  * </ul>
  */
-class MWSModelGetOrderRequest extends MWSModel
+class MWSOrdersModelGetServiceStatusRequest extends MWSOrdersModel
 {
 
     public function __construct($data = null)
@@ -45,7 +45,6 @@ class MWSModelGetOrderRequest extends MWSModel
         $this->_fields = array(
             'SellerId' => array('FieldValue' => null, 'FieldType' => 'string'),
             'MWSAuthToken' => array('FieldValue' => null, 'FieldType' => 'string'),
-            'AmazonOrderId' => array('FieldValue' => array(), 'FieldType' => array('string'), 'ListMemberName' => 'Id'),
         );
         parent::__construct($data);
     }
@@ -139,68 +138,6 @@ class MWSModelGetOrderRequest extends MWSModel
     public function withMWSAuthToken($value)
     {
         $this->setMWSAuthToken($value);
-        return $this;
-    }
-
-    /**
-     * Get the value of the AmazonOrderId property.
-     *
-     * @return List<String> AmazonOrderId.
-     */
-    public function getAmazonOrderId()
-    {
-        if ($this->_fields['AmazonOrderId']['FieldValue'] == null) {
-            $this->_fields['AmazonOrderId']['FieldValue'] = array();
-        }
-        return $this->_fields['AmazonOrderId']['FieldValue'];
-    }
-
-    /**
-     * Set the value of the AmazonOrderId property.
-     *
-     * @param array amazonOrderId
-     * @return this instance
-     */
-    public function setAmazonOrderId($value)
-    {
-        if (!$this->_isNumericArray($value)) {
-            $value = array($value);
-        }
-        $this->_fields['AmazonOrderId']['FieldValue'] = $value;
-        return $this;
-    }
-
-    /**
-     * Clear AmazonOrderId.
-     */
-    public function unsetAmazonOrderId()
-    {
-        $this->_fields['AmazonOrderId']['FieldValue'] = array();
-    }
-
-    /**
-     * Check to see if AmazonOrderId is set.
-     *
-     * @return true if AmazonOrderId is set.
-     */
-    public function isSetAmazonOrderId()
-    {
-        return !empty($this->_fields['AmazonOrderId']['FieldValue']);
-    }
-
-    /**
-     * Add values for AmazonOrderId, return this.
-     *
-     * @param amazonOrderId
-     *             New values to add.
-     *
-     * @return This instance.
-     */
-    public function withAmazonOrderId()
-    {
-        foreach (func_get_args() as $AmazonOrderId) {
-            $this->_fields['AmazonOrderId']['FieldValue'][] = $AmazonOrderId;
-        }
         return $this;
     }
 
