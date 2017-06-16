@@ -249,6 +249,20 @@ Class ListOrdersSample extends OrdersCommon
                 if ($CreatedBeforeTimeStamp <= $CreatedAfterTimeStamp) {
                     throw new MWSException(['Message' => 'CreatedBefore Must Be Greater Than CreatedAfter']);
                 }
+            } else if ($CreatedAfter) {
+                //if  CreatedAfter is defined,set CreatedBefore
+                $year = date('Y', time());
+                $lastMonth = date('m', time()) - 1;
+                if (0 == $lastMonth) {
+                    $lastMonth = 12;
+                    $year -= 1;
+                }
+                $lastDay = date('t', strtotime($year . '-' . $lastMonth . '-01 00:00:00'));
+                $CreatedBefore = self::ConvertToISO8601($year . '-' . $lastMonth . '-' . $lastDay . ' 23:59:59');
+                $CreatedBeforeTimeStamp = strtotime($CreatedBefore);
+                if ($CreatedBeforeTimeStamp <= $CreatedAfterTimeStamp) {
+                    throw new MWSException(['Message' => 'CreatedBefore Must Be Greater Than CreatedAfter']);
+                }
             }
 
             if ($LastUpdatedAfter) {
@@ -278,6 +292,21 @@ Class ListOrdersSample extends OrdersCommon
                 if ($LastUpdatedBeforeTimeStamp <= $LastUpdatedAfterTimeStamp) {
                     throw new MWSException(['Message' => 'LastUpdatedBefore Must Be Greater Than LastUpdatedAfter']);
                 }
+            } else if (!$CreatedAfter) {
+                $year = date('Y', time());
+                $lastMonth = date('m', time()) - 1;
+                if (0 == $lastMonth) {
+                    $lastMonth = 12;
+                    $year = date('Y', time()) - 1;
+                }
+                $month = date('m', time());
+                $lastDay = date('t', strtotime($year . '-' . $lastMonth . '-01 00:00:00'));
+
+                $LastUpdatedBefore = $year . '-' . $month . '-' . $lastDay . 'T23:59:59Z';
+                $LastUpdatedBeforeTimeStamp = strtotime($LastUpdatedBefore);
+                if ($LastUpdatedBeforeTimeStamp <= $LastUpdatedAfterTimeStamp) {
+                    throw new MWSException(['Message' => 'LastUpdatedBefore Must Be Greater Than LastUpdatedAfter']);
+                }
             }
 
             if ($OrderStatus) {
@@ -293,8 +322,12 @@ Class ListOrdersSample extends OrdersCommon
                     if (!in_array("Unshipped", $OrderStatus) && in_array('PartiallyShipped', $OrderStatus)) {
                         $OrderStatus[] = 'Unshipped';
                     }
+                } else {
+                    $OrderStatus = self::$OrderStatusArr;
                 }
 
+            } else {
+                $OrderStatus = self::$OrderStatusArr;
             }
 
             if ($MarketplaceId) {
@@ -318,7 +351,11 @@ Class ListOrdersSample extends OrdersCommon
                             throw new MWSException(['Message' => $eachFulfillmentChannel . 'Is Not A Valid FulfillmentChannel']);
                         }
                     }
+                } else {
+                    $FulfillmentChannel = self::$FulfillmentChannelArr;
                 }
+            } else {
+                $FulfillmentChannel = self::$FulfillmentChannelArr;
             }
             if ($PaymentMethod) {
                 if (count($PaymentMethod)) {
@@ -327,7 +364,11 @@ Class ListOrdersSample extends OrdersCommon
                             throw new MWSException(['Message' => $eachPaymentMethod . 'Is Not A Valid PaymentMethod,P.S. COD,CVS Is Only Available In Japan']);
                         }
                     }
+                } else {
+                    $PaymentMethod = self::$PaymentMethodArr;
                 }
+            } else {
+                $PaymentMethod = self::$PaymentMethodArr;
             }
 
             if ($BuyerEmail) {
@@ -352,11 +393,13 @@ Class ListOrdersSample extends OrdersCommon
                 if ($MaxResultsPerPage < 1 || $MaxResultsPerPage > 100) {
                     throw new MWSException(['Message' => 'MaxResultsPerPage Must Between 1 and 100']);
                 }
+            } else {
+                $MaxResultsPerPage = 100;
             }
             if ($TFMShipmentStatus) {
                 foreach ($TFMShipmentStatus as $eachTFMShipmentStatus) {
                     if (!in_array($eachTFMShipmentStatus, $TFMShipmentStatus)) {
-                        throw new MWSException(['Message' => $eachTFMShipmentStatus . 'Is Not A Valid TFMShipmentStatus']);
+                        throw new MWSException(['Message' => $eachTFMShipmentStatus . 'Is Not A Valid TFMShipmentStatus,Besides TFMShipmentStatus Is Only Available In China']);
                     }
                 }
             }
@@ -408,7 +451,8 @@ Class ListOrdersSample extends OrdersCommon
         }
     }
 
-    public static function ConvertToISO8601($time)
+    public
+    static function ConvertToISO8601($time)
     {
         if (is_int($time)) {//timestamp
             if ($time > (time() - 120)) {
