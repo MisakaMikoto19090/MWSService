@@ -21,44 +21,64 @@
  * Get Service Status Sample
  */
 use MWSService\MWSDefine;
-use MWSService\Orders\Base\MWSOrdersClient;
 use MWSService\Orders\Base\MWSOrdersException;
 use MWSService\Orders\Base\MWSOrdersInterface;
-use MWSService\Orders\Model;
+use MWSService\Orders\Model\MWSOrdersModelGetServiceStatusRequest;
+use MWSService\Orders\OrdersCommon;
 
-/************************************************************************
- * Instantiate Implementation of MarketplaceWebServiceOrders
- *
- * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY constants
- * are defined in the .config.inc.php located in the same
- * directory as this sample
- ***********************************************************************/
-// More endpoints are listed in the MWS Developer Guide
-// North America:
-//$serviceUrl = "https://mws.amazonservices.com/Orders/2013-09-01";
-// Europe
-//$serviceUrl = "https://mws-eu.amazonservices.com/Orders/2013-09-01";
-// Japan
-//$serviceUrl = "https://mws.amazonservices.jp/Orders/2013-09-01";
-// China
-//$serviceUrl = "https://mws.amazonservices.com.cn/Orders/2013-09-01";
+Class GetServiceStatusSample extends OrdersCommon
+{
+    public static function GetServiceStatus($Flag)
+    {
+        $service = parent::GetMWSOrdersClient();
+        $request = new MWSOrdersModelGetServiceStatusRequest();
+        $request->setSellerId(MWSDefine::MERCHANT_ID);
+        return self::invokeGetServiceStatus($service, $request, $Flag);
+    }
 
 
-$config = array(
-    'ServiceURL' => $serviceUrl,
-    'ProxyHost' => null,
-    'ProxyPort' => -1,
-    'ProxyUsername' => null,
-    'ProxyPassword' => null,
-    'MaxErrorRetry' => 3,
-);
+    /**
+     * Get Get Service Status Action Sample
+     * Gets competitive pricing and related information for a product identified by
+     * the MarketplaceId and ASIN.
+     *
+     * @param MWSOrdersInterface $service instance of MWSOrdersInterface
+     * @param mixed $request Model\MWSOrdersModelGetServiceStatus or array of parameters
+     */
+    public static function invokeGetServiceStatus(MWSOrdersInterface $service, $request, $Flag)
+    {
+        try {
+            $response = $service->GetServiceStatus($request);
 
-$service = new MWSOrdersClient(
-    MWSDefine::AWS_ACCESS_KEY_ID,
-    MWSDefine::AWS_SECRET_ACCESS_KEY,
-    MWSDefine::APPLICATION_NAME,
-    MWSDefine::APPLICATION_VERSION,
-    $config);
+//            echo("Service Response\n");
+//            echo("=============================================================================\n");
+
+            $dom = new DOMDocument();
+            $dom->loadXML($response->toXML());
+            $dom->preserveWhiteSpace = false;
+            $dom->formatOutput = true;
+            $xml = $dom->saveXML();
+            $xml = new SimpleXMLElement($xml);
+            if ($Flag) {
+                $result_json = json_encode($xml, true);
+                $result = json_decode($result_json, true);
+            }
+            return $result;
+//            echo $dom->saveXML();
+//            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
+
+        } catch (MWSOrdersException $ex) {
+            echo("Caught Exception: " . $ex->getMessage() . "\n");
+            echo("Response Status Code: " . $ex->getStatusCode() . "\n");
+            echo("Error Code: " . $ex->getErrorCode() . "\n");
+            echo("Error Type: " . $ex->getErrorType() . "\n");
+            echo("Request ID: " . $ex->getRequestId() . "\n");
+            echo("XML: " . $ex->getXML() . "\n");
+            echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
+        }
+    }
+}
+
 
 /************************************************************************
  * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
@@ -82,38 +102,5 @@ $request->setSellerId(MWSDefine::MERCHANT_ID);
 // object or array of parameters
 invokeGetServiceStatus($service, $request);
 
-/**
- * Get Get Service Status Action Sample
- * Gets competitive pricing and related information for a product identified by
- * the MarketplaceId and ASIN.
- *
- * @param MWSOrdersInterface $service instance of MWSOrdersInterface
- * @param mixed $request Model\MWSOrdersModelGetServiceStatus or array of parameters
- */
 
-function invokeGetServiceStatus(MWSOrdersInterface $service, $request)
-{
-    try {
-        $response = $service->GetServiceStatus($request);
-
-        echo("Service Response\n");
-        echo("=============================================================================\n");
-
-        $dom = new DOMDocument();
-        $dom->loadXML($response->toXML());
-        $dom->preserveWhiteSpace = false;
-        $dom->formatOutput = true;
-        echo $dom->saveXML();
-        echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
-
-    } catch (MWSOrdersException $ex) {
-        echo("Caught Exception: " . $ex->getMessage() . "\n");
-        echo("Response Status Code: " . $ex->getStatusCode() . "\n");
-        echo("Error Code: " . $ex->getErrorCode() . "\n");
-        echo("Error Type: " . $ex->getErrorType() . "\n");
-        echo("Request ID: " . $ex->getRequestId() . "\n");
-        echo("XML: " . $ex->getXML() . "\n");
-        echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
-    }
-}
 

@@ -33,13 +33,24 @@ use SimpleXMLElement;
 
 Class ListOrderItemsSample extends OrdersCommon
 {
-    public static function GetOrderItems($amazon_order_id)
+
+
+    public static function GetOrderItems($AmazonOrderId, $Flag)
     {
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelListOrderItemsRequest();
         $request->setSellerId(MWSDefine::MERCHANT_ID);
+        $request = self::SetRequestParams($request, $AmazonOrderId);
 
-        return self::invokeListOrderItems($service, $request);
+        return self::invokeListOrderItems($service, $request, $Flag);
+    }
+
+    public static function SetRequestParams($request, $AmazonOrderId)
+    {
+        if ($AmazonOrderId) {
+            $request = $request->setAmazonOrderId($AmazonOrderId);
+        }
+        return $request;
     }
 
     /**
@@ -83,30 +94,5 @@ Class ListOrderItemsSample extends OrdersCommon
             echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
         }
     }
-
-
-    /************************************************************************
-     * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
-     * responses without calling MarketplaceWebServiceOrders service.
-     *
-     * Responses are loaded from local XML files. You can tweak XML files to
-     * experiment with various outputs during development
-     *
-     * XML files available under MarketplaceWebServiceOrders/Mock tree
-     *
-     ***********************************************************************/
-// $service = new MWSMock();
-
-    /************************************************************************
-     * Setup request parameters and uncomment invoke to try out
-     * sample for List Order Items Action
-     ***********************************************************************/
-// @TODO: set request. Action can be passed as  Model\MWSOrdersModelListOrderItems
-$request = new  Model\MWSOrdersModelListOrderItemsRequest();
-$request->setSellerId(MERCHANT_ID);
-// object or array of parameters
-invokeListOrderItems($service, $request);
-
-
 }
 

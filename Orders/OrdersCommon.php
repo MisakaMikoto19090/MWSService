@@ -2,9 +2,10 @@
 
 namespace MWSService\Orders;
 
+use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSOrdersClient;
 use MWSService\Orders\Base\MWSOrdersMock;
-use MWSService\MWSDefine;
+
 Abstract Class OrdersCommon
 {
 

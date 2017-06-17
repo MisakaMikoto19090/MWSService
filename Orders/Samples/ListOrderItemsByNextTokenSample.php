@@ -21,7 +21,72 @@
  * List Order Items By Next Token Sample
  */
 
-require_once('.config.inc.php');
+namespace MWSService\Orders\Samples;
+
+use DOMDocument;
+use MWSService\MWSDefine;
+use MWSService\Orders\Base\MWSOrdersException;
+use MWSService\Orders\Base\MWSOrdersInterface;
+use MWSService\Orders\Model\MWSOrdersModelListOrderItemsByNextTokenRequest;
+use MWSService\Orders\OrdersCommon;
+use SimpleXMLElement;
+
+Class ListOrderItemsByNextTokenSample extends OrdersCommon
+{
+    public static function ListOrderItemsByNextTokenSample($NextToken, $Flag)
+    {
+        $service = parent::GetMWSOrdersClient();
+        $request = new MWSOrdersModelListOrderItemsByNextTokenRequest();
+        $request->setSellerId(MWSDefine::MERCHANT_ID);
+        $request->setNextToken($NextToken);
+
+        return self::invokeListOrderItemsByNextToken($service, $request, $Flag);
+    }
+
+    /**
+     * Get List Order Items By Next Token Action Sample
+     * Gets competitive pricing and related information for a product identified by
+     * the MarketplaceId and ASIN.
+     *
+     * @param MWSOrdersInterface $service instance of MWSOrdersInterface
+     * @param mixed $request Model\MWSOrdersModelListOrderItemsByNextToken or array of parameters
+     */
+
+    public static function invokeListOrderItemsByNextToken(MWSOrdersInterface $service, $request, $Flag)
+    {
+        try {
+            $response = $service->ListOrderItemsByNextToken($request);
+
+//            echo("Service Response\n");
+//            echo("=============================================================================\n");
+
+            $dom = new DOMDocument();
+            $dom->loadXML($response->toXML());
+            $dom->preserveWhiteSpace = false;
+            $dom->formatOutput = true;
+            $xml = $dom->saveXML();
+            $result = new SimpleXMLElement($xml);
+            if ($Flag) {
+                $result_json = json_encode($result, true);
+                $result = json_decode($result_json, true);
+            }
+            return $result;
+//            echo $dom->saveXML();
+//            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
+
+        } catch (MWSOrdersException $ex) {
+            echo("Caught Exception: " . $ex->getMessage() . "\n");
+            echo("Response Status Code: " . $ex->getStatusCode() . "\n");
+            echo("Error Code: " . $ex->getErrorCode() . "\n");
+            echo("Error Type: " . $ex->getErrorType() . "\n");
+            echo("Request ID: " . $ex->getRequestId() . "\n");
+            echo("XML: " . $ex->getXML() . "\n");
+            echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
+        }
+    }
+
+
+}
 
 /************************************************************************
  * Instantiate Implementation of MarketplaceWebServiceOrders
@@ -78,39 +143,4 @@ $request = new  Model\MWSOrdersModelListOrderItemsByNextTokenRequest();
 $request->setSellerId(MERCHANT_ID);
 // object or array of parameters
 invokeListOrderItemsByNextToken($service, $request);
-
-/**
- * Get List Order Items By Next Token Action Sample
- * Gets competitive pricing and related information for a product identified by
- * the MarketplaceId and ASIN.
- *
- * @param MWSOrdersInterface $service instance of MWSOrdersInterface
- * @param mixed $request Model\MWSOrdersModelListOrderItemsByNextToken or array of parameters
- */
-
-function invokeListOrderItemsByNextToken(MWSOrdersInterface $service, $request)
-{
-    try {
-        $response = $service->ListOrderItemsByNextToken($request);
-
-        echo("Service Response\n");
-        echo("=============================================================================\n");
-
-        $dom = new DOMDocument();
-        $dom->loadXML($response->toXML());
-        $dom->preserveWhiteSpace = false;
-        $dom->formatOutput = true;
-        echo $dom->saveXML();
-        echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
-
-    } catch (MWSOrdersException $ex) {
-        echo("Caught Exception: " . $ex->getMessage() . "\n");
-        echo("Response Status Code: " . $ex->getStatusCode() . "\n");
-        echo("Error Code: " . $ex->getErrorCode() . "\n");
-        echo("Error Type: " . $ex->getErrorType() . "\n");
-        echo("Request ID: " . $ex->getRequestId() . "\n");
-        echo("XML: " . $ex->getXML() . "\n");
-        echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
-    }
-}
 

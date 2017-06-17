@@ -28,7 +28,8 @@ use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSOrdersException;
 use MWSService\Orders\Base\MWSOrdersInterface;
 use MWSService\Orders\Model\MWSOrdersModelListOrdersByNextTokenRequest;
-use MWSService\OrdersCommon;
+use MWSService\Orders\OrdersCommon;
+use SimpleXMLElement;
 
 /************************************************************************
  * Instantiate Implementation of MarketplaceWebServiceOrders
@@ -49,17 +50,18 @@ use MWSService\OrdersCommon;
 
 Class ListOrdersByNextTokenSample extends OrdersCommon
 {
-    public static function ListOrdersByNextToken()
+    public static function ListOrdersByNextToken($NextToken, $Flag)
     {
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelListOrdersByNextTokenRequest();
         $request->setSellerId(MWSDefine::MERCHANT_ID);
+        $request->setNextToken($NextToken);
 // object or array of parameters
-        self::invokeListOrdersByNextToken($service, $request);
+        return self::invokeListOrdersByNextToken($service, $request, $Flag);
 
     }
 
-    public static function invokeListOrdersByNextToken(MWSOrdersInterface $service, $request)
+    public static function invokeListOrdersByNextToken(MWSOrdersInterface $service, $request, $Flag)
     {
         try {
             $response = $service->ListOrdersByNextToken($request);
@@ -71,6 +73,13 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
             $dom->loadXML($response->toXML());
             $dom->preserveWhiteSpace = false;
             $dom->formatOutput = true;
+            $xml = $dom->saveXML();
+            $result = new SimpleXMLElement($xml);
+            if ($Flag) {
+                $result_json = json_encode($result, true);
+                $result = json_decode($result_json, true);
+            }
+            return $result;
 //            echo $dom->saveXML();
 //            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
 

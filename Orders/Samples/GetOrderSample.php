@@ -25,44 +25,76 @@ namespace MWSService\Orders\Samples;
 
 use DOMDocument;
 use MWSService\MWSDefine;
-use MWSService\Orders\Base\MWSOrdersClient;
 use MWSService\Orders\Base\MWSOrdersException;
 use MWSService\Orders\Base\MWSOrdersInterface;
-use MWSService\Orders\Base\MWSOrdersModel;
+use MWSService\Orders\Model\MWSOrdersModelGetOrderRequest;
+use MWSService\Orders\OrdersCommon;
+use SimpleXMLElement;
 
-/************************************************************************
- * Instantiate Implementation of MarketplaceWebServiceOrders
- *
- * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY constants
- * are defined in the .config.inc.php located in the same
- * directory as this sample
- ***********************************************************************/
-// More endpoints are listed in the MWS Developer Guide
-// North America:
-//$serviceUrl = "https://mws.amazonservices.com/Orders/2013-09-01";
-// Europe
-$serviceUrl = "https://mws-eu.amazonservices.com/Orders/2013-09-01";
-// Japan
-//$serviceUrl = "https://mws.amazonservices.jp/Orders/2013-09-01";
-// China
-//$serviceUrl = "https://mws.amazonservices.com.cn/Orders/2013-09-01";
+Class GetOrderSample extends OrdersCommon
+{
+    public static function GetOrder($AmazonOrderId, $Flag = 1)
+    {
+        $service = parent::GetMWSOrdersClient();
+        $request = new MWSOrdersModelGetOrderRequest();
+        $request->setSellerId(MWSDefine::MERCHANT_ID);
+        $request = self::SetRequestParams($request, $AmazonOrderId);
+// object or array of parameters
+        return self::invokeGetOrder($service, $request, $Flag);
 
+    }
 
-$config = array(
-    'ServiceURL' => $serviceUrl,
-    'ProxyHost' => null,
-    'ProxyPort' => -1,
-    'ProxyUsername' => null,
-    'ProxyPassword' => null,
-    'MaxErrorRetry' => 3,
-);
+    public static function SetRequestParams($request, $AmazonOrderId)
+    {
+        if ($AmazonOrderId) {
+            $request = $request->setAmazonOrderId($AmazonOrderId);
+        }
+        return $request;
+    }
 
-$service = new MWSOrdersClient(
-    MWSDefine::AWS_ACCESS_KEY_ID,
-    MWSDefine::AWS_SECRET_ACCESS_KEY,
-    MWSDefine::APPLICATION_NAME,
-    MWSDefine::APPLICATION_VERSION,
-    $config);
+    /**
+     * Get Get Order Action Sample
+     * Gets competitive pricing and related information for a product identified by
+     * the MarketplaceId and ASIN.
+     *
+     * @param MWSOrdersInterface $service instance of MWSOrdersInterface
+     * @param mixed $request Model\MWSOrdersModelGetOrder or array of parameters
+     */
+
+    public static function invokeGetOrder(MWSOrdersInterface $service, $request, $Flag)
+    {
+        try {
+            $response = $service->GetOrder($request);
+
+//            echo("Service Response\n");
+//            echo("=============================================================================\n");
+
+            $dom = new DOMDocument();
+            $dom->loadXML($response->toXML());
+            $dom->preserveWhiteSpace = false;
+            $dom->formatOutput = true;
+            $xml = $dom->saveXML();
+            $result = new SimpleXMLElement($xml);
+            if ($Flag) {
+                $result_json = json_encode($result, true);
+                $result = json_decode($result, true);
+            }
+            return $result;
+//            echo $dom->saveXML();
+//            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
+
+        } catch (MWSOrdersException $ex) {
+            echo("Caught Exception: " . $ex->getMessage() . "\n");
+            echo("Response Status Code: " . $ex->getStatusCode() . "\n");
+            echo("Error Code: " . $ex->getErrorCode() . "\n");
+            echo("Error Type: " . $ex->getErrorType() . "\n");
+            echo("Request ID: " . $ex->getRequestId() . "\n");
+            echo("XML: " . $ex->getXML() . "\n");
+            echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
+        }
+    }
+}
+
 
 /************************************************************************
  * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
@@ -80,44 +112,7 @@ $service = new MWSOrdersClient(
  * Setup request parameters and uncomment invoke to try out
  * sample for Get Order Action
  ***********************************************************************/
-// @TODO: set request. Action can be passed as  Model\MWSOrdersModelGetOrder
-$request = new  Model\MWSOrdersModelGetOrderRequest();
-$request->setSellerId(MWSDefine::MERCHANT_ID);
-// object or array of parameters
-invokeGetOrder($service, $request);
 
-/**
- * Get Get Order Action Sample
- * Gets competitive pricing and related information for a product identified by
- * the MarketplaceId and ASIN.
- *
- * @param MWSOrdersInterface $service instance of MWSOrdersInterface
- * @param mixed $request Model\MWSOrdersModelGetOrder or array of parameters
- */
 
-function invokeGetOrder(MWSOrdersInterface $service, $request)
-{
-    try {
-        $response = $service->GetOrder($request);
 
-        echo("Service Response\n");
-        echo("=============================================================================\n");
-
-        $dom = new DOMDocument();
-        $dom->loadXML($response->toXML());
-        $dom->preserveWhiteSpace = false;
-        $dom->formatOutput = true;
-        echo $dom->saveXML();
-        echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
-
-    } catch (MWSOrdersException $ex) {
-        echo("Caught Exception: " . $ex->getMessage() . "\n");
-        echo("Response Status Code: " . $ex->getStatusCode() . "\n");
-        echo("Error Code: " . $ex->getErrorCode() . "\n");
-        echo("Error Type: " . $ex->getErrorType() . "\n");
-        echo("Request ID: " . $ex->getRequestId() . "\n");
-        echo("XML: " . $ex->getXML() . "\n");
-        echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
-    }
-}
 
