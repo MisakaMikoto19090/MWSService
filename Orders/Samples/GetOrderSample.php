@@ -57,7 +57,7 @@ Class GetOrderSample extends OrdersCommon
         try {
             $request->setSellerId(MWSDefine::MERCHANT_ID);
             if ($AmazonOrderId) {
-                $request->setNextToken($AmazonOrderId);
+                $request->setAmazonOrderId($AmazonOrderId);
             } else {
                 throw new MWSOrdersException(['Message' => 'AmazonOrderId Must Be Set']);
             }
