@@ -33,6 +33,10 @@ use SimpleXMLElement;
 
 Class ListOrdersSample extends OrdersCommon
 {
+
+    /**All Order Status
+     * @var array
+     */
     private static $OrderStatusArr = [
         'PendingAvailability',
         'Pending',
@@ -43,38 +47,22 @@ Class ListOrdersSample extends OrdersCommon
         'Canceled',
         'Unfulfillable',
     ];
+
+    /**All FulfillmentChannel
+     * @var array
+     */
     private static $FulfillmentChannelArr = [
         'AFN',
         'MFN',
     ];
+
+    /**All Payment Method
+     * @var array
+     */
     private static $PaymentMethodArr = [
         'COD',
         'CVS',
         'Other',
-    ];
-    private static $TFMShipmentStatus = [
-        //Amazon has not pick up product from seller
-        'PendingPickUp',
-        //Seller canceled pick up
-        'LabelCanceled',
-        //Amazon picked up product from seller
-        'PickedUp',
-        //Package Arrived Amazon Center
-        'AtDestinationFC',
-        //Package on delivering
-        'Delivered',
-        //Package Rejected by buyer
-        'RejectedByBuyer',
-        //Package can not be delivered
-        'Undeliverable',
-        //Package returned to seller
-        'ReturnedToSeller',
-        //Package Lost
-        'Lost',
-    ];
-    private static $FlagArr = [
-        'XML',
-        'JSON',
     ];
 
     /**
