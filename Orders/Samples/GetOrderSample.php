@@ -77,7 +77,7 @@ Class GetOrderSample extends OrdersCommon
             $result = new SimpleXMLElement($xml);
             if ($Flag) {
                 $result_json = json_encode($result, true);
-                $result = json_decode($result, true);
+                $result = json_decode($result_json, true);
             }
             return $result;
 //            echo $dom->saveXML();
