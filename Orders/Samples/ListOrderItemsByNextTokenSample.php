@@ -33,32 +33,44 @@ use SimpleXMLElement;
 
 Class ListOrderItemsByNextTokenSample extends OrdersCommon
 {
+    /**
+     * @param $NextToken
+     * @param $Flag
+     * @return mixed|SimpleXMLElement
+     */
     public static function ListOrderItemsByNextTokenSample($NextToken, $Flag)
     {
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelListOrderItemsByNextTokenRequest();
-        $request->setSellerId(MWSDefine::MERCHANT_ID);
-        $request->setNextToken($NextToken);
+        $request = self::SetRequestParams($request, $NextToken);
 
         return self::invokeListOrderItemsByNextToken($service, $request, $Flag);
     }
 
     /**
-     * Get List Order Items By Next Token Action Sample
-     * Gets competitive pricing and related information for a product identified by
-     * the MarketplaceId and ASIN.
-     *
-     * @param MWSOrdersInterface $service instance of MWSOrdersInterface
-     * @param mixed $request Model\MWSOrdersModelListOrderItemsByNextToken or array of parameters
+     * @param $request
+     * @param $NextToken
+     * @return mixed
      */
+    private static function SetRequestParams($request, $NextToken)
+    {
+        $request->setSellerId(MWSDefine::MERCHANT_ID);
+        if ($NextToken) {
+            $request->setNextToken($NextToken);
+        }
+        return $request;
+    }
 
-    public static function invokeListOrderItemsByNextToken(MWSOrdersInterface $service, $request, $Flag)
+    /**
+     * @param MWSOrdersInterface $service
+     * @param $request
+     * @param $Flag
+     * @return mixed|SimpleXMLElement
+     */
+    private static function invokeListOrderItemsByNextToken(MWSOrdersInterface $service, $request, $Flag)
     {
         try {
             $response = $service->ListOrderItemsByNextToken($request);
-
-//            echo("Service Response\n");
-//            echo("=============================================================================\n");
 
             $dom = new DOMDocument();
             $dom->loadXML($response->toXML());
@@ -71,8 +83,6 @@ Class ListOrderItemsByNextTokenSample extends OrdersCommon
                 $result = json_decode($result_json, true);
             }
             return $result;
-//            echo $dom->saveXML();
-//            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
 
         } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");

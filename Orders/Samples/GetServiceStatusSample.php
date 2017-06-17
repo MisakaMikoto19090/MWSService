@@ -20,55 +20,63 @@
 /**
  * Get Service Status Sample
  */
+
 namespace MWSService\Orders\Samples;
 
+use DOMDocument;
 use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSOrdersException;
 use MWSService\Orders\Base\MWSOrdersInterface;
 use MWSService\Orders\Model\MWSOrdersModelGetServiceStatusRequest;
 use MWSService\Orders\OrdersCommon;
-use DOMDocument;
 use SimpleXMLElement;
+
 Class GetServiceStatusSample extends OrdersCommon
 {
-    public static function GetServiceStatus($Flag=1)
+    /**Get MWSOrders API Status
+     * @param int $Flag
+     * @return mixed
+     */
+    public static function GetServiceStatus($Flag = 1)
     {
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelGetServiceStatusRequest();
-        $request->setSellerId(MWSDefine::MERCHANT_ID);
+        $request = self::SetRequestParams($request);
         return self::invokeGetServiceStatus($service, $request, $Flag);
     }
 
+    /**Set Request Parameters
+     * @param $request
+     * @return mixed
+     */
+    private static function SetRequestParams($request)
+    {
+        $request = $request->setSellerId(MWSDefine::MERCHANT_ID);
+        return $request;
+    }
 
     /**
-     * Get Get Service Status Action Sample
-     * Gets competitive pricing and related information for a product identified by
-     * the MarketplaceId and ASIN.
-     *
-     * @param MWSOrdersInterface $service instance of MWSOrdersInterface
-     * @param mixed $request Model\MWSOrdersModelGetServiceStatus or array of parameters
+     * @param MWSOrdersInterface $service
+     * @param $request
+     * @param $Flag
+     * @return mixed
      */
-    public static function invokeGetServiceStatus(MWSOrdersInterface $service, $request, $Flag)
+    private static function invokeGetServiceStatus(MWSOrdersInterface $service, $request, $Flag)
     {
         try {
             $response = $service->GetServiceStatus($request);
-
-//            echo("Service Response\n");
-//            echo("=============================================================================\n");
 
             $dom = new DOMDocument();
             $dom->loadXML($response->toXML());
             $dom->preserveWhiteSpace = false;
             $dom->formatOutput = true;
             $xml = $dom->saveXML();
-            $xml = new SimpleXMLElement($xml);
+            $result = new SimpleXMLElement($xml);
             if ($Flag) {
-                $result_json = json_encode($xml, true);
+                $result_json = json_encode($result, true);
                 $result = json_decode($result_json, true);
             }
             return $result;
-//            echo $dom->saveXML();
-//            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
 
         } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");

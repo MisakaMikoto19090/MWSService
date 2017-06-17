@@ -31,43 +31,46 @@ use MWSService\Orders\Model\MWSOrdersModelListOrdersByNextTokenRequest;
 use MWSService\Orders\OrdersCommon;
 use SimpleXMLElement;
 
-/************************************************************************
- * Instantiate Implementation of MarketplaceWebServiceOrders
- *
- * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY constants
- * are defined in the .config.inc.php located in the same
- * directory as this sample
- ***********************************************************************/
-// More endpoints are listed in the MWS Developer Guide
-// North America:
-//$serviceUrl = "https://mws.amazonservices.com/Orders/2013-09-01";
-// Europe
-//$serviceUrl = "https://mws-eu.amazonservices.com/Orders/2013-09-01";
-// Japan
-//$serviceUrl = "https://mws.amazonservices.jp/Orders/2013-09-01";
-// China
-//$serviceUrl = "https://mws.amazonservices.com.cn/Orders/2013-09-01";
 
 Class ListOrdersByNextTokenSample extends OrdersCommon
 {
-    public static function ListOrdersByNextToken($NextToken, $Flag=1)
+    /**
+     * @param $NextToken
+     * @param int $Flag
+     * @return mixed|SimpleXMLElement
+     */
+    public static function ListOrdersByNextToken($NextToken, $Flag = 1)
     {
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelListOrdersByNextTokenRequest();
-        $request->setSellerId(MWSDefine::MERCHANT_ID);
-        $request->setNextToken($NextToken);
-// object or array of parameters
+        $request = self::SetRequestParams($request, $NextToken);
         return self::invokeListOrdersByNextToken($service, $request, $Flag);
-
     }
 
-    public static function invokeListOrdersByNextToken(MWSOrdersInterface $service, $request, $Flag)
+    /**
+     * @param $request
+     * @param $NextToken
+     * @return mixed
+     */
+    private static function SetRequestParams($request, $NextToken)
+    {
+        $request->setSellerId(MWSDefine::MERCHANT_ID);
+        if ($NextToken) {
+            $request->setNextToken($NextToken);
+        }
+        return $request;
+    }
+
+    /**
+     * @param MWSOrdersInterface $service
+     * @param $request
+     * @param $Flag
+     * @return mixed|SimpleXMLElement
+     */
+    private static function invokeListOrdersByNextToken(MWSOrdersInterface $service, $request, $Flag)
     {
         try {
             $response = $service->ListOrdersByNextToken($request);
-
-//            echo("Service Response\n");
-//            echo("=============================================================================\n");
 
             $dom = new DOMDocument();
             $dom->loadXML($response->toXML());
@@ -80,8 +83,6 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
                 $result = json_decode($result_json, true);
             }
             return $result;
-//            echo $dom->saveXML();
-//            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
 
         } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
@@ -95,33 +96,3 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
     }
 
 }
-
-/************************************************************************
- * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
- * responses without calling MarketplaceWebServiceOrders service.
- *
- * Responses are loaded from local XML files. You can tweak XML files to
- * experiment with various outputs during development
- *
- * XML files available under MarketplaceWebServiceOrders/Mock tree
- *
- ***********************************************************************/
-// $service = new MWSMock();
-
-/************************************************************************
- * Setup request parameters and uncomment invoke to try out
- * sample for List Orders By Next Token Action
- ***********************************************************************/
-// @TODO: set request. Action can be passed as  Model\MWSOrdersModelListOrdersByNextToken
-
-
-/**
- * Get List Orders By Next Token Action Sample
- * Gets competitive pricing and related information for a product identified by
- * the MarketplaceId and ASIN.
- *
- * @param MWSOrdersInterface $service instance of MWSOrdersInterface
- * @param mixed $request Model\MWSOrdersModelListOrdersByNextToken or array of parameters
- */
-
-

@@ -33,18 +33,28 @@ use SimpleXMLElement;
 
 Class ListOrderItemsSample extends OrdersCommon
 {
-    public static function GetOrderItems($AmazonOrderId, $Flag = 1)
+    /**
+     * @param $AmazonOrderId
+     * @param int $Flag
+     * @return mixed|SimpleXMLElement
+     */
+    public static function ListOrderItems($AmazonOrderId, $Flag = 1)
     {
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelListOrderItemsRequest();
-        $request->setSellerId(MWSDefine::MERCHANT_ID);
         $request = self::SetRequestParams($request, $AmazonOrderId);
 
         return self::invokeListOrderItems($service, $request, $Flag);
     }
 
-    public static function SetRequestParams($request, $AmazonOrderId)
+    /**
+     * @param $request
+     * @param $AmazonOrderId
+     * @return mixed
+     */
+    private static function SetRequestParams($request, $AmazonOrderId)
     {
+        $request->setSellerId(MWSDefine::MERCHANT_ID);
         if ($AmazonOrderId) {
             $request = $request->setAmazonOrderId($AmazonOrderId);
         }
@@ -52,21 +62,15 @@ Class ListOrderItemsSample extends OrdersCommon
     }
 
     /**
-     * Get List Order Items Action Sample
-     * Gets competitive pricing and related information for a product identified by
-     * the MarketplaceId and ASIN.
-     *
-     * @param MWSOrdersInterface $service instance of MWSOrdersInterface
-     * @param mixed $request Model\MWSOrdersModelListOrderItems or array of parameters
+     * @param MWSOrdersInterface $service
+     * @param $request
+     * @param $Flag
+     * @return mixed|SimpleXMLElement
      */
-
-    public static function invokeListOrderItems(MWSOrdersInterface $service, $request, $Flag)
+    private static function invokeListOrderItems(MWSOrdersInterface $service, $request, $Flag)
     {
         try {
             $response = $service->ListOrderItems($request);
-
-//            echo("Service Response\n");
-//            echo("=============================================================================\n");
 
             $dom = new DOMDocument();
             $dom->loadXML($response->toXML());
@@ -79,8 +83,6 @@ Class ListOrderItemsSample extends OrdersCommon
                 $result = json_decode($result_json, true);//convert to array
             }
             return $result;
-//            echo $dom->saveXML();
-//            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
 
         } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");

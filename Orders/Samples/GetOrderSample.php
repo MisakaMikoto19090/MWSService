@@ -33,19 +33,29 @@ use SimpleXMLElement;
 
 Class GetOrderSample extends OrdersCommon
 {
+    /**Get Order By AmazonOrderId
+     * @param $AmazonOrderId
+     * @param int $Flag
+     * @return mixed|SimpleXMLElement
+     */
     public static function GetOrder($AmazonOrderId, $Flag = 1)
     {
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelGetOrderRequest();
-        $request->setSellerId(MWSDefine::MERCHANT_ID);
         $request = self::SetRequestParams($request, $AmazonOrderId);
 // object or array of parameters
         return self::invokeGetOrder($service, $request, $Flag);
 
     }
 
-    public static function SetRequestParams($request, $AmazonOrderId)
+    /**Set Request Parameters
+     * @param $request
+     * @param $AmazonOrderId
+     * @return mixed
+     */
+    private static function SetRequestParams($request, $AmazonOrderId)
     {
+        $request->setSellerId(MWSDefine::MERCHANT_ID);
         if ($AmazonOrderId) {
             $request = $request->setAmazonOrderId($AmazonOrderId);
         }
@@ -53,21 +63,15 @@ Class GetOrderSample extends OrdersCommon
     }
 
     /**
-     * Get Get Order Action Sample
-     * Gets competitive pricing and related information for a product identified by
-     * the MarketplaceId and ASIN.
-     *
-     * @param MWSOrdersInterface $service instance of MWSOrdersInterface
-     * @param mixed $request Model\MWSOrdersModelGetOrder or array of parameters
+     * @param MWSOrdersInterface $service
+     * @param $request
+     * @param $Flag
+     * @return mixed|SimpleXMLElement
      */
-
-    public static function invokeGetOrder(MWSOrdersInterface $service, $request, $Flag)
+    private static function invokeGetOrder(MWSOrdersInterface $service, $request, $Flag)
     {
         try {
             $response = $service->GetOrder($request);
-
-//            echo("Service Response\n");
-//            echo("=============================================================================\n");
 
             $dom = new DOMDocument();
             $dom->loadXML($response->toXML());
@@ -80,8 +84,6 @@ Class GetOrderSample extends OrdersCommon
                 $result = json_decode($result_json, true);
             }
             return $result;
-//            echo $dom->saveXML();
-//            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
 
         } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
@@ -94,25 +96,3 @@ Class GetOrderSample extends OrdersCommon
         }
     }
 }
-
-
-/************************************************************************
- * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
- * responses without calling MarketplaceWebServiceOrders service.
- *
- * Responses are loaded from local XML files. You can tweak XML files to
- * experiment with various outputs during development
- *
- * XML files available under MarketplaceWebServiceOrders/Mock tree
- *
- ***********************************************************************/
-// $service = new MWSMock();
-
-/************************************************************************
- * Setup request parameters and uncomment invoke to try out
- * sample for Get Order Action
- ***********************************************************************/
-
-
-
-

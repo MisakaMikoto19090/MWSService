@@ -78,21 +78,20 @@ Class ListOrdersSample extends OrdersCommon
     ];
 
     /**
-     * List Orders According to the giving parameters
-     * @param null $CreatedAfter ISO8601 i.e: 2017-06-01T00:00:00Z
-     * @param null $CreatedBefore ISO8601 i.e: 2017-06-30T23:59:59Z
-     * @param null $LastUpdatedAfter ISO8601 i.e: 2017-06-01T00:00:00Z
-     * @param null $LastUpdatedBefore ISO8601 i.e: 2017-06-30T23:59:59Z
-     * @param array $OrderStatus check out self::OrderStatusArr
-     * @param array $MarketplaceId check out MWSDefine::MWS_MARKETPLACE_ID_DEFINE
-     * @param array $FulfillmentChannel check out self::FulfillmentChannel
-     * @param array $PaymentMethod check out PaymentMethodArr
-     * @param null $BuyerEmail i.e: test@amazon.fr
-     * @param null $SellerOrderId OrderId defined by seller
-     * @param null $MaxResultsPerPage 1~100
-     * @param array $TFMShipmentStatus check out TFMShipmentStatusArr
-     * @param null $Flag 0~1 1:out put array
-     * @return mixed|SimpleXMLElement || Array
+     * @param null $CreatedAfter
+     * @param null $CreatedBefore
+     * @param null $LastUpdatedAfter
+     * @param null $LastUpdatedBefore
+     * @param array $OrderStatus
+     * @param array $MarketplaceId
+     * @param array $FulfillmentChannel
+     * @param array $PaymentMethod
+     * @param null $BuyerEmail
+     * @param null $SellerOrderId
+     * @param null $MaxResultsPerPage
+     * @param array $TFMShipmentStatus
+     * @param int $Flag
+     * @return mixed|SimpleXMLElement
      */
     public static function ListOrders(
         $CreatedAfter = null,
@@ -112,29 +111,8 @@ Class ListOrdersSample extends OrdersCommon
     {
         $service = parent::GetMWSOrdersClient();
 
-        /************************************************************************
-         * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
-         * responses without calling MarketplaceWebServiceOrders service.
-         *
-         * Responses are loaded from local XML files. You can tweak XML files to
-         * experiment with various outputs during development
-         *
-         * XML files available under MarketplaceWebServiceOrders/Mock tree
-         *
-         ***********************************************************************/
-//        $service = parent:: GetMockMWSOrdersClient();
-
-
-        /************************************************************************
-         * Setup request parameters and uncomment invoke to try out
-         * sample for List Orders Action
-         ***********************************************************************/
-//        @TODO: set request . Action can be passed as  MWSOrdersModelListOrders
         $request = new MWSOrdersModelListOrdersRequest();
 
-        $request->setSellerId(MWSDefine::MERCHANT_ID);
-//        $request->setMarketplaceId(MWSDefine::MARKETPLACE_ID);
-//Format:   2017-06-01T00:00:00Z
         $request = self::SetRequestParams(
             $request,
             $CreatedAfter,
@@ -151,40 +129,27 @@ Class ListOrdersSample extends OrdersCommon
             $TFMShipmentStatus
         );
 
-
-//        $request->setCreatedAfter($date);
-
-//        $request->setOrderStatus('Shipped');
-
-
         return self::invokeListOrders($service, $request, $Flag);
 
 
     }
 
     /**
-     * Get List Orders Action Sample
-     * Gets competitive pricing and related information for a product identified by
-     * the MarketplaceId and ASIN.
-     * @param MWSOrdersInterface $service instance of MWSOrdersInterface
+     * @param MWSOrdersInterface $service
      * @param $request
      * @param $Flag
      * @return mixed|SimpleXMLElement
      */
-    public
+    private
     static function invokeListOrders(MWSOrdersInterface $service, $request, $Flag)
     {
         try {
-            //uncomment to get xml output
             $response = $service->ListOrders($request);
-//            echo("Service Response\n");
-//            echo("=============================================================================\n");
+
             $dom = new DOMDocument();
             $dom->loadXML($response->toXML());
             $dom->preserveWhiteSpace = false;
             $dom->formatOutput = true;
-//            echo $dom->saveXML();
-//            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
             $xml = $dom->saveXML();//get xml string
             $result = new SimpleXMLElement($xml);//convert to xml object
             if ($Flag) {
@@ -204,7 +169,23 @@ Class ListOrdersSample extends OrdersCommon
         }
     }
 
-    public static function SetRequestParams(
+    /**
+     * @param $request
+     * @param $CreatedAfter
+     * @param $CreatedBefore
+     * @param $LastUpdatedAfter
+     * @param $LastUpdatedBefore
+     * @param $OrderStatus
+     * @param $MarketplaceId
+     * @param $FulfillmentChannel
+     * @param $PaymentMethod
+     * @param $BuyerEmail
+     * @param $SellerOrderId
+     * @param $MaxResultsPerPage
+     * @param $TFMShipmentStatus
+     * @return mixed
+     */
+    private static function SetRequestParams(
         $request,
         $CreatedAfter,
         $CreatedBefore,
@@ -221,7 +202,6 @@ Class ListOrdersSample extends OrdersCommon
     )
     {
         try {
-
             if ($CreatedAfter) {
                 //if CreatedAfter is set,convert to ISO8601
                 $CreatedAfter = self::ConvertToISO8601($CreatedAfter);
@@ -403,6 +383,8 @@ Class ListOrdersSample extends OrdersCommon
                     }
                 }
             }
+            $request->setSellerId(MWSDefine::MERCHANT_ID);
+
             if ($CreatedAfter) {
                 $request->setCreatedAfter($CreatedAfter);
             }
@@ -451,7 +433,12 @@ Class ListOrdersSample extends OrdersCommon
         }
     }
 
-    public
+    /**
+     * @param $time
+     * @return false|string
+     * @throws MWSOrdersException
+     */
+    private
     static function ConvertToISO8601($time)
     {
         if (is_int($time)) {//timestamp
