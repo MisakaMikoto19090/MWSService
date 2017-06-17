@@ -39,7 +39,7 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
      * @param int $Flag
      * @return mixed|SimpleXMLElement
      */
-    public static function ListOrdersByNextToken($NextToken, $Flag = 1)
+    public static function ListOrdersByNextToken($NextToken = null, $Flag = 1)
     {
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelListOrdersByNextTokenRequest();
@@ -54,11 +54,17 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
      */
     private static function SetRequestParams($request, $NextToken)
     {
-        $request->setSellerId(MWSDefine::MERCHANT_ID);
-        if ($NextToken) {
-            $request->setNextToken($NextToken);
+        try{
+            $request->setSellerId(MWSDefine::MERCHANT_ID);
+            if ($NextToken) {
+                $request->setNextToken($NextToken);
+            }else{
+                throw new MWSOrdersException(['Message'=>'NextToken Must Be Set']);
+            }
+            return $request;
+        }catch(MWSOrdersException $ex){
+            echo("Caught Exception: " . $ex->getMessage() . "\n");
         }
-        return $request;
     }
 
     /**
@@ -71,7 +77,6 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
     {
         try {
             $response = $service->ListOrdersByNextToken($request);
-
             $dom = new DOMDocument();
             $dom->loadXML($response->toXML());
             $dom->preserveWhiteSpace = false;
@@ -83,7 +88,6 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
                 $result = json_decode($result_json, true);
             }
             return $result;
-
         } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
             echo("Response Status Code: " . $ex->getStatusCode() . "\n");
@@ -94,5 +98,4 @@ Class ListOrdersByNextTokenSample extends OrdersCommon
             echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
         }
     }
-
 }

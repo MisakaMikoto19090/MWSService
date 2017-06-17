@@ -43,7 +43,6 @@ Class ListOrderItemsByNextTokenSample extends OrdersCommon
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelListOrderItemsByNextTokenRequest();
         $request = self::SetRequestParams($request, $NextToken);
-
         return self::invokeListOrderItemsByNextToken($service, $request, $Flag);
     }
 
@@ -54,11 +53,17 @@ Class ListOrderItemsByNextTokenSample extends OrdersCommon
      */
     private static function SetRequestParams($request, $NextToken)
     {
-        $request->setSellerId(MWSDefine::MERCHANT_ID);
-        if ($NextToken) {
-            $request->setNextToken($NextToken);
+        try{
+            $request->setSellerId(MWSDefine::MERCHANT_ID);
+            if ($NextToken) {
+                $request->setNextToken($NextToken);
+            }else{
+                throw new MWSOrdersException(['Message'=>'NextToken Must Be Set']);
+            }
+            return $request;
+        }catch(MWSOrdersException $ex){
+            echo("Caught Exception: " . $ex->getMessage() . "\n");
         }
-        return $request;
     }
 
     /**
@@ -71,7 +76,6 @@ Class ListOrderItemsByNextTokenSample extends OrdersCommon
     {
         try {
             $response = $service->ListOrderItemsByNextToken($request);
-
             $dom = new DOMDocument();
             $dom->loadXML($response->toXML());
             $dom->preserveWhiteSpace = false;
@@ -83,7 +87,6 @@ Class ListOrderItemsByNextTokenSample extends OrdersCommon
                 $result = json_decode($result_json, true);
             }
             return $result;
-
         } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
             echo("Response Status Code: " . $ex->getStatusCode() . "\n");
@@ -94,63 +97,4 @@ Class ListOrderItemsByNextTokenSample extends OrdersCommon
             echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
         }
     }
-
-
 }
-
-/************************************************************************
- * Instantiate Implementation of MarketplaceWebServiceOrders
- *
- * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY constants
- * are defined in the .config.inc.php located in the same
- * directory as this sample
- ***********************************************************************/
-// More endpoints are listed in the MWS Developer Guide
-// North America:
-//$serviceUrl = "https://mws.amazonservices.com/Orders/2013-09-01";
-// Europe
-//$serviceUrl = "https://mws-eu.amazonservices.com/Orders/2013-09-01";
-// Japan
-//$serviceUrl = "https://mws.amazonservices.jp/Orders/2013-09-01";
-// China
-//$serviceUrl = "https://mws.amazonservices.com.cn/Orders/2013-09-01";
-
-
-$config = array(
-    'ServiceURL' => $serviceUrl,
-    'ProxyHost' => null,
-    'ProxyPort' => -1,
-    'ProxyUsername' => null,
-    'ProxyPassword' => null,
-    'MaxErrorRetry' => 3,
-);
-
-$service = new MWSOrdersClient(
-    AWS_ACCESS_KEY_ID,
-    AWS_SECRET_ACCESS_KEY,
-    APPLICATION_NAME,
-    APPLICATION_VERSION,
-    $config);
-
-/************************************************************************
- * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
- * responses without calling MarketplaceWebServiceOrders service.
- *
- * Responses are loaded from local XML files. You can tweak XML files to
- * experiment with various outputs during development
- *
- * XML files available under MarketplaceWebServiceOrders/Mock tree
- *
- ***********************************************************************/
-// $service = new MWSMock();
-
-/************************************************************************
- * Setup request parameters and uncomment invoke to try out
- * sample for List Order Items By Next Token Action
- ***********************************************************************/
-// @TODO: set request. Action can be passed as  Model\MWSOrdersModelListOrderItemsByNextToken
-$request = new  Model\MWSOrdersModelListOrderItemsByNextTokenRequest();
-$request->setSellerId(MERCHANT_ID);
-// object or array of parameters
-invokeListOrderItemsByNextToken($service, $request);
-

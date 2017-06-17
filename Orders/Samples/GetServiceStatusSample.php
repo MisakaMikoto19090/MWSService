@@ -51,8 +51,12 @@ Class GetServiceStatusSample extends OrdersCommon
      */
     private static function SetRequestParams($request)
     {
-        $request = $request->setSellerId(MWSDefine::MERCHANT_ID);
-        return $request;
+        try{
+            $request->setSellerId(MWSDefine::MERCHANT_ID);
+            return $request;
+        }catch(MWSOrdersException $ex){
+            echo("Caught Exception: " . $ex->getMessage() . "\n");
+        }
     }
 
     /**
@@ -65,7 +69,6 @@ Class GetServiceStatusSample extends OrdersCommon
     {
         try {
             $response = $service->GetServiceStatus($request);
-
             $dom = new DOMDocument();
             $dom->loadXML($response->toXML());
             $dom->preserveWhiteSpace = false;
@@ -77,7 +80,6 @@ Class GetServiceStatusSample extends OrdersCommon
                 $result = json_decode($result_json, true);
             }
             return $result;
-
         } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
             echo("Response Status Code: " . $ex->getStatusCode() . "\n");

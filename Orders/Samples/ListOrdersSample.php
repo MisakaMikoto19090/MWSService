@@ -98,9 +98,7 @@ Class ListOrdersSample extends OrdersCommon
     )
     {
         $service = parent::GetMWSOrdersClient();
-
         $request = new MWSOrdersModelListOrdersRequest();
-
         $request = self::SetRequestParams(
             $request,
             $CreatedAfter,
@@ -116,10 +114,7 @@ Class ListOrdersSample extends OrdersCommon
             $MaxResultsPerPage,
             $TFMShipmentStatus
         );
-
         return self::invokeListOrders($service, $request, $Flag);
-
-
     }
 
     /**
@@ -133,7 +128,6 @@ Class ListOrdersSample extends OrdersCommon
     {
         try {
             $response = $service->ListOrders($request);
-
             $dom = new DOMDocument();
             $dom->loadXML($response->toXML());
             $dom->preserveWhiteSpace = false;
@@ -144,7 +138,6 @@ Class ListOrdersSample extends OrdersCommon
                 $result_json = json_encode($result, true);
                 $result = json_decode($result_json, true);//convert to array
             }
-
             return $result;
         } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
@@ -194,7 +187,6 @@ Class ListOrdersSample extends OrdersCommon
                 //if CreatedAfter is set,convert to ISO8601
                 $CreatedAfter = self::ConvertToISO8601($CreatedAfter);
                 $CreatedAfterTimeStamp = strtotime($CreatedAfter);
-
             } else if (!$LastUpdatedAfter) {
                 //if LastUpdatedAfter is not defined and CreatedAfter is not set,set CreatedAfter
                 $lastMonth = date('m', time()) - 1;
@@ -206,7 +198,6 @@ Class ListOrdersSample extends OrdersCommon
                 $CreatedAfter = self::ConvertToISO8601($year . '-' . $lastMonth . '-' . '01');
                 $CreatedAfterTimeStamp = strtotime($CreatedAfter);
             }
-
             if ($CreatedBefore) {
                 //CreatedBefore is set
                 if (!$CreatedAfter) {
@@ -232,7 +223,6 @@ Class ListOrdersSample extends OrdersCommon
                     throw new MWSOrdersException(['Message' => 'CreatedBefore Must Be Greater Than CreatedAfter']);
                 }
             }
-
             if ($LastUpdatedAfter) {
                 if ($CreatedAfter) {
                     throw new MWSOrdersException(['Message' => 'When CreatedAfter Is Set,LastUpdatedAfter Can`t Be Set']);
@@ -269,14 +259,12 @@ Class ListOrdersSample extends OrdersCommon
                 }
                 $month = date('m', time());
                 $lastDay = date('t', strtotime($year . '-' . $lastMonth . '-01 00:00:00'));
-
                 $LastUpdatedBefore = $year . '-' . $month . '-' . $lastDay . 'T23:59:59Z';
                 $LastUpdatedBeforeTimeStamp = strtotime($LastUpdatedBefore);
                 if ($LastUpdatedBeforeTimeStamp <= $LastUpdatedAfterTimeStamp) {
                     throw new MWSOrdersException(['Message' => 'LastUpdatedBefore Must Be Greater Than LastUpdatedAfter']);
                 }
             }
-
             if ($OrderStatus) {
                 if (count($OrderStatus)) {
                     foreach ($OrderStatus as $eachOrderStatus) {
@@ -293,11 +281,9 @@ Class ListOrdersSample extends OrdersCommon
                 } else {
                     $OrderStatus = self::$OrderStatusArr;
                 }
-
             } else {
                 $OrderStatus = self::$OrderStatusArr;
             }
-
             if ($MarketplaceId) {
                 if (count($MarketplaceId)) {
                     foreach ($MarketplaceId as $eachMarketplaceId) {
@@ -311,7 +297,6 @@ Class ListOrdersSample extends OrdersCommon
             } else {
                 $MarketplaceId = [MWSDefine::MARKETPLACE_ID];
             }
-
             if ($FulfillmentChannel) {
                 if (count($FulfillmentChannel)) {
                     foreach ($FulfillmentChannel as $eachFulfillmentChannel) {
@@ -338,7 +323,6 @@ Class ListOrdersSample extends OrdersCommon
             } else {
                 $PaymentMethod = self::$PaymentMethodArr;
             }
-
             if ($BuyerEmail) {
                 $BuyerEmail = filter_var($BuyerEmail, FILTER_VALIDATE_EMAIL);
                 $FulfillmentChannel = [];
@@ -372,7 +356,6 @@ Class ListOrdersSample extends OrdersCommon
                 }
             }
             $request->setSellerId(MWSDefine::MERCHANT_ID);
-
             if ($CreatedAfter) {
                 $request->setCreatedAfter($CreatedAfter);
             }
@@ -412,12 +395,6 @@ Class ListOrdersSample extends OrdersCommon
             return $request;
         } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
-            echo("Response Status Code: " . $ex->getStatusCode() . "\n");
-            echo("Error Code: " . $ex->getErrorCode() . "\n");
-            echo("Error Type: " . $ex->getErrorType() . "\n");
-            echo("Request ID: " . $ex->getRequestId() . "\n");
-            echo("XML: " . $ex->getXML() . "\n");
-            echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
         }
     }
 

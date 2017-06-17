@@ -43,7 +43,6 @@ Class ListOrderItemsSample extends OrdersCommon
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelListOrderItemsRequest();
         $request = self::SetRequestParams($request, $AmazonOrderId);
-
         return self::invokeListOrderItems($service, $request, $Flag);
     }
 
@@ -54,11 +53,17 @@ Class ListOrderItemsSample extends OrdersCommon
      */
     private static function SetRequestParams($request, $AmazonOrderId)
     {
-        $request->setSellerId(MWSDefine::MERCHANT_ID);
-        if ($AmazonOrderId) {
-            $request = $request->setAmazonOrderId($AmazonOrderId);
+        try{
+            $request->setSellerId(MWSDefine::MERCHANT_ID);
+            if ($AmazonOrderId) {
+                $request = $request->setAmazonOrderId($AmazonOrderId);
+            }else{
+                throw new MWSOrdersException(['Message'=>'AmazonOrderId Must Be Set']);
+            }
+            return $request;
+        }catch (MWSOrdersException $ex){
+            echo("Caught Exception: " . $ex->getMessage() . "\n");
         }
-        return $request;
     }
 
     /**
@@ -71,7 +76,6 @@ Class ListOrderItemsSample extends OrdersCommon
     {
         try {
             $response = $service->ListOrderItems($request);
-
             $dom = new DOMDocument();
             $dom->loadXML($response->toXML());
             $dom->preserveWhiteSpace = false;
@@ -83,7 +87,6 @@ Class ListOrderItemsSample extends OrdersCommon
                 $result = json_decode($result_json, true);//convert to array
             }
             return $result;
-
         } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
             echo("Response Status Code: " . $ex->getStatusCode() . "\n");
