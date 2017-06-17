@@ -38,7 +38,7 @@ Class ListOrderItemsByNextTokenSample extends OrdersCommon
      * @param $Flag
      * @return mixed|SimpleXMLElement
      */
-    public static function ListOrderItemsByNextTokenSample($NextToken, $Flag)
+    public static function ListOrderItemsByNextTokenSample($NextToken = null, $Flag = 1)
     {
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelListOrderItemsByNextTokenRequest();
@@ -53,15 +53,15 @@ Class ListOrderItemsByNextTokenSample extends OrdersCommon
      */
     private static function SetRequestParams($request, $NextToken)
     {
-        try{
+        try {
             $request->setSellerId(MWSDefine::MERCHANT_ID);
             if ($NextToken) {
                 $request->setNextToken($NextToken);
-            }else{
-                throw new MWSOrdersException(['Message'=>'NextToken Must Be Set']);
+            } else {
+                throw new MWSOrdersException(['Message' => 'NextToken Must Be Set']);
             }
             return $request;
-        }catch(MWSOrdersException $ex){
+        } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
         }
     }

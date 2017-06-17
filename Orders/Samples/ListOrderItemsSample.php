@@ -38,7 +38,7 @@ Class ListOrderItemsSample extends OrdersCommon
      * @param int $Flag
      * @return mixed|SimpleXMLElement
      */
-    public static function ListOrderItems($AmazonOrderId, $Flag = 1)
+    public static function ListOrderItems($AmazonOrderId = null, $Flag = 1)
     {
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelListOrderItemsRequest();
@@ -53,15 +53,15 @@ Class ListOrderItemsSample extends OrdersCommon
      */
     private static function SetRequestParams($request, $AmazonOrderId)
     {
-        try{
+        try {
             $request->setSellerId(MWSDefine::MERCHANT_ID);
             if ($AmazonOrderId) {
                 $request = $request->setAmazonOrderId($AmazonOrderId);
-            }else{
-                throw new MWSOrdersException(['Message'=>'AmazonOrderId Must Be Set']);
+            } else {
+                throw new MWSOrdersException(['Message' => 'AmazonOrderId Must Be Set']);
             }
             return $request;
-        }catch (MWSOrdersException $ex){
+        } catch (MWSOrdersException $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
         }
     }
