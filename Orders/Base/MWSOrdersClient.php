@@ -25,19 +25,19 @@ namespace MWSService\Orders\Base;
 
 use Exception;
 use InvalidArgumentException;
-use MWSService\Orders\Model\MWSOrdersModelGetOrderRequest as MWSOrdersModelGetOrderRequest;
-use MWSService\Orders\Model\MWSOrdersModelGetOrderResponse as MWSOrdersModelGetOrderResponse;
-use MWSService\Orders\Model\MWSOrdersModelGetServiceStatusRequest as MWSOrdersModelGetServiceStatusRequest;
-use MWSService\Orders\Model\MWSOrdersModelGetServiceStatusResponse as MWSOrdersModelGetServiceStatusResponse;
-use MWSService\Orders\Model\MWSOrdersModelListOrderItemsByNextTokenRequest as MWSOrdersModelListOrderItemsByNextTokenRequest;
-use MWSService\Orders\Model\MWSOrdersModelListOrderItemsByNextTokenResponse as MWSOrdersModelListOrderItemsByNextTokenResponse;
-use MWSService\Orders\Model\MWSOrdersModelListOrderItemsRequest as MWSOrdersModelListOrderItemsRequest;
-use MWSService\Orders\Model\MWSOrdersModelListOrderItemsResponse as MWSOrdersModelListOrderItemsResponse;
-use MWSService\Orders\Model\MWSOrdersModelListOrdersByNextTokenRequest as MWSOrdersModelListOrdersByNextTokenRequest;
-use MWSService\Orders\Model\MWSOrdersModelListOrdersByNextTokenResponse as MWSOrdersModelListOrdersByNextTokenResponse;
-use MWSService\Orders\Model\MWSOrdersModelListOrdersRequest as MWSOrdersModelListOrdersRequest;
-use MWSService\Orders\Model\MWSOrdersModelListOrdersResponse as MWSOrdersModelListOrdersResponse;
-use MWSService\Orders\Model\MWSOrdersModelResponseHeaderMetadata as MWSOrdersModelResponseHeaderMetadata;
+use MWSService\Orders\Model\MWSOrdersModelGetOrderRequest;
+use MWSService\Orders\Model\MWSOrdersModelGetOrderResponse;
+use MWSService\Orders\Model\MWSOrdersModelGetServiceStatusRequest;
+use MWSService\Orders\Model\MWSOrdersModelGetServiceStatusResponse;
+use MWSService\Orders\Model\MWSOrdersModelListOrderItemsByNextTokenRequest;
+use MWSService\Orders\Model\MWSOrdersModelListOrderItemsByNextTokenResponse;
+use MWSService\Orders\Model\MWSOrdersModelListOrderItemsRequest;
+use MWSService\Orders\Model\MWSOrdersModelListOrderItemsResponse;
+use MWSService\Orders\Model\MWSOrdersModelListOrdersByNextTokenRequest;
+use MWSService\Orders\Model\MWSOrdersModelListOrdersByNextTokenResponse;
+use MWSService\Orders\Model\MWSOrdersModelListOrdersRequest;
+use MWSService\Orders\Model\MWSOrdersModelListOrdersResponse;
+use MWSService\Orders\Model\MWSOrdersModelResponseHeaderMetadata;
 
 /**
  * MWSOrdersClient is an implementation of MarketplaceWebServiceOrders
