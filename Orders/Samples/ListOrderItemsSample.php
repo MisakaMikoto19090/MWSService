@@ -24,74 +24,89 @@
 namespace MWSService\Samples;
 
 use DOMDocument;
+use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSOrdersException;
 use MWSService\Orders\Base\MWSOrdersInterface;
-use MWSService\Orders\Model;
+use MWSService\Orders\Model\MWSOrdersModelListOrderItemsRequest;
 use MWSService\Orders\OrdersCommon;
+use SimpleXMLElement;
 
 Class ListOrderItemsSample extends OrdersCommon
 {
     public static function GetOrderItems($amazon_order_id)
     {
+        $service = parent::GetMWSOrdersClient();
+        $request = new MWSOrdersModelListOrderItemsRequest();
+        $request->setSellerId(MWSDefine::MERCHANT_ID);
 
+        return self::invokeListOrderItems($service, $request);
     }
-}
+
+    /**
+     * Get List Order Items Action Sample
+     * Gets competitive pricing and related information for a product identified by
+     * the MarketplaceId and ASIN.
+     *
+     * @param MWSOrdersInterface $service instance of MWSOrdersInterface
+     * @param mixed $request Model\MWSOrdersModelListOrderItems or array of parameters
+     */
+
+    public static function invokeListOrderItems(MWSOrdersInterface $service, $request, $Flag)
+    {
+        try {
+            $response = $service->ListOrderItems($request);
+
+//            echo("Service Response\n");
+//            echo("=============================================================================\n");
+
+            $dom = new DOMDocument();
+            $dom->loadXML($response->toXML());
+            $dom->preserveWhiteSpace = false;
+            $dom->formatOutput = true;
+            $xml = $dom->saveXML();
+            $result = new SimpleXMLElement($xml);//convert to xml object
+            if ($Flag) {
+                $result_json = json_encode($result, true);
+                $result = json_decode($result_json, true);//convert to array
+            }
+            return $result;
+//            echo $dom->saveXML();
+//            echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
+
+        } catch (MWSOrdersException $ex) {
+            echo("Caught Exception: " . $ex->getMessage() . "\n");
+            echo("Response Status Code: " . $ex->getStatusCode() . "\n");
+            echo("Error Code: " . $ex->getErrorCode() . "\n");
+            echo("Error Type: " . $ex->getErrorType() . "\n");
+            echo("Request ID: " . $ex->getRequestId() . "\n");
+            echo("XML: " . $ex->getXML() . "\n");
+            echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
+        }
+    }
 
 
-/************************************************************************
- * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
- * responses without calling MarketplaceWebServiceOrders service.
- *
- * Responses are loaded from local XML files. You can tweak XML files to
- * experiment with various outputs during development
- *
- * XML files available under MarketplaceWebServiceOrders/Mock tree
- *
- ***********************************************************************/
+    /************************************************************************
+     * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
+     * responses without calling MarketplaceWebServiceOrders service.
+     *
+     * Responses are loaded from local XML files. You can tweak XML files to
+     * experiment with various outputs during development
+     *
+     * XML files available under MarketplaceWebServiceOrders/Mock tree
+     *
+     ***********************************************************************/
 // $service = new MWSMock();
 
-/************************************************************************
- * Setup request parameters and uncomment invoke to try out
- * sample for List Order Items Action
- ***********************************************************************/
+    /************************************************************************
+     * Setup request parameters and uncomment invoke to try out
+     * sample for List Order Items Action
+     ***********************************************************************/
 // @TODO: set request. Action can be passed as  Model\MWSOrdersModelListOrderItems
 $request = new  Model\MWSOrdersModelListOrderItemsRequest();
 $request->setSellerId(MERCHANT_ID);
 // object or array of parameters
 invokeListOrderItems($service, $request);
 
-/**
- * Get List Order Items Action Sample
- * Gets competitive pricing and related information for a product identified by
- * the MarketplaceId and ASIN.
- *
- * @param MWSOrdersInterface $service instance of MWSOrdersInterface
- * @param mixed $request Model\MWSOrdersModelListOrderItems or array of parameters
- */
 
-function invokeListOrderItems(MWSOrdersInterface $service, $request)
-{
-    try {
-        $response = $service->ListOrderItems($request);
-
-        echo("Service Response\n");
-        echo("=============================================================================\n");
-
-        $dom = new DOMDocument();
-        $dom->loadXML($response->toXML());
-        $dom->preserveWhiteSpace = false;
-        $dom->formatOutput = true;
-        echo $dom->saveXML();
-        echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
-
-    } catch (MWSOrdersException $ex) {
-        echo("Caught Exception: " . $ex->getMessage() . "\n");
-        echo("Response Status Code: " . $ex->getStatusCode() . "\n");
-        echo("Error Code: " . $ex->getErrorCode() . "\n");
-        echo("Error Type: " . $ex->getErrorType() . "\n");
-        echo("Request ID: " . $ex->getRequestId() . "\n");
-        echo("XML: " . $ex->getXML() . "\n");
-        echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
-    }
 }
 
