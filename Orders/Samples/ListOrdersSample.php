@@ -21,7 +21,7 @@
  * List Orders Sample
  */
 
-namespace MWSService\Samples;
+namespace MWSService\Orders\Samples;
 
 use DOMDocument;
 use MWSService\MWSDefine;

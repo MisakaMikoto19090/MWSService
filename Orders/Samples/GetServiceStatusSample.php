@@ -20,15 +20,18 @@
 /**
  * Get Service Status Sample
  */
+namespace MWSService\Orders\Samples;
+
 use MWSService\MWSDefine;
 use MWSService\Orders\Base\MWSOrdersException;
 use MWSService\Orders\Base\MWSOrdersInterface;
 use MWSService\Orders\Model\MWSOrdersModelGetServiceStatusRequest;
 use MWSService\Orders\OrdersCommon;
-
+use DOMDocument;
+use SimpleXMLElement;
 Class GetServiceStatusSample extends OrdersCommon
 {
-    public static function GetServiceStatus($Flag)
+    public static function GetServiceStatus($Flag=1)
     {
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelGetServiceStatusRequest();
@@ -79,28 +82,6 @@ Class GetServiceStatusSample extends OrdersCommon
     }
 }
 
-
-/************************************************************************
- * Uncomment to try out Mock Service that simulates MarketplaceWebServiceOrders
- * responses without calling MarketplaceWebServiceOrders service.
- *
- * Responses are loaded from local XML files. You can tweak XML files to
- * experiment with various outputs during development
- *
- * XML files available under MarketplaceWebServiceOrders/Mock tree
- *
- ***********************************************************************/
-// $service = new MWSMock();
-
-/************************************************************************
- * Setup request parameters and uncomment invoke to try out
- * sample for Get Service Status Action
- ***********************************************************************/
-// @TODO: set request. Action can be passed as  Model\MWSOrdersModelGetServiceStatus
-$request = new  Model\MWSOrdersModelGetServiceStatusRequest();
-$request->setSellerId(MWSDefine::MERCHANT_ID);
-// object or array of parameters
-invokeGetServiceStatus($service, $request);
 
 
 

@@ -21,7 +21,7 @@
  * List Orders By Next Token Sample
  */
 
-namespace MWSService\Samples;
+namespace MWSService\Orders\Samples;
 
 use DOMDocument;
 use MWSService\MWSDefine;
@@ -50,7 +50,7 @@ use SimpleXMLElement;
 
 Class ListOrdersByNextTokenSample extends OrdersCommon
 {
-    public static function ListOrdersByNextToken($NextToken, $Flag)
+    public static function ListOrdersByNextToken($NextToken, $Flag=1)
     {
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelListOrdersByNextTokenRequest();

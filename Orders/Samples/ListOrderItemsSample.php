@@ -21,7 +21,7 @@
  * List Order Items Sample
  */
 
-namespace MWSService\Samples;
+namespace MWSService\Orders\Samples;
 
 use DOMDocument;
 use MWSService\MWSDefine;
@@ -33,9 +33,7 @@ use SimpleXMLElement;
 
 Class ListOrderItemsSample extends OrdersCommon
 {
-
-
-    public static function GetOrderItems($AmazonOrderId, $Flag)
+    public static function GetOrderItems($AmazonOrderId, $Flag = 1)
     {
         $service = parent::GetMWSOrdersClient();
         $request = new MWSOrdersModelListOrderItemsRequest();
