@@ -83,9 +83,9 @@ Class ListOrdersSample extends OrdersCommon
      */
     public static function ListOrders(
         $CreatedAfter = null,
-        $CreatedBefore = null,
+        $CreatedBefore = 0,
         $LastUpdatedAfter = null,
-        $LastUpdatedBefore = null,
+        $LastUpdatedBefore = 0,
         array $OrderStatus = [],
         array $MarketplaceId = [],
         array $FulfillmentChannel = [],
@@ -208,7 +208,7 @@ Class ListOrdersSample extends OrdersCommon
                 if ($CreatedBeforeTimeStamp <= $CreatedAfterTimeStamp) {
                     throw new MWSOrdersException(['Message' => 'CreatedBefore Must Be Greater Than CreatedAfter']);
                 }
-            } else if ($CreatedAfter) {
+            } else if ($CreatedAfter != 0) {
                 //if  CreatedAfter is defined,set CreatedBefore
                 $year = date('Y', time());
                 $lastMonth = date('m', time()) - 1;
@@ -250,7 +250,7 @@ Class ListOrdersSample extends OrdersCommon
                 if ($LastUpdatedBeforeTimeStamp <= $LastUpdatedAfterTimeStamp) {
                     throw new MWSOrdersException(['Message' => 'LastUpdatedBefore Must Be Greater Than LastUpdatedAfter']);
                 }
-            } else if (!$CreatedAfter) {
+            } else if (!$CreatedAfter && $LastUpdatedBefore != 0) {
                 $year = date('Y', time());
                 $lastMonth = date('m', time()) - 1;
                 if (0 == $lastMonth) {
