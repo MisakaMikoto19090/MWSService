@@ -208,7 +208,7 @@ Class ListOrdersSample extends OrdersCommon
                 if ($CreatedBeforeTimeStamp <= $CreatedAfterTimeStamp) {
                     throw new MWSOrdersException(['Message' => 'CreatedBefore Must Be Greater Than CreatedAfter']);
                 }
-            } else if ($CreatedAfter != 0) {
+            } else if ($CreatedAfter != 0 && $CreatedBefore != 0) {
                 //if  CreatedAfter is defined,set CreatedBefore
                 $year = date('Y', time());
                 $lastMonth = date('m', time()) - 1;
